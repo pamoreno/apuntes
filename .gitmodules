@@ -1,0 +1,3 @@
+[submodule "docs/apuntes-c"]
+	path = docs/apuntes-c
+	url = git@github.com:pamoreno/apuntes-c.git
