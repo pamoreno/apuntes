@@ -1,0 +1,1204 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Apuntes
+" name="description"/>
+<link href="https://pamoreno.github.io/apuntes/apuntes-c/estructuras/" rel="canonical"/>
+<link href="../memdin/" rel="prev"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.3" name="generator"/>
+<title>Estructuras - Apuntes</title>
+<link href="../../assets/stylesheets/main.c4a75a56.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+<link href="../../css/bootstrap-card.css" rel="stylesheet"/>
+<link href="../../css/cards.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<link href="../../css/fontawesome/all.min.css" rel="stylesheet"/>
+<link href="../../css/quotes.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#estructuras">
+          Saltar a contenido
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Cabecera" class="md-header__inner md-grid">
+<a aria-label="Apuntes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Apuntes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Estructuras
+            
+          </span>
+</div>
+</div>
+</div>
+</nav>
+<nav aria-label="Pestañas" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../compilando/">
+        Programación en C
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegación" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Apuntes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Apuntes
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Programación en C
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          Programación en C
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../compilando/">
+        Compilando con el GCC
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../arreglos/">
+        Arreglos
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cadenas/">
+        Cadenas
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../punteros/">
+        Punteros
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cla/">
+        Argumentos en línea de comandos
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../memdin/">
+        Memoria Dinámica
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Estructuras
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Estructuras
+      </a>
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#qué-son-las-estructuras">
+    ¿Qué son las estructuras?
+  </a>
+<nav aria-label="¿Qué son las estructuras?" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#redefinición-del-nombre">
+    Redefinición del nombre
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cuánto-espacio-cuánta-memoria-ocupa-una-estructura">
+    ¿Cuánto espacio, cuánta memoria, ocupa una estructura?
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inicialización">
+    Inicialización
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso">
+    Acceso
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-de-estructuras">
+    Arreglos de estructuras
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglo-de-punteros-a-estructuras">
+    Arreglo de punteros a estructuras
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modularización">
+    Modularización
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-estructuras">
+    Biblioteca estándar para manejo de estructuras
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#qué-son-las-estructuras">
+    ¿Qué son las estructuras?
+  </a>
+<nav aria-label="¿Qué son las estructuras?" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#redefinición-del-nombre">
+    Redefinición del nombre
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cuánto-espacio-cuánta-memoria-ocupa-una-estructura">
+    ¿Cuánto espacio, cuánta memoria, ocupa una estructura?
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inicialización">
+    Inicialización
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso">
+    Acceso
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-de-estructuras">
+    Arreglos de estructuras
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglo-de-punteros-a-estructuras">
+    Arreglo de punteros a estructuras
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modularización">
+    Modularización
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-estructuras">
+    Biblioteca estándar para manejo de estructuras
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="estructuras">Estructuras<a class="headerlink" href="#estructuras" title="Permanent link">#</a></h1>
+<p>Típicamente, en todo programa no minúsculo, se trabaja con datos que están relacionados entre sí.
+Por ejemplo, con puntos en <span class="arithmatex">\(\mathbb{R}^n\)</span>, con figuras geométricas, con usuarios, con sensores, etc.
+Hasta ahora, la solución para manipular datos en <span class="arithmatex">\(\mathbb{R}^2\)</span> sería tener 2 variables que nos sirvan para identificar
+<span class="arithmatex">\(x\)</span> e <span class="arithmatex">\(y\)</span> (sean 2 <code class="highlight"><span class="kt">float</span></code> o 2 arreglos), para manipular usuarios tendríamos que tener todos los datos importantes
+(un identificador, un nombre, un nombre de usuario, y otros que dependerán de la aplicación).
+Por ejemplo, pensemos una aplicación que opera con vectores (que inician en el origen): utilizaremos 3 <code class="highlight"><span class="kt">float</span></code> para
+almacenar las coordenadas del vector, e implementaremos funciones que suman, restan, multiplican vectores por
+constantes, etc.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cm">/* consideramos un vector desde (0, 0, ), por lo que sólo necesitamos 3 puntos para representarlo */</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="cm">/* @brief suma 2 vectores y nos devuelve las componentes de la suma en un tercer vector</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="cm"> * @param outx componente x de un vector de salida</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="cm"> * @param outy componente y de un vector de salida</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="cm"> * @param outz componente z de un vector de salida</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="cm"> * @param in1x componente x de un vector de entrada</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="cm"> * @param in1y componente y de un vector de entrada</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="cm"> * @param in1z componente z de un vector de entrada</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="cm"> * @param in2x componente x de un vector de entrada</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="cm"> * @param in2y componente y de un vector de entrada</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="cm"> * @param in2z componente z de un vector de entrada</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="cm">*/</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">vector_suma</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">outx</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">outy</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="kt">double</span><span class="w"> </span><span class="n">outz</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">                     </span><span class="kt">double</span><span class="w"> </span><span class="n">in1x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">in1y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">in1z</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">                     </span><span class="kt">double</span><span class="w"> </span><span class="n">in2x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">in2y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">in2z</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="p">{</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">outx</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">outy</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">outz</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="o">*</span><span class="n">outx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in1x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">in2x</span><span class="p">;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">    </span><span class="o">*</span><span class="n">outy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in1y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">in2y</span><span class="p">;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="o">*</span><span class="n">outz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in1z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">in2z</span><span class="p">;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Ya con la función que suma dos vectores vemos que:</p>
+<ol>
+<li>la función tiene demasiados parámetros para lo poco que hace,</li>
+<li>cada función que trabaje con vectores deberá tener igual cantidad de parámetros.</li>
+</ol>
+<p>Sin embargo, veamos cómo se invoca a esta función, y el código relevante para ello:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">...</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kt">float</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">z1</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kt">float</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">z2</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="kt">float</span><span class="w"> </span><span class="n">ox</span><span class="p">,</span><span class="w"> </span><span class="n">oy</span><span class="p">,</span><span class="w"> </span><span class="n">oz</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">status_t</span><span class="w"> </span><span class="n">st</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="p">...</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector_suma</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ox</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">oy</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">oz</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">z1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">z2</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>Claramente, no es algo cómo para manipular, y por eso tenemos estructuras.</p>
+<h2 id="qué-son-las-estructuras">¿Qué son las estructuras?<a class="headerlink" href="#qué-son-las-estructuras" title="Permanent link">#</a></h2>
+<p>Las estructuras son la herramienta que nos da el lenguaje de programación C para crear tipos compuestos de datos.
+De este modo, podemos agregar variables que estén relacionadas en un nuevo tipo de dato, encapsulando la información.
+Esto no sólo nos permite manipular las variables en bloque, sino que nos permite asignarle un nombre al conjunto para
+hacer referencia a éste de una forma más sencilla, legible y coherente.</p>
+<p>La sintaxis para definir una estructura es:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Definición de estructuras</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">struct</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nombre</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">tipo</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">variable</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nombre</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">variable</span><span class="o">&gt;</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="p">...</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">tipo</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">variable</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nombre</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">variable</span><span class="o">&gt;</span><span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>Una vez que tenemos la estructura definida, podemos declarar una variable según la sintaxis:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Declaración de variables usando estructuras</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">struct</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nombre</span><span class="o">&gt;</span><span class="w"> </span><span class="n">variable</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>Retomando el ejemplo de los vectores, para definir una estructura con las 3 componentes del vector escribiríamos:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Ejemplo: estructura vector</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>obteniendo así un nuevo tipo llamado <code>struct vector3</code>.
+Al igual que con cualquier variable, para declarar una variable del tipo <code>struct vector3</code> escribimos:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Ejemplo: declaración de una variable de tipo `struct vector`</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">vec1</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>donde <code>vec1</code> es el nombre de la variable.
+Reescribamos el prototipo de la función que suma vectores utilizando este nuevo conocimiento:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Ejemplo: función que suma vectores (prototipo)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">vector_suma</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>En este ejemplo vemos, en la definición del puntero, la misma sintaxis que utilizamos para todos los demás punteros que
+hemos visto (por ejemplo, <code class="highlight"><span class="kt">int</span><span class="w"> </span><span class="o">*</span></code>).
+Por lo tanto, podemos crear una variable de tipo <code>struct vector3</code> y tener un puntero a dicha variable con <code>struct
+vector3 *</code>.</p>
+<h3 id="redefinición-del-nombre">Redefinición del nombre<a class="headerlink" href="#redefinición-del-nombre" title="Permanent link">#</a></h3>
+<p>Siempre que utilizamos estructuras trabajamos con nombres que comienzan con <code>struct</code>.
+Si bien esto es claro y nos recuerda que el dato que utilizamos es una estructura, lo típico es definir un tipo nuevo a
+partir de la estructura utilizando <code class="highlight"><span class="k">typedef</span></code>.
+Tal y como vimos en otros casos, la definición del nuevo tipo lleva la sintaxis:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">typedef</span><span class="w"> </span><span class="o">&lt;</span><span class="n">viejo</span><span class="w"> </span><span class="n">tipo</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nuevo</span><span class="w"> </span><span class="n">tipo</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<p>por lo que podemos definir la estructura como</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">vector3_t</span><span class="p">;</span>
+</code></pre></div>
+<p>Además, cuando se redefine el nombre como en estos casos, es posible definir la estructura y el nuevo nombre en la misma
+sentencia, siguiendo la misma convención que antes:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">}</span><span class="w"> </span><span class="n">vector3_t</span><span class="p">;</span>
+</code></pre></div>
+<p>Esto es similar a haber hecho</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="p">};</span>
+<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">vector3_t</span><span class="p">;</span>
+</code></pre></div>
+<p>y el prototipo de la función se vuelve más claro también:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Ejemplo: función que suma vectores (prototipo)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">vector_suma</span><span class="p">(</span><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">vector3_t</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">vector3_t</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<details class="tip">
+<summary>Convenciones</summary>
+<p>En este caso, utilicé una convensión típica en la que se define un tipo nuevo con sufijo <code>_t</code>.
+Otra convensión utiliza camelCase, definiendo el tipo como <code>Vector3</code> en lugar de <code>vector3_t</code>, es decir:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Vector3</span><span class="w"> </span><span class="n">Vector3</span><span class="p">;</span>
+</code></pre></div>
+<p>En estos casos, suele utilizarse el camelCase incluso al definir la estructura, con la siguiente notación:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Vector3</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="p">};</span>
+</code></pre></div>
+<p>o bien</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-14-3" id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-14-4" id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<a href="#__codelineno-14-5" id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="p">}</span><span class="w"> </span><span class="n">Vector3</span><span class="p">;</span>
+</code></pre></div>
+<p>con lo cual, el prototipo antes visto es</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="n">Status</span><span class="w"> </span><span class="nf">vector_suma</span><span class="p">(</span><span class="n">Vector3</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<h2 id="cuánto-espacio-cuánta-memoria-ocupa-una-estructura">¿Cuánto espacio, cuánta memoria, ocupa una estructura?<a class="headerlink" href="#cuánto-espacio-cuánta-memoria-ocupa-una-estructura" title="Permanent link">#</a></h2>
+<p>Para comenzar, como tenemos un nuevo tipo, podemos saber en tiempo de compilación cuánto ocupa dicho tipo, la
+estructura, utilizando <code>sizeof</code>: <code class="highlight"><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nombre</span><span class="o">&gt;</span><span class="p">)</span></code>.
+En el caso del ejemplo del vector, tenemos: <code class="highlight"><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="p">)</span></code> o bien <code class="highlight"><span class="k">sizeof</span><span class="p">(</span><span class="n">vector3_t</span><span class="p">)</span></code>.</p>
+<p>Dado que es una composición de elementos, una estructura ocupa <strong>al menos</strong> lo mismo que la suma del almacenamiento de
+sus elementos pero, por cuestiones de alineamiento de los datos, puede ocupar más, es decir:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span>
+</code></pre></div>
+<p>para el caso del vector.</p>
+<p>Ahora, volvamos sobre el prototipo de la función <code>vector_suma()</code>:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">vector_suma</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div>
+<p>Tanto los parámetros <code>v1</code> como <code>v2</code> se pasan por copia, es decir, toda la información de la estructura debe ser copiada
+para pasársela a la función.
+Esto es muy ineficiente.
+Por eso, las estructuras <strong>siempre</strong> se pasan por puntero, y no únicamente cuando se desea modificarlas.
+En este caso, si no se desea modificar la estructura, se pasa a través de un puntero a una estructura constante.
+Entonces, el prototipo nos queda:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">vector_suma</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div>
+<p>que, por otro lado, es más simple de leer haciendo uso de la definición del tipo <code>vector3_t</code>:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">vector_suma</span><span class="p">(</span><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="inicialización">Inicialización<a class="headerlink" href="#inicialización" title="Permanent link">#</a></h2>
+<p>Al momento de definir una variable de un tipo que es una estructura se pueden asignar valores a cada uno de sus
+componentes.
+Para ello hay 2 formas de hacerlo: en orden o por nombres.
+En un primer modo, en orden, la estructura se inicializa como si fuese un arreglo, dándole valor a cada uno de los
+miembros de la estructura en el orden en que fue definida.
+En el caso de la estructura <code class="highlight"><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span></code> haríamos:</p>
+<div class="highlight"><span class="filename">Inicialización estática de una estructura (1)</span><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">vec1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">19.3</span><span class="p">,</span><span class="w"> </span><span class="mf">1e-2</span><span class="p">};</span>
+</code></pre></div>
+<p>mientras que si cargamos los miembros indicandos sus nombres haríamos:</p>
+<div class="highlight"><span class="filename">Inicialización estática de una estructura (1)</span><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">vec1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">19.3</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-2</span><span class="p">};</span>
+</code></pre></div>
+<p>Típicamente, incluso con los nombres se inicializan en el orden en que fueron declarados los miembros.
+La elección entre un modo u otro es meramente por claridad a la hora de leer el código.</p>
+<h2 id="acceso">Acceso<a class="headerlink" href="#acceso" title="Permanent link">#</a></h2>
+<p>Hemos visto cómo definir estructuras, pero no cómo acceder a sus miembros.
+El operador que debemos utilizar es el <code>.</code>, un punto.
+De este modo, si definimos las variables</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span>
+<a href="#__codelineno-22-2" id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="n">vector3_t</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span>
+</code></pre></div>
+<p>podemos acceder a sus elementos del siguiente modo:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-23-1" id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="n">v1</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.5</span><span class="p">;</span><span class="w">     </span><span class="cm">/* escritura del elemento x de v1 */</span>
+<a href="#__codelineno-23-2" id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="n">v1</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w">    </span><span class="cm">/* lectura del elemento x de v2 y escritura de y en v1 */</span>
+<a href="#__codelineno-23-3" id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="n">v1</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="n">z</span><span class="p">;</span><span class="w">    </span><span class="cm">/* lectura de z en v2 y escritura de z en v1 */</span>
+</code></pre></div>
+<p>Por otro lado, si en lugar de la estructura tenemos un puntero a la misma, se cumplen las mismas reglas que con todos
+los punteros: podemos utilizar el operador de indirección (<code>*</code>):</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="n">vector3_t</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span>
+<a href="#__codelineno-24-2" id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span>
+<a href="#__codelineno-24-3" id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="k">struct</span><span class="w"> </span><span class="nc">vector3</span><span class="w"> </span><span class="o">*</span><span class="n">pv1</span><span class="p">;</span>
+<a href="#__codelineno-24-4" id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="n">pv2</span><span class="p">;</span>
+<a href="#__codelineno-24-5" id="__codelineno-24-5" name="__codelineno-24-5"></a>
+<a href="#__codelineno-24-6" id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="n">pv1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v1</span><span class="p">;</span>
+<a href="#__codelineno-24-7" id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="n">pv2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v2</span><span class="p">;</span>
+<a href="#__codelineno-24-8" id="__codelineno-24-8" name="__codelineno-24-8"></a>
+<a href="#__codelineno-24-9" id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="p">(</span><span class="o">*</span><span class="n">pv1</span><span class="p">).</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.5</span><span class="p">;</span>
+<a href="#__codelineno-24-10" id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="p">(</span><span class="o">*</span><span class="n">pv1</span><span class="p">).</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">v2</span><span class="p">).</span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-24-11" id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="p">(</span><span class="o">*</span><span class="n">pv1</span><span class="p">).</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">v2</span><span class="p">).</span><span class="n">z</span><span class="p">;</span>
+</code></pre></div>
+<p>Sin embargo, esta escritura se vuelve engorrosa cuando tenemos múltiples estructuras anidadas.
+Supongamos una estructura <code>empleado_t</code>.
+Esta estructura está compuesta por dos cadenas de caracteres dinámicas (<code>char *</code>) para el nombre y apellido, un
+puntero a una estructura de tipo <code>empresa_t</code> que define la empresa en la que trabaja el empleado, un enumerativo para su
+cargo y un número para su salario.
+A su vez, la estructura <code>empresa_t</code> está definida por cadenas de caracteres dinámicas para su razón social, su CUIT y su
+dirección.
+La figura 1 nos da un esquema de este tipo.</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="empleado.svg"><img alt="" src="empleado.svg"/></a>
+<caption><strong>Fig. 1:</strong> Diagrama de la estructura <code>empleado_t</code> con estructuras anidadas.</caption></p>
+</figure>
+<p>El código que implementa esta la figura 1 se muestra a continuación:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span>
+<span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span>
+<span class="normal"><a href="#__codelineno-25-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">empresa</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">nombre</span><span class="p">;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cuit</span><span class="p">;</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">direccion</span><span class="p">;</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="p">}</span><span class="w"> </span><span class="n">empresa_t</span><span class="p">;</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">empleado</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">nombre</span><span class="p">;</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apellido</span><span class="p">;</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="w">    </span><span class="n">empresa_t</span><span class="w"> </span><span class="o">*</span><span class="n">empresa</span><span class="p">;</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="w">    </span><span class="n">cargo_t</span><span class="w"> </span><span class="n">cargo</span><span class="p">;</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">salario</span><span class="p">;</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="p">}</span><span class="w"> </span><span class="n">empleado_t</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>Luego, podemos definir variables y utilizarlas del siguiente modo (utilizando notación de punteros):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-14">14</a></span>
+<span class="normal"><a href="#__codelineno-26-15">15</a></span>
+<span class="normal"><a href="#__codelineno-26-16">16</a></span>
+<span class="normal"><a href="#__codelineno-26-17">17</a></span>
+<span class="normal"><a href="#__codelineno-26-18">18</a></span>
+<span class="normal"><a href="#__codelineno-26-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-14" name="__codelineno-26-14"></a><span class="p">...</span>
+<a id="__codelineno-26-15" name="__codelineno-26-15"></a><span class="n">empresa_t</span><span class="w"> </span><span class="n">ypf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"YPF S.A."</span><span class="p">,</span><span class="w"> </span><span class="s">"30-54668997-9"</span><span class="p">,</span><span class="w"> </span><span class="s">"Macacha Güemes 515"</span><span class="p">};</span>
+<a id="__codelineno-26-16" name="__codelineno-26-16"></a><span class="n">empleado_t</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"Nombre"</span><span class="p">,</span><span class="w"> </span><span class="s">"Ficticio"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ypf</span><span class="p">,</span><span class="w"> </span><span class="n">CARGO_VP_IPD</span><span class="p">,</span><span class="w"> </span><span class="mf">945021.2</span><span class="p">};</span>
+<a id="__codelineno-26-17" name="__codelineno-26-17"></a><span class="n">empleado_t</span><span class="w"> </span><span class="o">*</span><span class="n">puntero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">empleado</span><span class="p">;</span>
+<a id="__codelineno-26-18" name="__codelineno-26-18"></a><span class="p">...</span>
+<a id="__codelineno-26-19" name="__codelineno-26-19"></a><span class="n">puts</span><span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">puntero</span><span class="p">).</span><span class="n">empresa</span><span class="p">).</span><span class="n">nombre</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>Como podemos ver, es una notación sumamente ofuscada.
+Por eso se utiliza el operador <code>-&gt;</code> para acceder a los miembros de una estructura cuando se posee un puntero a la misma.
+El mismo ejemplo que antes, pero utilizando el operador <code>-&gt;</code> se convierte en:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-19" name="__codelineno-27-19"></a><span class="n">puts</span><span class="p">(</span><span class="n">puntero</span><span class="o">-&gt;</span><span class="n">empleo</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>Vemos que la notación es <code>&lt;puntero a estructura&gt; -&gt; &lt;miembro&gt;</code>.
+Como aclaración, dependiendo de la fuente que utilice el navegador podríamos ver el operador como una flecha, pero en
+realidad es un guión <code>-</code> y un <code>&gt;</code> juntos.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo: creación de estructuras</p>
+<p>¿Cómo haríamos si quisiéramos crear una estructura del tipo <code>empresa_t</code>?
+¿Y una estructura del tipo <code>empleado_t</code>?
+A continuación se dan ejemplos de funciones que cargar/crean estructuras de tipo <code>empresa_t</code></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Estática</label><label for="__tabbed_1_2">Dinámica</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-28-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-28-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-28-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-28-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-28-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-28-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-28-10">10</a></span>
+<span class="normal"><a href="#__codelineno-28-11">11</a></span>
+<span class="normal"><a href="#__codelineno-28-12">12</a></span>
+<span class="normal"><a href="#__codelineno-28-13">13</a></span>
+<span class="normal"><a href="#__codelineno-28-14">14</a></span>
+<span class="normal"><a href="#__codelineno-28-15">15</a></span>
+<span class="normal"><a href="#__codelineno-28-16">16</a></span>
+<span class="normal"><a href="#__codelineno-28-17">17</a></span>
+<span class="normal"><a href="#__codelineno-28-18">18</a></span>
+<span class="normal"><a href="#__codelineno-28-19">19</a></span>
+<span class="normal"><a href="#__codelineno-28-20">20</a></span>
+<span class="normal"><a href="#__codelineno-28-21">21</a></span>
+<span class="normal"><a href="#__codelineno-28-22">22</a></span>
+<span class="normal"><a href="#__codelineno-28-23">23</a></span>
+<span class="normal"><a href="#__codelineno-28-24">24</a></span>
+<span class="normal"><a href="#__codelineno-28-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">empresa_cargar</span><span class="p">(</span><span class="n">empresa_t</span><span class="w"> </span><span class="o">*</span><span class="n">empresa</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">razon_social</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cuit</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">direccion</span><span class="p">)</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="p">{</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">empresa</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">razon_social</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">cuit</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">direccion</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="w">    </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">razon_social</span><span class="p">);</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11"></a>
+<a id="__codelineno-28-12" name="__codelineno-28-12"></a><span class="w">    </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">cuit</span><span class="p">);</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16"></a><span class="w">    </span><span class="p">}</span><span class="o">**</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17"></a><span class="w">    </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">direccion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">direccion</span><span class="p">);</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">direccion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-19" name="__codelineno-28-19"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="p">);</span>
+<a id="__codelineno-28-20" name="__codelineno-28-20"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-28-21" name="__codelineno-28-21"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-28-22" name="__codelineno-28-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-23" name="__codelineno-28-23"></a>
+<a id="__codelineno-28-24" name="__codelineno-28-24"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-28-25" name="__codelineno-28-25"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Notar que esta función <strong>no crea</strong> una estructura, sino que carga los datos en una ya creada.
+Por ejemplo:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span>
+<span class="normal"><a href="#__codelineno-29-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="n">empresa_t</span><span class="w"> </span><span class="n">ypf</span><span class="p">;</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="n">status_t</span><span class="w"> </span><span class="n">st</span><span class="p">;</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="p">...</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empresa_cargar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ypf</span><span class="p">,</span><span class="w"> </span><span class="s">"YPF S.A."</span><span class="p">,</span><span class="w"> </span><span class="s">"30-54668997-9"</span><span class="p">,</span><span class="w"> </span><span class="s">"Macacha Güemes 515"</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-30-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-30-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-30-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-30-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-30-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-30-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-30-10">10</a></span>
+<span class="normal"><a href="#__codelineno-30-11">11</a></span>
+<span class="normal"><a href="#__codelineno-30-12">12</a></span>
+<span class="normal"><a href="#__codelineno-30-13">13</a></span>
+<span class="normal"><a href="#__codelineno-30-14">14</a></span>
+<span class="normal"><a href="#__codelineno-30-15">15</a></span>
+<span class="normal"><a href="#__codelineno-30-16">16</a></span>
+<span class="normal"><a href="#__codelineno-30-17">17</a></span>
+<span class="normal"><a href="#__codelineno-30-18">18</a></span>
+<span class="normal"><a href="#__codelineno-30-19">19</a></span>
+<span class="normal"><a href="#__codelineno-30-20">20</a></span>
+<span class="normal"><a href="#__codelineno-30-21">21</a></span>
+<span class="normal"><a href="#__codelineno-30-22">22</a></span>
+<span class="normal"><a href="#__codelineno-30-23">23</a></span>
+<span class="normal"><a href="#__codelineno-30-24">24</a></span>
+<span class="normal"><a href="#__codelineno-30-25">25</a></span>
+<span class="normal"><a href="#__codelineno-30-26">26</a></span>
+<span class="normal"><a href="#__codelineno-30-27">27</a></span>
+<span class="normal"><a href="#__codelineno-30-28">28</a></span>
+<span class="normal"><a href="#__codelineno-30-29">29</a></span>
+<span class="normal"><a href="#__codelineno-30-30">30</a></span>
+<span class="normal"><a href="#__codelineno-30-31">31</a></span>
+<span class="normal"><a href="#__codelineno-30-32">32</a></span>
+<span class="normal"><a href="#__codelineno-30-33">33</a></span>
+<span class="normal"><a href="#__codelineno-30-34">34</a></span>
+<span class="normal"><a href="#__codelineno-30-35">35</a></span>
+<span class="normal"><a href="#__codelineno-30-36">36</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">empresa_crear</span><span class="p">(</span><span class="n">empresa_t</span><span class="w"> </span><span class="o">**</span><span class="n">empresa</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">razon_social</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cuit</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">direccion</span><span class="p">)</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="p">{</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">empresa</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">razon_social</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">cuit</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">direccion</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a>
+<a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="hll"><span class="w">    </span><span class="o">*</span><span class="n">empresa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">empresa_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">empresa_t</span><span class="p">));</span>
+</span><a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11"></a>
+<a id="__codelineno-30-12" name="__codelineno-30-12"></a><span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">razon_social</span><span class="p">);</span>
+<a id="__codelineno-30-13" name="__codelineno-30-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-14" name="__codelineno-30-14"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">);</span>
+<a id="__codelineno-30-15" name="__codelineno-30-15"></a><span class="w">        </span><span class="o">*</span><span class="n">empresa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-30-16" name="__codelineno-30-16"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-30-17" name="__codelineno-30-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-30-18" name="__codelineno-30-18"></a>
+<a id="__codelineno-30-19" name="__codelineno-30-19"></a><span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">cuit</span><span class="p">);</span>
+<a id="__codelineno-30-20" name="__codelineno-30-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-21" name="__codelineno-30-21"></a><span class="w">        </span><span class="n">free</span><span class="p">((</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-30-22" name="__codelineno-30-22"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">);</span>
+<a id="__codelineno-30-23" name="__codelineno-30-23"></a><span class="w">        </span><span class="o">*</span><span class="n">empresa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-30-24" name="__codelineno-30-24"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-30-25" name="__codelineno-30-25"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-30-26" name="__codelineno-30-26"></a><span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">direccion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">direccion</span><span class="p">);</span>
+<a id="__codelineno-30-27" name="__codelineno-30-27"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">direccion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-28" name="__codelineno-30-28"></a><span class="w">        </span><span class="n">free</span><span class="p">((</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="p">);</span>
+<a id="__codelineno-30-29" name="__codelineno-30-29"></a><span class="w">        </span><span class="n">free</span><span class="p">((</span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-30-30" name="__codelineno-30-30"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="o">*</span><span class="n">empresa</span><span class="p">);</span>
+<a id="__codelineno-30-31" name="__codelineno-30-31"></a><span class="w">        </span><span class="o">*</span><span class="n">empresa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-30-32" name="__codelineno-30-32"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-30-33" name="__codelineno-30-33"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-30-34" name="__codelineno-30-34"></a>
+<a id="__codelineno-30-35" name="__codelineno-30-35"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-30-36" name="__codelineno-30-36"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</input></input></div>
+<div class="admonition note">
+<p class="admonition-title">Ejercicio</p>
+<p>La implementación de las funciones análogas para <code>empleado_t</code> se dejan al lector.</p>
+</div>
+<p>Un ejemplo de una función que recibe una estructura, constante, es aquella que la imprime, por ejemplo:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-31-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-31-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-31-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-31-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-31-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-31-10">10</a></span>
+<span class="normal"><a href="#__codelineno-31-11">11</a></span>
+<span class="normal"><a href="#__codelineno-31-12">12</a></span>
+<span class="normal"><a href="#__codelineno-31-13">13</a></span>
+<span class="normal"><a href="#__codelineno-31-14">14</a></span>
+<span class="normal"><a href="#__codelineno-31-15">15</a></span>
+<span class="normal"><a href="#__codelineno-31-16">16</a></span>
+<span class="normal"><a href="#__codelineno-31-17">17</a></span>
+<span class="normal"><a href="#__codelineno-31-18">18</a></span>
+<span class="normal"><a href="#__codelineno-31-19">19</a></span>
+<span class="normal"><a href="#__codelineno-31-20">20</a></span>
+<span class="normal"><a href="#__codelineno-31-21">21</a></span>
+<span class="normal"><a href="#__codelineno-31-22">22</a></span>
+<span class="normal"><a href="#__codelineno-31-23">23</a></span>
+<span class="normal"><a href="#__codelineno-31-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">empresa_print_csv</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">empresa_t</span><span class="w"> </span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="p">{</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">empresa</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="p">,</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">direccion</span><span class="p">);</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="p">}</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7"></a>
+<a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">empresa_print_pretty</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">empresa_t</span><span class="w"> </span><span class="o">*</span><span class="n">empresa</span><span class="p">)</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="p">{</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">empresa</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Razón Social: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-31-12" name="__codelineno-31-12"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"CUIT: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="p">);</span>
+<a id="__codelineno-31-13" name="__codelineno-31-13"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Dirección: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">direccion</span><span class="p">);</span>
+<a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-31-15" name="__codelineno-31-15"></a><span class="p">}</span>
+<a id="__codelineno-31-16" name="__codelineno-31-16"></a>
+<a id="__codelineno-31-17" name="__codelineno-31-17"></a><span class="kt">void</span><span class="w"> </span><span class="nf">empleado_print_csv</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">empleado_t</span><span class="w"> </span><span class="o">*</span><span class="n">empleado</span><span class="p">)</span>
+<a id="__codelineno-31-18" name="__codelineno-31-18"></a><span class="p">{</span>
+<a id="__codelineno-31-19" name="__codelineno-31-19"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">empleado</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-20" name="__codelineno-31-20"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,"</span><span class="p">,</span><span class="w"> </span><span class="n">empleado</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">empleado</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="p">);</span>
+<a id="__codelineno-31-21" name="__codelineno-31-21"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,"</span><span class="p">,</span><span class="w"> </span><span class="n">empleado</span><span class="o">-&gt;</span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">empleado</span><span class="o">-&gt;</span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">cuit</span><span class="p">,</span><span class="w"> </span><span class="n">empleado</span><span class="o">-&gt;</span><span class="n">empresa</span><span class="o">-&gt;</span><span class="n">direccion</span><span class="p">);</span>
+<a id="__codelineno-31-22" name="__codelineno-31-22"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%.4f</span><span class="se">\"</span><span class="s">,"</span><span class="p">,</span><span class="w"> </span><span class="n">cargo_to_str</span><span class="p">(</span><span class="n">empleado</span><span class="o">-&gt;</span><span class="n">cargo</span><span class="p">),</span><span class="w"> </span><span class="n">empleado</span><span class="o">-&gt;</span><span class="n">salario</span><span class="p">);</span>
+<a id="__codelineno-31-23" name="__codelineno-31-23"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-31-24" name="__codelineno-31-24"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<h2 id="arreglos-de-estructuras">Arreglos de estructuras<a class="headerlink" href="#arreglos-de-estructuras" title="Permanent link">#</a></h2>
+<p>Los arreglos de estructuras podemos definirlos de 2 maneras, como todo arreglo: estático o dinámico.
+Un arreglo estático se define como cualquier otro arreglo, considerando que el tipo ahora es <code class="highlight"><span class="k">struct</span><span class="w"> </span><span class="nc">nombre</span></code> o
+<code>nombre_t</code>:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-32-1" id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="n">vector3_t</span><span class="w"> </span><span class="n">vectores</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+</code></pre></div>
+<p>Esta sentencia crea un arreglo de 100 estructuras de tipo <code>vector3_t</code> y ocupa un espacio dado por <code class="highlight"><span class="k">sizeof</span><span class="p">(</span><span class="n">vectores</span><span class="p">)</span></code>, que es igual a <code class="highlight"><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">vector3_t</span><span class="p">)</span></code>.</p>
+<p>Si lo definimos en forma dinámica, tenemos que recordar que necesitamos un puntero a una estructura (o muchas, que es lo
+mismo para el puntero) y su cantidad.
+En este caso, para crear un arreglo de 100 estructuras agregaremos las sentencias:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-33-1" id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="n">vectores</span><span class="p">;</span>
+<a href="#__codelineno-33-2" id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="p">...</span>
+<a href="#__codelineno-33-3" id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="n">vectores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">vector3_t</span><span class="p">));</span>
+<a href="#__codelineno-33-4" id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vectores</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>o bien, lo podemos hacer con <code>calloc</code>:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-34-1" id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="n">vectores</span><span class="p">;</span>
+<a href="#__codelineno-34-2" id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="p">...</span>
+<a href="#__codelineno-34-3" id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="n">vectores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">vector3_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">vector3_t</span><span class="p">));</span>
+<a href="#__codelineno-34-4" id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vectores</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Luego, podemos acceder a cualquier estructura del arreglo mediante el índice, y accedemos a los miembros de la
+estructura utilizando el operador <code>.</code> como se muestra a continuación:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-35-1" id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="n">printf</span><span class="p">(</span><span class="s">"(%.4f, %.4f, %.4f)"</span><span class="p">,</span><span class="w"> </span><span class="n">vectores</span><span class="p">[</span><span class="mi">42</span><span class="p">].</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">vectores</span><span class="p">[</span><span class="mi">42</span><span class="p">].</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">vectores</span><span class="p">[</span><span class="mi">42</span><span class="p">].</span><span class="n">z</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="arreglo-de-punteros-a-estructuras">Arreglo de punteros a estructuras<a class="headerlink" href="#arreglo-de-punteros-a-estructuras" title="Permanent link">#</a></h2>
+<p>En este caso, lo más común es tener arreglos dinámicos de estructuras también dinámicas.
+Para ello, tenemos que definir un puntero doble, es decir, un arreglo (dinámico) de punteros a estructuras.
+Esto lo hacemos con la sentencia que define punteros dobles, para <code class="highlight"><span class="k">struct</span><span class="w"> </span><span class="nc">nombre</span></code> o <code>nombre_t</code>.
+Sea la estructura <code>estudiante_t</code> definida como</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
+<span class="normal"><a href="#__codelineno-36-2">2</a></span>
+<span class="normal"><a href="#__codelineno-36-3">3</a></span>
+<span class="normal"><a href="#__codelineno-36-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">estudiante</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">nombre</span><span class="p">;</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apellido</span><span class="p">;</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="p">}</span><span class="w"> </span><span class="n">estudiante_t</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>podemos definir el arreglo de punteros como</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-37-1" id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="n">estudiante_t</span><span class="w"> </span><span class="o">**</span><span class="n">estudiantes</span><span class="p">;</span>
+</code></pre></div>
+<p>Luego, podemos asignarle un bloque de memoria dinámica utilizando <code>malloc()</code>:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-38-1" id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="n">estudiantes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">40</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+</code></pre></div>
+<p>Finalmente, dada una función que crea un <code>estudiante</code> en forma dinámica (que podría seguir el prototipo <code class="highlight"><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">estudiante_crear</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apellido</span><span class="p">)</span></code>) utilizaríamos:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-39-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-39-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-39-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-39-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-39-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-39-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-39-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-39-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-39-10">10</a></span>
+<span class="normal"><a href="#__codelineno-39-11">11</a></span>
+<span class="normal"><a href="#__codelineno-39-12">12</a></span>
+<span class="normal"><a href="#__codelineno-39-13">13</a></span>
+<span class="normal"><a href="#__codelineno-39-14">14</a></span>
+<span class="normal"><a href="#__codelineno-39-15">15</a></span>
+<span class="normal"><a href="#__codelineno-39-16">16</a></span>
+<span class="normal"><a href="#__codelineno-39-17">17</a></span>
+<span class="normal"><a href="#__codelineno-39-18">18</a></span>
+<span class="normal"><a href="#__codelineno-39-19">19</a></span>
+<span class="normal"><a href="#__codelineno-39-20">20</a></span>
+<span class="normal"><a href="#__codelineno-39-21">21</a></span>
+<span class="normal"><a href="#__codelineno-39-22">22</a></span>
+<span class="normal"><a href="#__codelineno-39-23">23</a></span>
+<span class="normal"><a href="#__codelineno-39-24">24</a></span>
+<span class="normal"><a href="#__codelineno-39-25">25</a></span>
+<span class="normal"><a href="#__codelineno-39-26">26</a></span>
+<span class="normal"><a href="#__codelineno-39-27">27</a></span>
+<span class="normal"><a href="#__codelineno-39-28">28</a></span>
+<span class="normal"><a href="#__codelineno-39-29">29</a></span>
+<span class="normal"><a href="#__codelineno-39-30">30</a></span>
+<span class="normal"><a href="#__codelineno-39-31">31</a></span>
+<span class="normal"><a href="#__codelineno-39-32">32</a></span>
+<span class="normal"><a href="#__codelineno-39-33">33</a></span>
+<span class="normal"><a href="#__codelineno-39-34">34</a></span>
+<span class="normal"><a href="#__codelineno-39-35">35</a></span>
+<span class="normal"><a href="#__codelineno-39-36">36</a></span>
+<span class="normal"><a href="#__codelineno-39-37">37</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">crear_arreglo_interactivamente</span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">***</span><span class="n">estudiantes</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="p">{</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">nombre</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">apellido</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5"></a>
+<a id="__codelineno-39-6" name="__codelineno-39-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">estudiantes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9"></a>
+<a id="__codelineno-39-10" name="__codelineno-39-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-39-11" name="__codelineno-39-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INVALID_ARG</span><span class="p">;</span>
+<a id="__codelineno-39-12" name="__codelineno-39-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-39-13" name="__codelineno-39-13"></a>
+<a id="__codelineno-39-14" name="__codelineno-39-14"></a><span class="hll"><span class="w">    </span><span class="o">*</span><span class="n">estudiantes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+</span><a id="__codelineno-39-15" name="__codelineno-39-15"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">*</span><span class="n">estudiantes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-39-16" name="__codelineno-39-16"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-39-17" name="__codelineno-39-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-39-18" name="__codelineno-39-18"></a>
+<a id="__codelineno-39-19" name="__codelineno-39-19"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-39-20" name="__codelineno-39-20"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fgets</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-39-21" name="__codelineno-39-21"></a><span class="w">            </span><span class="n">destruir_arreglo_estudiantes</span><span class="p">(</span><span class="n">estudiantes</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-39-22" name="__codelineno-39-22"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_IO</span><span class="p">;</span>
+<a id="__codelineno-39-23" name="__codelineno-39-23"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-39-24" name="__codelineno-39-24"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fgets</span><span class="p">(</span><span class="n">apellido</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-39-25" name="__codelineno-39-25"></a><span class="w">            </span><span class="n">destruir_arreglo_estudiantes</span><span class="p">(</span><span class="n">estudiantes</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-39-26" name="__codelineno-39-26"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_IO</span><span class="p">;</span>
+<a id="__codelineno-39-27" name="__codelineno-39-27"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-39-28" name="__codelineno-39-28"></a>
+<a id="__codelineno-39-29" name="__codelineno-39-29"></a><span class="hll"><span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">estudiantes</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estudiante_crear</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellido</span><span class="p">);</span>
+</span><a id="__codelineno-39-30" name="__codelineno-39-30"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">estudiante</span><span class="p">)[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-39-31" name="__codelineno-39-31"></a><span class="w">            </span><span class="n">destruir_arreglo_estudiantes</span><span class="p">(</span><span class="n">estudiantes</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-39-32" name="__codelineno-39-32"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_ENOMEM</span><span class="p">;</span>
+<a id="__codelineno-39-33" name="__codelineno-39-33"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-39-34" name="__codelineno-39-34"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-39-35" name="__codelineno-39-35"></a>
+<a id="__codelineno-39-36" name="__codelineno-39-36"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-39-37" name="__codelineno-39-37"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Las líneas resaltadas (14 y 29) son las que crean el arreglo y crean los estudiantes en forma dinámica.</p>
+<p>Notar que se validan todos los ingresos de datos.</p>
+<h2 id="modularización">Modularización<a class="headerlink" href="#modularización" title="Permanent link">#</a></h2>
+<p>Generalmente, cuando se trabaja con estructuras, estamos implementando funciones que manipulan las estructuras, que las
+crean, o las destruyen, tanto para hacer legible el código como para evitar repetirlo y darle coherencia.
+Imaginen el código escrito en la sección anterior donde, en lugar de utilizar las funciones
+<code>destruir_arreglo_estudiantes</code> y <code>estudiante_crear</code> en la función <code>crear_arreglo_interactivamente</code>, se agrega el código
+de las primeras directamente en el cuerpo de la última (¡3 veces repetiríamos el código de
+<code>destruir_arreglo_estudiantes</code>!).</p>
+<p>Por ello, una modularización clásica suele contener al menos un archivo <code>.h</code> y un archivo <code>.c</code>.
+En el encabezado se define la estructura y los prototipos, mientras que en el archivo de implementación se
+implementan—valga la redundancia—las función definidas en el encabezado.</p>
+<div class="admonition example">
+<p class="admonition-title">Modularización: estudiantes</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Encabezado</label><label for="__tabbed_2_2">Implementación</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">estudiante.h</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-40-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-40-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-40-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-40-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-40-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-40-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-40-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-40-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-40-10">10</a></span>
+<span class="normal"><a href="#__codelineno-40-11">11</a></span>
+<span class="normal"><a href="#__codelineno-40-12">12</a></span>
+<span class="normal"><a href="#__codelineno-40-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="cp">#pragma once</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2"></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">estudiante</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">nombre</span><span class="p">;</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apellido</span><span class="p">;</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6"></a><span class="p">}</span><span class="w"> </span><span class="n">estudiante_t</span><span class="p">;</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7"></a>
+<a id="__codelineno-40-8" name="__codelineno-40-8"></a>
+<a id="__codelineno-40-9" name="__codelineno-40-9"></a><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">estudiante_crear</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apellido</span><span class="p">);</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10"></a><span class="kt">void</span><span class="w"> </span><span class="nf">estudiante_free</span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">**</span><span class="n">estudiante</span><span class="p">);</span>
+<a id="__codelineno-40-11" name="__codelineno-40-11"></a><span class="kt">void</span><span class="w"> </span><span class="nf">estudiante_print_pretty</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">estudiante</span><span class="p">);</span>
+<a id="__codelineno-40-12" name="__codelineno-40-12"></a><span class="kt">void</span><span class="w"> </span><span class="nf">estudiante_print_csv</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">estudiante</span><span class="p">);</span>
+<a id="__codelineno-40-13" name="__codelineno-40-13"></a><span class="kt">int</span><span class="w"> </span><span class="nf">estudiante_comparar</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">rhs</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">estudiante.c</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-41-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-41-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-41-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-41-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-41-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-41-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-41-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-41-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-41-10">10</a></span>
+<span class="normal"><a href="#__codelineno-41-11">11</a></span>
+<span class="normal"><a href="#__codelineno-41-12">12</a></span>
+<span class="normal"><a href="#__codelineno-41-13">13</a></span>
+<span class="normal"><a href="#__codelineno-41-14">14</a></span>
+<span class="normal"><a href="#__codelineno-41-15">15</a></span>
+<span class="normal"><a href="#__codelineno-41-16">16</a></span>
+<span class="normal"><a href="#__codelineno-41-17">17</a></span>
+<span class="normal"><a href="#__codelineno-41-18">18</a></span>
+<span class="normal"><a href="#__codelineno-41-19">19</a></span>
+<span class="normal"><a href="#__codelineno-41-20">20</a></span>
+<span class="normal"><a href="#__codelineno-41-21">21</a></span>
+<span class="normal"><a href="#__codelineno-41-22">22</a></span>
+<span class="normal"><a href="#__codelineno-41-23">23</a></span>
+<span class="normal"><a href="#__codelineno-41-24">24</a></span>
+<span class="normal"><a href="#__codelineno-41-25">25</a></span>
+<span class="normal"><a href="#__codelineno-41-26">26</a></span>
+<span class="normal"><a href="#__codelineno-41-27">27</a></span>
+<span class="normal"><a href="#__codelineno-41-28">28</a></span>
+<span class="normal"><a href="#__codelineno-41-29">29</a></span>
+<span class="normal"><a href="#__codelineno-41-30">30</a></span>
+<span class="normal"><a href="#__codelineno-41-31">31</a></span>
+<span class="normal"><a href="#__codelineno-41-32">32</a></span>
+<span class="normal"><a href="#__codelineno-41-33">33</a></span>
+<span class="normal"><a href="#__codelineno-41-34">34</a></span>
+<span class="normal"><a href="#__codelineno-41-35">35</a></span>
+<span class="normal"><a href="#__codelineno-41-36">36</a></span>
+<span class="normal"><a href="#__codelineno-41-37">37</a></span>
+<span class="normal"><a href="#__codelineno-41-38">38</a></span>
+<span class="normal"><a href="#__codelineno-41-39">39</a></span>
+<span class="normal"><a href="#__codelineno-41-40">40</a></span>
+<span class="normal"><a href="#__codelineno-41-41">41</a></span>
+<span class="normal"><a href="#__codelineno-41-42">42</a></span>
+<span class="normal"><a href="#__codelineno-41-43">43</a></span>
+<span class="normal"><a href="#__codelineno-41-44">44</a></span>
+<span class="normal"><a href="#__codelineno-41-45">45</a></span>
+<span class="normal"><a href="#__codelineno-41-46">46</a></span>
+<span class="normal"><a href="#__codelineno-41-47">47</a></span>
+<span class="normal"><a href="#__codelineno-41-48">48</a></span>
+<span class="normal"><a href="#__codelineno-41-49">49</a></span>
+<span class="normal"><a href="#__codelineno-41-50">50</a></span>
+<span class="normal"><a href="#__codelineno-41-51">51</a></span>
+<span class="normal"><a href="#__codelineno-41-52">52</a></span>
+<span class="normal"><a href="#__codelineno-41-53">53</a></span>
+<span class="normal"><a href="#__codelineno-41-54">54</a></span>
+<span class="normal"><a href="#__codelineno-41-55">55</a></span>
+<span class="normal"><a href="#__codelineno-41-56">56</a></span>
+<span class="normal"><a href="#__codelineno-41-57">57</a></span>
+<span class="normal"><a href="#__codelineno-41-58">58</a></span>
+<span class="normal"><a href="#__codelineno-41-59">59</a></span>
+<span class="normal"><a href="#__codelineno-41-60">60</a></span>
+<span class="normal"><a href="#__codelineno-41-61">61</a></span>
+<span class="normal"><a href="#__codelineno-41-62">62</a></span>
+<span class="normal"><a href="#__codelineno-41-63">63</a></span>
+<span class="normal"><a href="#__codelineno-41-64">64</a></span>
+<span class="normal"><a href="#__codelineno-41-65">65</a></span>
+<span class="normal"><a href="#__codelineno-41-66">66</a></span>
+<span class="normal"><a href="#__codelineno-41-67">67</a></span>
+<span class="normal"><a href="#__codelineno-41-68">68</a></span>
+<span class="normal"><a href="#__codelineno-41-69">69</a></span>
+<span class="normal"><a href="#__codelineno-41-70">70</a></span>
+<span class="normal"><a href="#__codelineno-41-71">71</a></span>
+<span class="normal"><a href="#__codelineno-41-72">72</a></span>
+<span class="normal"><a href="#__codelineno-41-73">73</a></span>
+<span class="normal"><a href="#__codelineno-41-74">74</a></span>
+<span class="normal"><a href="#__codelineno-41-75">75</a></span>
+<span class="normal"><a href="#__codelineno-41-76">76</a></span>
+<span class="normal"><a href="#__codelineno-41-77">77</a></span>
+<span class="normal"><a href="#__codelineno-41-78">78</a></span>
+<span class="normal"><a href="#__codelineno-41-79">79</a></span>
+<span class="normal"><a href="#__codelineno-41-80">80</a></span>
+<span class="normal"><a href="#__codelineno-41-81">81</a></span>
+<span class="normal"><a href="#__codelineno-41-82">82</a></span>
+<span class="normal"><a href="#__codelineno-41-83">83</a></span>
+<span class="normal"><a href="#__codelineno-41-84">84</a></span>
+<span class="normal"><a href="#__codelineno-41-85">85</a></span>
+<span class="normal"><a href="#__codelineno-41-86">86</a></span>
+<span class="normal"><a href="#__codelineno-41-87">87</a></span>
+<span class="normal"><a href="#__codelineno-41-88">88</a></span>
+<span class="normal"><a href="#__codelineno-41-89">89</a></span>
+<span class="normal"><a href="#__codelineno-41-90">90</a></span>
+<span class="normal"><a href="#__codelineno-41-91">91</a></span>
+<span class="normal"><a href="#__codelineno-41-92">92</a></span>
+<span class="normal"><a href="#__codelineno-41-93">93</a></span>
+<span class="normal"><a href="#__codelineno-41-94">94</a></span>
+<span class="normal"><a href="#__codelineno-41-95">95</a></span>
+<span class="normal"><a href="#__codelineno-41-96">96</a></span>
+<span class="normal"><a href="#__codelineno-41-97">97</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"estudiante.h"</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6"></a>
+<a id="__codelineno-41-7" name="__codelineno-41-7"></a>
+<a id="__codelineno-41-8" name="__codelineno-41-8"></a><span class="k">static</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">mi_strdup</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<a id="__codelineno-41-9" name="__codelineno-41-9"></a><span class="p">{</span>
+<a id="__codelineno-41-10" name="__codelineno-41-10"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">copia</span><span class="p">;</span>
+<a id="__codelineno-41-11" name="__codelineno-41-11"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
+<a id="__codelineno-41-12" name="__codelineno-41-12"></a>
+<a id="__codelineno-41-13" name="__codelineno-41-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-14" name="__codelineno-41-14"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-15" name="__codelineno-41-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-16" name="__codelineno-41-16"></a>
+<a id="__codelineno-41-17" name="__codelineno-41-17"></a><span class="w">    </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<a id="__codelineno-41-18" name="__codelineno-41-18"></a>
+<a id="__codelineno-41-19" name="__codelineno-41-19"></a><span class="w">    </span><span class="n">copia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-41-20" name="__codelineno-41-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">copia</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-21" name="__codelineno-41-21"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-22" name="__codelineno-41-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-23" name="__codelineno-41-23"></a>
+<a id="__codelineno-41-24" name="__codelineno-41-24"></a><span class="w">    </span><span class="n">copia</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">;</span>
+<a id="__codelineno-41-25" name="__codelineno-41-25"></a>
+<a id="__codelineno-41-26" name="__codelineno-41-26"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">copia</span><span class="p">;</span>
+<a id="__codelineno-41-27" name="__codelineno-41-27"></a><span class="p">}</span>
+<a id="__codelineno-41-28" name="__codelineno-41-28"></a>
+<a id="__codelineno-41-29" name="__codelineno-41-29"></a>
+<a id="__codelineno-41-30" name="__codelineno-41-30"></a><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">estudiante_crear</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apellido</span><span class="p">)</span>
+<a id="__codelineno-41-31" name="__codelineno-41-31"></a><span class="p">{</span>
+<a id="__codelineno-41-32" name="__codelineno-41-32"></a><span class="w">    </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">estudiante</span><span class="p">;</span>
+<a id="__codelineno-41-33" name="__codelineno-41-33"></a>
+<a id="__codelineno-41-34" name="__codelineno-41-34"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">apellido</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-35" name="__codelineno-41-35"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-36" name="__codelineno-41-36"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-37" name="__codelineno-41-37"></a>
+<a id="__codelineno-41-38" name="__codelineno-41-38"></a><span class="w">    </span><span class="n">estudiante</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">estudiante_t</span><span class="p">));</span>
+<a id="__codelineno-41-39" name="__codelineno-41-39"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">estudiante</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-40" name="__codelineno-41-40"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-41" name="__codelineno-41-41"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-42" name="__codelineno-41-42"></a>
+<a id="__codelineno-41-43" name="__codelineno-41-43"></a><span class="w">    </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mi_strdup</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-41-44" name="__codelineno-41-44"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-45" name="__codelineno-41-45"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">estudiante</span><span class="p">);</span>
+<a id="__codelineno-41-46" name="__codelineno-41-46"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-47" name="__codelineno-41-47"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-48" name="__codelineno-41-48"></a>
+<a id="__codelineno-41-49" name="__codelineno-41-49"></a><span class="w">    </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mi_strdup</span><span class="p">(</span><span class="n">apellido</span><span class="p">);</span>
+<a id="__codelineno-41-50" name="__codelineno-41-50"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-51" name="__codelineno-41-51"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-41-52" name="__codelineno-41-52"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">estudiante</span><span class="p">);</span>
+<a id="__codelineno-41-53" name="__codelineno-41-53"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-54" name="__codelineno-41-54"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-55" name="__codelineno-41-55"></a>
+<a id="__codelineno-41-56" name="__codelineno-41-56"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">estudiante</span><span class="p">;</span>
+<a id="__codelineno-41-57" name="__codelineno-41-57"></a><span class="p">}</span>
+<a id="__codelineno-41-58" name="__codelineno-41-58"></a>
+<a id="__codelineno-41-59" name="__codelineno-41-59"></a>
+<a id="__codelineno-41-60" name="__codelineno-41-60"></a><span class="kt">void</span><span class="w"> </span><span class="nf">estudiante_free</span><span class="p">(</span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">**</span><span class="n">estudiante</span><span class="p">)</span>
+<a id="__codelineno-41-61" name="__codelineno-41-61"></a><span class="p">{</span>
+<a id="__codelineno-41-62" name="__codelineno-41-62"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">estudiante</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-63" name="__codelineno-41-63"></a><span class="w">        </span><span class="n">free</span><span class="p">((</span><span class="o">*</span><span class="n">estudiante</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-41-64" name="__codelineno-41-64"></a><span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">estudiante</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-65" name="__codelineno-41-65"></a><span class="w">        </span><span class="n">free</span><span class="p">((</span><span class="o">*</span><span class="n">estudiante</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="p">);</span>
+<a id="__codelineno-41-66" name="__codelineno-41-66"></a><span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">estudiante</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-67" name="__codelineno-41-67"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="o">*</span><span class="n">estudiante</span><span class="p">);</span>
+<a id="__codelineno-41-68" name="__codelineno-41-68"></a><span class="w">        </span><span class="o">*</span><span class="n">estudiante</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-41-69" name="__codelineno-41-69"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-70" name="__codelineno-41-70"></a><span class="p">}</span>
+<a id="__codelineno-41-71" name="__codelineno-41-71"></a>
+<a id="__codelineno-41-72" name="__codelineno-41-72"></a>
+<a id="__codelineno-41-73" name="__codelineno-41-73"></a><span class="kt">void</span><span class="w"> </span><span class="nf">estudiante_print_pretty</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">estudiante</span><span class="p">)</span>
+<a id="__codelineno-41-74" name="__codelineno-41-74"></a><span class="p">{</span>
+<a id="__codelineno-41-75" name="__codelineno-41-75"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">estudiante</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-76" name="__codelineno-41-76"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Nombre: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-41-77" name="__codelineno-41-77"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Apellido: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="p">);</span>
+<a id="__codelineno-41-78" name="__codelineno-41-78"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-79" name="__codelineno-41-79"></a><span class="p">}</span>
+<a id="__codelineno-41-80" name="__codelineno-41-80"></a>
+<a id="__codelineno-41-81" name="__codelineno-41-81"></a>
+<a id="__codelineno-41-82" name="__codelineno-41-82"></a><span class="kt">void</span><span class="w"> </span><span class="nf">estudiante_print_csv</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">estudiante</span><span class="p">)</span>
+<a id="__codelineno-41-83" name="__codelineno-41-83"></a><span class="p">{</span>
+<a id="__codelineno-41-84" name="__codelineno-41-84"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">estudiante</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-41-85" name="__codelineno-41-85"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">estudiante</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="p">);</span>
+<a id="__codelineno-41-86" name="__codelineno-41-86"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-87" name="__codelineno-41-87"></a><span class="p">}</span>
+<a id="__codelineno-41-88" name="__codelineno-41-88"></a>
+<a id="__codelineno-41-89" name="__codelineno-41-89"></a>
+<a id="__codelineno-41-90" name="__codelineno-41-90"></a><span class="kt">int</span><span class="w"> </span><span class="nf">estudiante_comparar</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">estudiante_t</span><span class="w"> </span><span class="o">*</span><span class="n">rhs</span><span class="p">)</span>
+<a id="__codelineno-41-91" name="__codelineno-41-91"></a><span class="p">{</span>
+<a id="__codelineno-41-92" name="__codelineno-41-92"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cmp_nombre</span><span class="p">;</span>
+<a id="__codelineno-41-93" name="__codelineno-41-93"></a>
+<a id="__codelineno-41-94" name="__codelineno-41-94"></a><span class="w">    </span><span class="n">cmp_nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strcmp</span><span class="p">(</span><span class="n">lhs</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span><span class="o">-&gt;</span><span class="n">nombre</span><span class="p">);</span>
+<a id="__codelineno-41-95" name="__codelineno-41-95"></a>
+<a id="__codelineno-41-96" name="__codelineno-41-96"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">cmp_nombre</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">cmp_nombre</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">strcmp</span><span class="p">(</span><span class="n">lhs</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span><span class="o">-&gt;</span><span class="n">apellido</span><span class="p">);</span>
+<a id="__codelineno-41-97" name="__codelineno-41-97"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</input></input></div>
+</div>
+<h2 id="biblioteca-estándar-para-manejo-de-estructuras">Biblioteca estándar para manejo de estructuras<a class="headerlink" href="#biblioteca-estándar-para-manejo-de-estructuras" title="Permanent link">#</a></h2>
+<p>Dado que las estructuras son intrínsecamente un tipo de dato creado por el desarrollador, no hay bibliotecas para
+manejar estructuras arbitrarias.</p>
+<h2 id="guías-de-ejercicios">Guías de ejercicios<a class="headerlink" href="#guías-de-ejercicios" title="Permanent link">#</a></h2>
+<p>La guía de ejercicios de estructuras se encuentra <a href="../../guias/c/estructuras/">aquí</a>.</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Última actualización:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 15, 2023</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Volver al principio
+          </button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Licencia: CC-BY-SA 4.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+<script src="../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="../../javascripts/fontawesome/all.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

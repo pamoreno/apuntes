@@ -1,0 +1,1105 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Apuntes
+" name="description"/>
+<link href="https://pamoreno.github.io/apuntes/apuntes-c/arreglos/" rel="canonical"/>
+<link href="../compilando/" rel="prev"/>
+<link href="../cadenas/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.3" name="generator"/>
+<title>Arreglos - Apuntes</title>
+<link href="../../assets/stylesheets/main.c4a75a56.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+<link href="../../css/bootstrap-card.css" rel="stylesheet"/>
+<link href="../../css/cards.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<link href="../../css/fontawesome/all.min.css" rel="stylesheet"/>
+<link href="../../css/quotes.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#arreglos-en-c">
+          Saltar a contenido
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Cabecera" class="md-header__inner md-grid">
+<a aria-label="Apuntes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Apuntes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Arreglos
+            
+          </span>
+</div>
+</div>
+</div>
+</nav>
+<nav aria-label="Pestañas" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../compilando/">
+        Programación en C
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegación" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Apuntes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Apuntes
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Programación en C
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          Programación en C
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../compilando/">
+        Compilando con el GCC
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Arreglos
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Arreglos
+      </a>
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-unidimensionales">
+    Arreglos unidimensionales
+  </a>
+<nav aria-label="Arreglos unidimensionales" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-para-lectura">
+    Acceso para lectura
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modificación-del-arreglo">
+    Modificación del arreglo
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-y-memoria">
+    Arreglos y memoria
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-multidimensionales">
+    Arreglos multidimensionales
+  </a>
+<nav aria-label="Arreglos multidimensionales" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modificación">
+    Modificación
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-para-lectura_1">
+    Acceso para lectura
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-multidimensionales-y-memoria">
+    Arreglos multidimensionales y memoria
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-out-of-bounds">
+    Acceso out-of-bounds
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-y-funciones">
+    Arreglos y funciones
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-arreglos">
+    Biblioteca estándar para manejo de arreglos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cadenas/">
+        Cadenas
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../punteros/">
+        Punteros
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cla/">
+        Argumentos en línea de comandos
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../memdin/">
+        Memoria Dinámica
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../estructuras/">
+        Estructuras
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-unidimensionales">
+    Arreglos unidimensionales
+  </a>
+<nav aria-label="Arreglos unidimensionales" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-para-lectura">
+    Acceso para lectura
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modificación-del-arreglo">
+    Modificación del arreglo
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-y-memoria">
+    Arreglos y memoria
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-multidimensionales">
+    Arreglos multidimensionales
+  </a>
+<nav aria-label="Arreglos multidimensionales" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modificación">
+    Modificación
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-para-lectura_1">
+    Acceso para lectura
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-multidimensionales-y-memoria">
+    Arreglos multidimensionales y memoria
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acceso-out-of-bounds">
+    Acceso out-of-bounds
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglos-y-funciones">
+    Arreglos y funciones
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-arreglos">
+    Biblioteca estándar para manejo de arreglos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="arreglos-en-c">Arreglos en C<a class="headerlink" href="#arreglos-en-c" title="Permanent link">#</a></h1>
+<p>Los arreglos, a diferencia de las variables de tipos básicos (como <code class="highlight"><span class="kt">int</span></code>, <code class="highlight"><span class="kt">char</span></code> o <code class="highlight"><span class="kt">double</span></code>) son variables
+estructuradas.
+Cada elemento del arreglo es almacenado en forma consecutiva en la memoria, permitiendo el acceso secuencia a cada
+elemento del mismo.</p>
+<p>Los arreglos pueden ser definidos de distintas dimensiones, por ejemplo, tenemos arreglos unidimensiones, pero también
+bidimensionales o multidimensionales.</p>
+<p>Además, los arreglos pueden ser dinámicos o estáticos.
+Cuando se define un arreglo dinámico, se está hace uso de memoria dinámica, un tema que veremos más adelante.
+En cambio, los arreglos estáticos se definen en tiempo de compilación y tienen un tamaño fijo.
+Los arreglos que discutiremos en este documento son los de tipo <strong>estático</strong>.</p>
+<h2 id="arreglos-unidimensionales">Arreglos unidimensionales<a class="headerlink" href="#arreglos-unidimensionales" title="Permanent link">#</a></h2>
+<p>Un arreglo unidimensional—también llamado <em>array</em> o vector—es una variable donde almacenamos en forma consecutiva un
+tipo de variable dado (por ahora, variables de tipos básicos, pero podrían ser otras variables).</p>
+<p>Un arreglo se puede definir de 2 maneras:</p>
+<ul>
+<li>por cantidad, o</li>
+<li>por enumeración.</li>
+</ul>
+<p>Al definir el arreglo por cantidad, debemos indicar cuántos elementos tiene, como en el ejemplo siguiente:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</code></pre></div>
+<p>en cambio, si quisiéramos definirlo por enumeración de sus elementos, podríamos hacerlo del siguiente modo:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">94</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="mi">-42</span><span class="p">,</span><span class="w"> </span><span class="mi">75</span><span class="p">};</span>
+</code></pre></div>
+<p>En dicho ejemplo, se define un arreglo que contiene 5 enteros.
+La siguiente imagen ejemplifica cómo se almacenan estos enteros en memoria:</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img1.svg"><img alt="Definición de array en memoria" src="img1.svg"/></a></p>
+</figure>
+<p>En dicha imagen, se observa la definición del arreglo <code>array</code> y los 5 enteros, cada uno de ellos ocupando 4 bytes.
+Sin embargo, en forma esquemática, generalmente dibujaremos el arreglo como una cantidad de elementos, y no de bytes, es
+decir, dibujaríamos algo similar a la siguiente imagen:</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img2.svg"><img alt="Esquema de un arreglo" src="img2.svg"/></a></p>
+</figure>
+<h3 id="acceso-para-lectura">Acceso para lectura<a class="headerlink" href="#acceso-para-lectura" title="Permanent link">#</a></h3>
+<p>Si queremos acceder a un elemento del arreglo, se utiliza el nombre de la variable (<code>array</code>) y los corchetes (<code>[]</code>)
+indicando el índice al que queremos acceder.
+Como en C se utiliza el 0-indexing, el primer elemento del arreglo se encuentra en el índice 0, y se accede mediante la
+sentencia:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<p>Entonces, si quisiéramos acceder al 3er entero y almacenarlo en una variable llamada <code>aux</code> (también entera), haríamos lo
+siguiente:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">aux</span><span class="p">;</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</code></pre></div>
+<h3 id="modificación-del-arreglo">Modificación del arreglo<a class="headerlink" href="#modificación-del-arreglo" title="Permanent link">#</a></h3>
+<p>Si quisiéramos acceder a un elemento y modificarlo, al sintáxis es similar, sólo que el elemento que queremos modificar
+debe ser un <a href="https://en.wikipedia.org/wiki/Sides_of_an_equation">LHS</a>, es decir, debe estar del lado izquierdo de la
+ecuación, como en el siguiente ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aux</span><span class="p">;</span>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aux</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="inicialización">Inicialización<a class="headerlink" href="#inicialización" title="Permanent link">#</a></h4>
+<p>La inicialización es la asignación de un valor a cada uno de los elementos del arreglo antes de ser utilizado en el
+resto del programa.
+Un ejemplo de inicialización que ya mencionamos es cuando se lo define por enumeración, pero también se lo puede
+inicializar mediante un ciclo:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="cm">/* o cualquier otra expresión */</span>
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>Si un arreglo no es inicializado explícitamente, al igual que con cualquier otra variable, no se puede garantizar su
+valor, lo que es particularmente problemático si su primer uso es como RHS.</p>
+<details class="example">
+<summary>Ejemplo: Inicialización con ceros</summary>
+<p>Si quisierámos inicializar un arreglo de 20 elementos con todos sus elementos en cero tenemos 3 alternativas:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">por enumeración</label><label for="__tabbed_1_2">por cantidad e iterar</label><label for="__tabbed_1_3">aprovechando C</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+</code></pre></div>
+<p>Vemos que puede ser tedioso hacerlo así.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>Nos permite modificar el largo del arreglo, pero es demasiado para una simple inicialización en 0.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</code></pre></div>
+<p>Esa sentencia indica que se debe crear el arreglo y todos los <strong>bytes</strong> de la memoria de dicha variable debe ser
+inicializada a 0.
+Listo.</p>
+</div>
+</div>
+</input></input></input></div>
+</details>
+<h4 id="arreglos-constantes">Arreglos constantes<a class="headerlink" href="#arreglos-constantes" title="Permanent link">#</a></h4>
+<p>Hay un caso particular, en que la variable puede ser definida como constante, donde no puede ser un LHS.
+La forma de definir un arreglo constante es:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</code></pre></div>
+<p>Nótese el agregado del <em>keyword</em> <code>const</code>.
+La sentencia anterrior se lee del siguiente modo: <code>array</code> es un arreglo de 5 enteros constantes.</p>
+<p>Si compilan el siguiente programa:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a>
+<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="p">{</span>
+<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a>
+<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">    </span><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a>
+<a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>verán el siguiente error:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>-std<span class="o">=</span>c17<span class="w"> </span>-Wall<span class="w"> </span>-pedantic<span class="w"> </span>-o<span class="w"> </span>const_array<span class="w"> </span>const_array.c
+<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="go">const_array.c: In function ‘main’:</span>
+<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="go">const_array.c:8:14: error: assignment of read-only location ‘array[2]’</span>
+<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="go">    8 |     array[2] = array[0] + array[1];</span>
+<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="go">      |</span>
+</code></pre></div>
+<h3 id="arreglos-y-memoria">Arreglos y memoria<a class="headerlink" href="#arreglos-y-memoria" title="Permanent link">#</a></h3>
+<p>El modo de acceso visto antes tiene sentido ya que si el arreglo comienza en la posición de memoria <code>0xd9598b10</code>, su
+primer elemento comienza en la posición de memoria <code>0xd9598b10</code>.
+La siguiente tabla muestra las posiciones de memoria de todos los elementos y su forma de acceder:</p>
+<figure>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Posición</strong></th>
+<th align="left"><strong>Acceso</strong></th>
+<th align="left"><strong>Dirección de memoria</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>0</code></td>
+<td align="left"><code>array[0]</code></td>
+<td align="left"><code>0xd9598b10</code></td>
+</tr>
+<tr>
+<td align="center"><code>1</code></td>
+<td align="left"><code>array[1]</code></td>
+<td align="left"><code>0xd9598b14</code></td>
+</tr>
+<tr>
+<td align="center"><code>2</code></td>
+<td align="left"><code>array[2]</code></td>
+<td align="left"><code>0xd9598b18</code></td>
+</tr>
+<tr>
+<td align="center"><code>3</code></td>
+<td align="left"><code>array[3]</code></td>
+<td align="left"><code>0xd9598b1c</code></td>
+</tr>
+<tr>
+<td align="center"><code>4</code></td>
+<td align="left"><code>array[4]</code></td>
+<td align="left"><code>0xd9598b20</code></td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Observación</p>
+<p>Notar que la posición de memoria del primer elemento es <code>0xd9598b10</code> y la del segundo es esa misma dirección <strong>más
+4</strong>, por los 4 bytes que ocupa el entero. La del tercero es la del segundo <strong>más 4</strong>. Y en general, si llamamos <code>p0</code>
+a la dirección de memoria del primer elemento, entonces la dirección de memoria del i-ésimo elemento es
+<code>p0 + i * sizeof(int)</code> (donde se utilizó el <code>sizeof(int)</code> por ser un arreglo de ints).</p>
+<p>Lo que aquí llamamos <code>p0</code>, en C es el nombre del arreglo, <code>array</code>, por lo que <code>array[3]</code> equivale a
+<code>array + 3 * sizeof(int)</code>.
+Vamos a ver, más adelante, que el compilador es “inteligente” respecto a estos accesos.</p>
+</div>
+<h2 id="arreglos-multidimensionales">Arreglos multidimensionales<a class="headerlink" href="#arreglos-multidimensionales" title="Permanent link">#</a></h2>
+<p>Como se mencionó al principio, podemos definir arreglos que tengan más de una dimensión.
+Un ejemplo típico es el caso del arreglo bidimensional, también llamado matriz.
+Este arreglo bidimensional puede ser pensado como un arreglo (unidimensional) de dimensión <code>r</code> (cantidad de filas),
+donde cada componente del arreglo es otro arreglo (unidimensional) de dimensión <code>c</code>  (cantidad de columnas).
+Claramente, un arreglo de dos dimensiones como el que mencionamos recién tiene <code>r * c</code> componentes.</p>
+<p>Del mismo modo que antes, un arreglo de 2 filas y 3 columnas se puede definir por cantidad</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+</code></pre></div>
+<p>o por enumeración</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">matr</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">},</span>
+<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">                   </span><span class="p">{</span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p">},};</span>
+</code></pre></div>
+<p>y su inicialización puede ser como en la enumeración de recién, mediante ciclos anidados</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">fila</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">fila</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">fila</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">columna</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-14-3" id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">            </span><span class="n">matr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"> </span><span class="cm">/* o cualquier otra expresión */</span>
+<a href="#__codelineno-14-4" id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-14-5" id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>o asignado 0 a todos sus <strong>bytes</strong>, como en el ejemplo de inicialización con ceros del arreglo unidimensional.</p>
+<p>La siguiente imagen ejemplifica cómo se almacenan esta matriz en memoria:</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img3.svg"><img alt="Definición de matriz en memoria" src="img3.svg"/></a></p>
+</figure>
+<p>En dicha imagen, se observa la definición de la matriz <code>matr</code> y los 6 enteros que la componen, cada uno de ellos
+ocupando 4 bytes.
+Podemos ver que, además, primero se encuentran los elementos de la primera fila y luego, a continuación, los elementos
+de la segunda fila.
+Sin embargo, en forma esquemática, generalmente dibujaremos el arreglo como una cantidad de elementos, y no de bytes, es
+decir, dibujaríamos algo similar a la siguiente imagen:</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img4.svg"><img alt="Esquema de una matriz" src="img4.svg"/></a></p>
+</figure>
+<h3 id="modificación">Modificación<a class="headerlink" href="#modificación" title="Permanent link">#</a></h3>
+<p>En una forma análoga al arreglo unidimensional, para acceder a un elemento se usa la expresión <code>matr[i][j]</code> donde <code>i</code> es
+la fila a acceder (recordar que C es 0-<em>indexing</em>) y <code>j</code> es la columna a acceder.
+Esta expresión puede ser un LHS al que se le asigna un valor.
+En el siguiente código se inicializa una matriz con valores aleatorios:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="p">{</span>
+<a href="#__codelineno-15-6" id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">matr</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+<a href="#__codelineno-15-7" id="__codelineno-15-7" name="__codelineno-15-7"></a>
+<a href="#__codelineno-15-8" id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-15-9" id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-15-10" id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="hll"><span class="w">            </span><span class="n">matr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">();</span>
+</span><a href="#__codelineno-15-11" id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">        </span><span class="p">}</span>
+<a href="#__codelineno-15-12" id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-15-13" id="__codelineno-15-13" name="__codelineno-15-13"></a>
+<a href="#__codelineno-15-14" id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a href="#__codelineno-15-15" id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="acceso-para-lectura_1">Acceso para lectura<a class="headerlink" href="#acceso-para-lectura_1" title="Permanent link">#</a></h3>
+<p>El acceso para lectura sigue las mismas reglas que ya hemos visto, pero agregando un nuevo nivel de acceso mediante otro
+par de corchetes y el índice correspondiente.
+A modo de ejemplo, el siguiente código imprime por <code class="highlight"><span class="n">stdout</span></code> el contenido de la matriz:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"int matr[2][3] = {"</span><span class="p">);</span>
+<a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-16-3" id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"{"</span><span class="p">);</span>
+<a href="#__codelineno-16-4" id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="hll"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"%i"</span><span class="p">,</span><span class="w"> </span><span class="n">matr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+</span><a href="#__codelineno-16-5" id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-16-6" id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="hll"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">", %i"</span><span class="p">,</span><span class="w"> </span><span class="n">matr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span><a href="#__codelineno-16-7" id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="w">        </span><span class="p">}</span>
+<a href="#__codelineno-16-8" id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="w">        </span><span class="n">puts</span><span class="p">(</span><span class="s">"},"</span><span class="p">);</span>
+<a href="#__codelineno-16-9" id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-16-10" id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">"};"</span><span class="p">);</span>
+</code></pre></div>
+<p>Esta forma de acceder al elemento del arreglo se cumple independientemente de la dimensionalidad del arreglo.
+Por ejemplo, definamos una matriz de 4 filas y 4 columnas como</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+</code></pre></div>
+<p>Luego, podemos pensar que <code class="highlight"><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></code> nos da acceso a la fila 0, es decir, la primera fila.
+Si bien (al menos con lo que hemos visto) no es válida la sentencia <code class="highlight"><span class="n">fila</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span></code>, podemos pensar que <code>fila</code>
+es una variable que me permite acceder a una fila <strong>completa</strong>, es decir, es un arreglo pero ahora unidimensional.
+Finalmente, para acceder al 3er elemento de la fila, haríamos <code class="highlight"><span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></code>.
+Y si volvemos sobre nuestros pasos y reemplazamos <code>fila</code> por lo que le asignamos, la última expresión es <code class="highlight"><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span></code>.
+De este modo podemos construir y acceder a arreglos n-dimensionales, por ejemplo</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">tesseract</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">5</span><span class="p">][</span><span class="mi">5</span><span class="p">][</span><span class="mi">5</span><span class="p">];</span>
+<a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="cm">/*              i  j  k  l */</span>
+<a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a>
+<a href="#__codelineno-18-4" id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="n">cube</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tesseract</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"> </span><span class="cm">/* i = 0 */</span>
+<a href="#__codelineno-18-5" id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="n">plane</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cube</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w">     </span><span class="cm">/* j = 2 */</span>
+<a href="#__codelineno-18-6" id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plane</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="w">     </span><span class="cm">/* k = 4 */</span>
+<a href="#__codelineno-18-7" id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w">     </span><span class="cm">/* l = 3 */</span>
+<a href="#__codelineno-18-8" id="__codelineno-18-8" name="__codelineno-18-8"></a>
+<a href="#__codelineno-18-9" id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w">               </span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"> </span><span class="cm">/* line es plane[4], entonces */</span>
+<a href="#__codelineno-18-10" id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w">           </span><span class="n">plane</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span><span class="w"> </span><span class="cm">/* plane es cube[2], entonces */</span>
+<a href="#__codelineno-18-11" id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="n">cube</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">4</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span><span class="w"> </span><span class="cm">/* cube es tesseract[0], entonces */</span>
+<a href="#__codelineno-18-12" id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tesseract</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">4</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+</code></pre></div>
+<p>¿Cómo se tendrían que definir las variables <code>cube</code>, <code>plane</code>, <code>line</code> y <code>value</code> para poder ejecutar el código anterior? Lo
+veremos más adelante.</p>
+<h3 id="arreglos-multidimensionales-y-memoria">Arreglos multidimensionales y memoria<a class="headerlink" href="#arreglos-multidimensionales-y-memoria" title="Permanent link">#</a></h3>
+<p>Volviendo sobre las direcciones de memoria de los datos almacenados, tenemos que recordar que si bien la variable puede
+ser una matriz, un cubo, un teseracto, o elementos de mayor dimensión, siempre estamos almacenando variables del tipo
+básico, por ejemplo <code>float</code>s.
+Supongamos un arreglo <code>double cube[2][2][2]</code> que comienza en la posición de memoria <code>0x7ffc83aa4bf0</code>, entonces su primer
+elemento comienza en la posición de memoria <code>0x7ffc83aa4bf0</code>.
+La siguiente tabla muestra las posiciones de memoria de todos los elementos y su forma de acceder:</p>
+<figure>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Acceso</strong></th>
+<th align="left"><strong>Dirección de memoria</strong></th>
+<th align="left"><strong>Acceso</strong></th>
+<th align="left"><strong>Dirección de memoria</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>cube[0][0][0]</code></td>
+<td align="left"><code>0x7ffc83aa4bf0</code></td>
+<td align="left"><code>cube[0][1][0]</code></td>
+<td align="left"><code>0x7ffc83aa4c00</code></td>
+</tr>
+<tr>
+<td align="left"><code>cube[0][0][1]</code></td>
+<td align="left"><code>0x7ffc83aa4bf8</code></td>
+<td align="left"><code>cube[0][1][1]</code></td>
+<td align="left"><code>0x7ffc83aa4c08</code></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>cube[1][0][0]</code></td>
+<td align="left"><code>0x7ffc83aa4c10</code></td>
+<td align="left"><code>cube[1][1][0]</code></td>
+<td align="left"><code>0x7ffc83aa4c20</code></td>
+</tr>
+<tr>
+<td align="left"><code>cube[1][0][1]</code></td>
+<td align="left"><code>0x7ffc83aa4c18</code></td>
+<td align="left"><code>cube[1][1][1]</code></td>
+<td align="left"><code>0x7ffc83aa4c28</code></td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Observación</p>
+<p>Notar que la posición de memoria del primer elemento es <code>0x7ffc83aa4bf0</code> y la del segundo es esa misma dirección
+<strong>más 8</strong>, por los 8 bytes que ocupa el <code class="highlight"><span class="kt">double</span></code>.
+La del tercero es la del segundo <strong>más 8</strong>.
+Tomemos otro ejemplo, una matriz <code>double m[2][4]</code> con elementos en las direcciones</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Acceso</strong></th>
+<th align="left"><strong>Dirección de memoria</strong></th>
+<th align="left"><strong>Acceso</strong></th>
+<th align="left"><strong>Dirección de memoria</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>m[0][0]</code></td>
+<td align="left"><code>0x7ffcf4e19580</code></td>
+<td align="left"><code>m[1][0]</code></td>
+<td align="left"><code>0x7ffcf4e195a0</code></td>
+</tr>
+<tr>
+<td align="left"><code>m[0][1]</code></td>
+<td align="left"><code>0x7ffcf4e19588</code></td>
+<td align="left"><code>m[1][1]</code></td>
+<td align="left"><code>0x7ffcf4e195a8</code></td>
+</tr>
+<tr>
+<td align="left"><code>m[0][2]</code></td>
+<td align="left"><code>0x7ffcf4e19590</code></td>
+<td align="left"><code>m[1][2]</code></td>
+<td align="left"><code>0x7ffcf4e195b0</code></td>
+</tr>
+<tr>
+<td align="left"><code>m[0][3]</code></td>
+<td align="left"><code>0x7ffcf4e19598</code></td>
+<td align="left"><code>m[1][3]</code></td>
+<td align="left"><code>0x7ffcf4e195b8</code></td>
+</tr>
+</tbody>
+</table>
+<p>Para empezar, se cumple lo mismo de antes, la dirección de uno es la del anterior <strong>más 8</strong>.</p>
+<p>Y en general, si llamamos <code>m</code> a la dirección de memoria del primer elemento, entonces la dirección de memoria del
+j-ésimo elemento, de la i-ésima fila <code class="highlight"><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span></code> (donde se utilizó el
+<code class="highlight"><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span></code> por ser un arreglo de <code class="highlight"><span class="kt">double</span></code>s).
+Entonces, para el arreglo <code class="highlight"><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span></code>,</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Acceso</strong></th>
+<th align="left"><strong>Dirección de memoria</strong></th>
+<th align="left"><strong>Acceso</strong></th>
+<th align="left"><strong>Dirección de memoria</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>m[0][0]</code></td>
+<td align="left"><code>0x7ffcf4e19580</code></td>
+<td align="left"><code>m[i][j]</code></td>
+<td align="left"><code>0x7ffcf4e19580 + i * 32 + j * 8</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Por otro lado, al ser arreglos estáticos, desde su definición podemos saber cuánto espacio ocupan.
+El operador <code class="highlight"><span class="k">sizeof</span></code> nos puede dar el tamaño en bytes de un arreglo definido <strong>estáticamente</strong>, como se muestra en
+el siguiente ejemplo:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span>
+<span class="normal"><a href="#__codelineno-19-12">12</a></span>
+<span class="normal"><a href="#__codelineno-19-13">13</a></span>
+<span class="normal"><a href="#__codelineno-19-14">14</a></span>
+<span class="normal"><a href="#__codelineno-19-15">15</a></span>
+<span class="normal"><a href="#__codelineno-19-16">16</a></span>
+<span class="normal"><a href="#__codelineno-19-17">17</a></span>
+<span class="normal"><a href="#__codelineno-19-18">18</a></span>
+<span class="normal"><a href="#__codelineno-19-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="cp">#define SIZE 7</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="p">{</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">carray</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">sarray</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iarray</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">darray</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12"></a>
+<a id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"  sizeof char array: %lu bytes</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">carray</span><span class="p">));</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">" sizeof short array: %lu bytes</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">sarray</span><span class="p">));</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"   sizeof int array: %lu bytes</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">iarray</span><span class="p">));</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"sizeof double array: %lu bytes</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">darray</span><span class="p">));</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17"></a>
+<a id="__codelineno-19-18" name="__codelineno-19-18"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>que al ser compilado y ejecutado muestra:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>-std<span class="o">=</span>c17<span class="w"> </span>-Wall<span class="w"> </span>-pedantic<span class="w"> </span>sizeof_array.c<span class="w"> </span>-o<span class="w"> </span>sizeof_array
+<a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="gp">$ </span>./sizeof_array
+<a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="go">  sizeof char array: 7 bytes</span>
+<a href="#__codelineno-20-4" id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="go"> sizeof short array: 14 bytes</span>
+<a href="#__codelineno-20-5" id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="go">   sizeof int array: 28 bytes</span>
+<a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="go">sizeof double array: 56 bytes</span>
+</code></pre></div>
+<h2 id="acceso-out-of-bounds">Acceso out-of-bounds<a class="headerlink" href="#acceso-out-of-bounds" title="Permanent link">#</a></h2>
+<p>El acceso <em>out-of-bounds</em> es un error típico de acceso, sea para lectura o escritura, que se da al utilizar arreglos en
+C.
+Este lenguaje, a diferencia de otros, <strong>no tiene <em>out-of-bounds checking</em></strong>, es decir, no comprueba que un acceso se
+encuentre adentro de los límites definidos para un arreglo.
+Por ejemplo, supongamos un arreglo definido como <code class="highlight"><span class="kt">short</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span></code>.
+Supongamos, también, que comienza en la dirección 0.
+Si comienza en la dirección 0x4 y tiene 4 elementos de tipo <code class="highlight"><span class="kt">short</span></code>, entonces termina en la posición 0xc (no
+inclusive), como se muestra en la siguiente figura</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img5.svg"><img alt="" src="img5.svg"/></a></p>
+</figure>
+<p>Para dicho arreglo, son válidos los accesos <code>array[i]</code> con <span class="arithmatex">\(0 \leq i \lt 4\)</span>.
+Acceder a elementos por fuera de nuestro arreglo puede tener distintas consecuencias:</p>
+<ol>
+<li>
+<p>si la posición a la que accedemos le pertenece al programa en ejecución:</p>
+<ol>
+<li>si el acceso era de lectura, se lee información inválida (es un error semántico).</li>
+<li>si el acceso era de escritura, podemos estar sobreescribiendo memoria no utilizada u otra variable, lo que
+    producirá un error en el futuro (tal vez no ocurra nada en esta ejecución, ni la siguiente, pero sí en
+adelante).</li>
+</ol>
+</li>
+<li>
+<p>si la posición de memoria no le pertenece al programa en ejecución, el sistema operativo detectará un acceso
+    indebido y emitirá la señal (en linux) <a href="https://en.wikipedia.org/wiki/SIGSEGV"><code>SIGSEGV</code></a> que significa «violación
+    del segmento» (o <em>segmentation violation</em>).</p>
+</li>
+</ol>
+<p>Un error típico es el <em>off-by-one error</em>, es decir, nos pasamos del arreglo por 1 elemento.
+Ese elemento suele pertenecer al programa en ejecución por lo que no suele generar el fallo, mientras que accesos a
+elementos con <code>i</code> mucho mayores suelen hacerlo.
+A continuación se muestran programas que ejemplifican este hecho:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"/><div class="tabbed-labels"><label for="__tabbed_2_1"><em>off-by-one</em></label><label for="__tabbed_2_2"><em>off-by-many</em></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Como el siguiente programa tiene un acceso inválido por un elemento, es <strong>posible</strong> que no falle (aunque podría
+ocurrir que sí):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-21-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-21-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-21-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-21-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-21-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-21-10">10</a></span>
+<span class="normal"><a href="#__codelineno-21-11">11</a></span>
+<span class="normal"><a href="#__codelineno-21-12">12</a></span>
+<span class="normal"><a href="#__codelineno-21-13">13</a></span>
+<span class="normal"><a href="#__codelineno-21-14">14</a></span>
+<span class="normal"><a href="#__codelineno-21-15">15</a></span>
+<span class="normal"><a href="#__codelineno-21-16">16</a></span>
+<span class="normal"><a href="#__codelineno-21-17">17</a></span>
+<span class="normal"><a href="#__codelineno-21-18">18</a></span>
+<span class="normal"><a href="#__codelineno-21-19">19</a></span>
+<span class="normal"><a href="#__codelineno-21-20">20</a></span>
+<span class="normal"><a href="#__codelineno-21-21">21</a></span>
+<span class="normal"><a href="#__codelineno-21-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="cp">#define SIZE 5</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a>
+<a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7"></a><span class="p">{</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9"></a>
+<a id="__codelineno-21-10" name="__codelineno-21-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">SIZE</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11"></a><span class="w">        </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13"></a>
+<a id="__codelineno-21-14" name="__codelineno-21-14"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">SIZE</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SIZE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16"></a><span class="w">            </span><span class="n">puts</span><span class="p">(</span><span class="s">"---- limite ----"</span><span class="p">);</span>
+<a id="__codelineno-21-17" name="__codelineno-21-17"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"array[%lu] =&gt; %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20"></a>
+<a id="__codelineno-21-21" name="__codelineno-21-21"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<p>El siguiente programa está pensando para que falle, sin embargo, puede ser necesario aumentar el valor de la
+constante <code>WRONG_SIZE</code> para que lo haga.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span>
+<span class="normal"><a href="#__codelineno-22-13">13</a></span>
+<span class="normal"><a href="#__codelineno-22-14">14</a></span>
+<span class="normal"><a href="#__codelineno-22-15">15</a></span>
+<span class="normal"><a href="#__codelineno-22-16">16</a></span>
+<span class="normal"><a href="#__codelineno-22-17">17</a></span>
+<span class="normal"><a href="#__codelineno-22-18">18</a></span>
+<span class="normal"><a href="#__codelineno-22-19">19</a></span>
+<span class="normal"><a href="#__codelineno-22-20">20</a></span>
+<span class="normal"><a href="#__codelineno-22-21">21</a></span>
+<span class="normal"><a href="#__codelineno-22-22">22</a></span>
+<span class="normal"><a href="#__codelineno-22-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="cp">#define SIZE 5</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="cp">#define WRONG_SIZE 20 * (SIZE)</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="p">{</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a>
+<a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">WRONG_SIZE</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="w">        </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14"></a>
+<a id="__codelineno-22-15" name="__codelineno-22-15"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">WRONG_SIZE</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SIZE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17"></a><span class="w">            </span><span class="n">puts</span><span class="p">(</span><span class="s">"---- limite ----"</span><span class="p">);</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"array[%lu] =&gt; %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21"></a>
+<a id="__codelineno-22-22" name="__codelineno-22-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</input></div>
+<h2 id="arreglos-y-funciones">Arreglos y funciones<a class="headerlink" href="#arreglos-y-funciones" title="Permanent link">#</a></h2>
+<p>A continuación se dan ejemplos de funciones que operan con arreglos:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:6"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"/><input id="__tabbed_3_2" name="__tabbed_3" type="radio"/><input id="__tabbed_3_3" name="__tabbed_3" type="radio"/><input id="__tabbed_3_4" name="__tabbed_3" type="radio"/><input id="__tabbed_3_5" name="__tabbed_3" type="radio"/><input id="__tabbed_3_6" name="__tabbed_3" type="radio"/><div class="tabbed-labels"><label for="__tabbed_3_1">zeros</label><label for="__tabbed_3_2">random</label><label for="__tabbed_3_3">sum</label><label for="__tabbed_3_4">sumar</label><label for="__tabbed_3_5">matriz ones</label><label for="__tabbed_3_6">traza</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Una función que inicializa un vector con 0.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span>
+<span class="normal"><a href="#__codelineno-23-7">7</a></span>
+<span class="normal"><a href="#__codelineno-23-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">zeros</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="p">{</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<p>Una función que inicializa un vector con valores random en el intervalo <span class="arithmatex">\([a, b)\)</span>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span>
+<span class="normal"><a href="#__codelineno-24-5">5</a></span>
+<span class="normal"><a href="#__codelineno-24-6">6</a></span>
+<span class="normal"><a href="#__codelineno-24-7">7</a></span>
+<span class="normal"><a href="#__codelineno-24-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">uniform</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="p">{</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="w">        </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<p>Suma de todos los elementos del vector.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span>
+<span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="p">{</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">        </span><span class="n">suma</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">suma</span><span class="p">;</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<p>Suma 2 vectores de igual longitud en un tercer vector (de igual o mayor longitud):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span>
+<span class="normal"><a href="#__codelineno-26-6">6</a></span>
+<span class="normal"><a href="#__codelineno-26-7">7</a></span>
+<span class="normal"><a href="#__codelineno-26-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">lhs</span><span class="p">[],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rhs1</span><span class="p">[],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rhs2</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="p">{</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6"></a><span class="w">        </span><span class="n">lhs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rhs2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<p>Carga unos en una matriz de <code>r</code> filas y <code>c</code> columnas.
+La matriz debe estar definida como:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-27-1" id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">matriz</span><span class="p">[</span><span class="mi">200</span><span class="p">][</span><span class="mi">200</span><span class="p">];</span>
+</code></pre></div>
+<p>En este caso, se debe cumplir que la cantidad de filas y columnas sea menor a 200, ya que la matriz tiene esos
+valores como máximo (pero podemos utilizar una submatriz).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-28-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-28-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-28-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-28-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-28-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-28-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-28-10">10</a></span>
+<span class="normal"><a href="#__codelineno-28-11">11</a></span>
+<span class="normal"><a href="#__codelineno-28-12">12</a></span>
+<span class="normal"><a href="#__codelineno-28-13">13</a></span>
+<span class="normal"><a href="#__codelineno-28-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">matr_ones</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">mat</span><span class="p">[][</span><span class="mi">200</span><span class="p">],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="p">{</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a>
+<a id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11"></a><span class="w">            </span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="p">;</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<p>Calcula la traza de una matriz de <code>r</code> filas y <code>r</code> columnas (la traza está definida para matrices cuadradas).
+La matriz debe estar definida como:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-29-1" id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">matriz</span><span class="p">[</span><span class="mi">200</span><span class="p">][</span><span class="mi">200</span><span class="p">];</span>
+</code></pre></div>
+<p>En este caso, se debe cumplir que la cantidad de filas y columnas sea menor a 200, ya que la matriz tiene esos
+valores como máximo (pero podemos utilizar una submatriz).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-30-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-30-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-30-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-30-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-30-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-30-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-30-10">10</a></span>
+<span class="normal"><a href="#__codelineno-30-11">11</a></span>
+<span class="normal"><a href="#__codelineno-30-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="kt">double</span><span class="w"> </span><span class="nf">matr_ones</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">mat</span><span class="p">[][</span><span class="mi">200</span><span class="p">],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="p">{</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">traza</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a>
+<a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="w">        </span><span class="n">traza</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10"></a>
+<a id="__codelineno-30-11" name="__codelineno-30-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">traza</span><span class="p">;</span>
+<a id="__codelineno-30-12" name="__codelineno-30-12"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<h2 id="biblioteca-estándar-para-manejo-de-arreglos">Biblioteca estándar para manejo de arreglos<a class="headerlink" href="#biblioteca-estándar-para-manejo-de-arreglos" title="Permanent link">#</a></h2>
+<p>No hay ninguna biblioteca estándar para la manipulación de arreglos.</p>
+<h2 id="guías-de-ejercicios">Guías de ejercicios<a class="headerlink" href="#guías-de-ejercicios" title="Permanent link">#</a></h2>
+<p>La guía de ejercicios de arreglos se encuentra <a href="../../guias/c/arreglos/">aquí</a>.</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Última actualización:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 15, 2023</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Volver al principio
+          </button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Licencia: CC-BY-SA 4.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+<script src="../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="../../javascripts/fontawesome/all.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

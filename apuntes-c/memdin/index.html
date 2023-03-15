@@ -1,0 +1,1256 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Apuntes
+" name="description"/>
+<link href="https://pamoreno.github.io/apuntes/apuntes-c/memdin/" rel="canonical"/>
+<link href="../cla/" rel="prev"/>
+<link href="../estructuras/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.3" name="generator"/>
+<title>Memoria Dinámica - Apuntes</title>
+<link href="../../assets/stylesheets/main.c4a75a56.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+<link href="../../css/bootstrap-card.css" rel="stylesheet"/>
+<link href="../../css/cards.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<link href="../../css/fontawesome/all.min.css" rel="stylesheet"/>
+<link href="../../css/quotes.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#memoria-dinámica">
+          Saltar a contenido
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Cabecera" class="md-header__inner md-grid">
+<a aria-label="Apuntes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Apuntes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Memoria Dinámica
+            
+          </span>
+</div>
+</div>
+</div>
+</nav>
+<nav aria-label="Pestañas" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../compilando/">
+        Programación en C
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegación" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Apuntes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Apuntes
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Programación en C
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          Programación en C
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../compilando/">
+        Compilando con el GCC
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../arreglos/">
+        Arreglos
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cadenas/">
+        Cadenas
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../punteros/">
+        Punteros
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cla/">
+        Argumentos en línea de comandos
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Memoria Dinámica
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Memoria Dinámica
+      </a>
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cómo-reservar-memoria-dinámica">
+    ¿Cómo reservar memoria dinámica?
+  </a>
+<nav aria-label="¿Cómo reservar memoria dinámica?" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ejemplos">
+    Ejemplos
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#devolución-de-la-memoria-pedida">
+    Devolución de la memoria pedida
+  </a>
+<nav aria-label="Devolución de la memoria pedida" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fugas-de-memoria">
+    Fugas de memoria
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cuando-los-tamaños-son-desconocidos">
+    Cuando los tamaños son desconocidos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglo-dinámicos-de-arreglos-dinámicos">
+    Arreglo dinámicos de arreglos dinámicos
+  </a>
+<nav aria-label="Arreglo dinámicos de arreglos dinámicos" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#matriz-dinámica">
+    Matriz dinámica
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglo-dinámico-de-cadenas-dinámicas">
+    Arreglo dinámico de cadenas dinámicas
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nota-final">
+    Nota final
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-argumentos">
+    Biblioteca estándar para manejo de argumentos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../estructuras/">
+        Estructuras
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cómo-reservar-memoria-dinámica">
+    ¿Cómo reservar memoria dinámica?
+  </a>
+<nav aria-label="¿Cómo reservar memoria dinámica?" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ejemplos">
+    Ejemplos
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#devolución-de-la-memoria-pedida">
+    Devolución de la memoria pedida
+  </a>
+<nav aria-label="Devolución de la memoria pedida" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fugas-de-memoria">
+    Fugas de memoria
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cuando-los-tamaños-son-desconocidos">
+    Cuando los tamaños son desconocidos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglo-dinámicos-de-arreglos-dinámicos">
+    Arreglo dinámicos de arreglos dinámicos
+  </a>
+<nav aria-label="Arreglo dinámicos de arreglos dinámicos" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#matriz-dinámica">
+    Matriz dinámica
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arreglo-dinámico-de-cadenas-dinámicas">
+    Arreglo dinámico de cadenas dinámicas
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nota-final">
+    Nota final
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-argumentos">
+    Biblioteca estándar para manejo de argumentos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="memoria-dinámica">Memoria Dinámica<a class="headerlink" href="#memoria-dinámica" title="Permanent link">#</a></h1>
+<p>Salvo en aplicaciones particulares, como sistemas de tiempo real, críticos, o muy limitados, el uso de memoria dinámica
+es fundamental.
+En el lenguaje de programación C, el uso de este tipo de memoria es sencillo, pero es necesario entender los conceptos
+asociados a <a href="../arreglos">arreglos</a> y <a href="../punteros">punteros</a>, a la vez que se tiene un entendimiento claro sobre la
+distribución en memoria de los distintos tipos de datos.
+Esto se debe a que, cuando no se hace uso de la memoria dinámica, es el compilador quien gestiona la memoria (estática)
+por nosotros.
+Sin embargo ¿qué es la memoria dinámica?</p>
+<p>Tenemos que destacar que, en cuanto a memoria se refiere, físicamente la computadora posee la memoria del disco rígido,
+la memoria RAM y la memoria del procesador (la memoria caché).
+Al ejecutar un programa, este se carga del disco rígido y se lo ubica en la memoria RAM.
+Cuando sólo se utiliza memoria estática, todas las variables que el programa necesitará están previamente definidas y
+así, al iniciar una función—como es el caso de <code>main</code>—el compilador agrega las instrucciones necesarias para
+reservar la memoria que la función necesita, en el stack.
+Vimos que al definir un arreglo adentro de una función, como</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+</code></pre></div>
+<p>estamos indicando que esa función necesita 8192 bytes (8 kiB) en su stack para operar.
+Sin embargo, no siempre podemos saber <em>a priori</em> cuántos datos vamos a tener que utilizar.
+Es allí cuando entra en juego la memoria dinámica.
+La memoria dinámica se le pide al sistema operativo, y éste nos la otorga o no, buscando regiones de memoria libre en el
+<em>heap</em>.
+Una vez que esta memoria no es más utilizada, debe ser devuelta al sistema operativo, es decir, se le debe indicar que
+ya no la utilizamos y puede ser otorgada a otra aplicación (o la misma si hacemos un nuevo pedido de memoria).
+Estas operaciones se realizan utilizando funciones de la biblioteca estándar.</p>
+<p>La biblioteca estándar (en <code>stdlib.h</code>) posee 4 funciones para el manejo de memoria en forma dinámica:</p>
+<ul>
+<li><code>malloc()</code>,</li>
+<li><code>free()</code>,</li>
+<li><code>realloc()</code>, y</li>
+<li><code>calloc()</code>.</li>
+</ul>
+<p>La descripción de estas funciones no dice:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>The  malloc()  function allocates size bytes and returns a pointer to the allocated memory.  The memory
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>is not initialized.  If size is 0, then malloc() returns either NULL, or a unique  pointer  value  that
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>can later be successfully passed to free().
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>The free() function frees the memory space pointed to by ptr, which must have been returned by a previ‐
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>ous call to malloc(), calloc(), or realloc().  Otherwise, or if free(ptr) has already been  called  be‐
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>fore, undefined behavior occurs.  If ptr is NULL, no operation is performed.
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>The  calloc() function allocates memory for an array of nmemb elements of size bytes each and returns a
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>pointer to the allocated memory.  The memory is set to zero.  If nmemb or size is 0, then calloc()  re‐
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>turns  either  NULL, or a unique pointer value that can later be successfully passed to free().  If the
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>multiplication of nmemb and size would result in integer overflow, then calloc() returns an error.   By
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>contrast,  an integer overflow would not be detected in the following call to malloc(), with the result
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>that an incorrectly sized block of memory would be allocated:
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a>    malloc(nmemb * size);
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a>
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a>The realloc() function changes the size of the memory block pointed to by ptr to size bytes.  The  con‐
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a>tents  will be unchanged in the range from the start of the region up to the minimum of the old and new
+<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a>sizes.  If the new size is larger than the old size, the added memory will not be initialized.  If  ptr
+<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a>is NULL, then the call is equivalent to malloc(size), for all values of size; if size is equal to zero,
+<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a>and ptr is not NULL, then the call is equivalent  to  free(ptr)  (this  behavior  is  nonportable;  see
+<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a>NOTES).   Unless  ptr  is NULL, it must have been returned by an earlier call to malloc(), calloc(), or
+<a href="#__codelineno-1-24" id="__codelineno-1-24" name="__codelineno-1-24"></a>realloc().  If the area pointed to was moved, a free(ptr) is done.
+</code></pre></div>
+<h2 id="cómo-reservar-memoria-dinámica">¿Cómo reservar memoria dinámica?<a class="headerlink" href="#cómo-reservar-memoria-dinámica" title="Permanent link">#</a></h2>
+<p>La función <code>malloc</code>, cuyo prototipo es</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">malloc</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+</code></pre></div>
+<p>es una función que nos permite pedir un bloque de memoria de tamaño <code>size</code>.
+Por ejemplo, si quisiéramos memoria para un entero, ejecutaríamos <code class="highlight"><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span></code>, mientras que si quisiéramos
+un bloque para un <code class="highlight"><span class="kt">double</span></code> llamaríamos a <code>malloc</code> del siguiente modo: <code class="highlight"><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">))</span></code>.
+Por otro lado, si quisiéramos un arreglo de 10 <code class="highlight"><span class="kt">float</span></code>s la invocación sería <code class="highlight"><span class="n">malloc</span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">))</span></code>,
+mientras que si fuese para un arreglo de 10 punteros a <code class="highlight"><span class="kt">float</span></code> haríamos <code class="highlight"><span class="n">malloc</span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="p">))</span></code>.</p>
+<p>A través de <code>malloc</code> le solicitamos al sistema operativo una región de un determinado tamaño y éste nos devuelve la
+dirección de memoria donde dicho bloque comienza, o <code class="highlight"><span class="nb">NULL</span></code> en caso de no poder otorgar un bloque del tamaño
+solicitado.
+Al recibir <code class="highlight"><span class="nb">NULL</span></code> en caso de errores, es fácil validar si el sistema operativo nos asignó el bloque de memoria o no,
+siguiendo un esquema como el siguiente:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">uso de malloc()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">...</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">nmemb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">));</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">array</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="cm">/* fail */</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>donde <code>nmemb</code> es la cantidad de elementos que queremos en el arreglo y <code>T</code> puede ser cualquier tipo: <code>double</code>, <code>int</code>,
+<code>long unsigned</code>, <code>float *</code>, <code>char *</code>, etc.
+Podemos ver que siempre se cumple que si <code>array</code> es de tipo <code>T *</code>, entonces el resultado de <code>malloc</code> se castea a ese
+mismo tipo y como argumento de <code>malloc</code> se utiliza un nivel de punteros menos para el <code>sizeof()</code>: <code>sizeof(T)</code>.
+Sin embargo, a partir del estándar ISO C99, <code>malloc()</code> retorna <code>void *</code>, por lo que no es necesario el casteo, es
+redundante.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo: arreglo de mediciones</p>
+<p>Consideremos una aplicación en la que utilizamos un sensor laser, pero admitimos diferentes modelos.
+Una forma de admitirlos es a través de una configuración que nos dice, tal vez haciendo alguna cuenta, cuántas
+muestras por segundo nos da dicho sensor.
+Sin embargo, diferentes modelos pueden dar una cantidad de muestras distintas: un modelo puede entregar 1200
+muestras mientras que otro nos puede dar 7200 muestras.
+En vez tener un arreglo estático de 7200 valores, podríamos crear uno dinámicamente al iniciar la aplicación.</p>
+<p>Es decir, estamos ante un caso en el que en tiempo de compilación no sabemos cuántos elementos son, pero en tiempo
+de ejecución sí.</p>
+<p>Si bien no es la forma más práctica, supongamos que al comienzo del programa le solicitamos al usuario que nos
+indique cuántas muestras son, luego crearemos el arreglo.
+Este proceso se ejemplifica en el siguiente código:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">...</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="kt">char</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="p">...</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fgets</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="cm">/* error */</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="p">}</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="n">nmemb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtoul</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="w"> </span><span class="p">...</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">    </span><span class="cm">/* error */</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="p">}</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="hll"><span class="n">samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">nmemb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+</span><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">samples</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">    </span><span class="cm">/* error */</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<p>Como especifica la función, <code>malloc</code> no inicializa la memoria devuelta, es decir, se nos asigna un bloque de memoria, y
+se nos devuelve un puntero al inicio el mismo tal y como se encontraba cuando se nos asignó.</p>
+<p>Sin embargo, existe una función que nos permite inicializar el bloque de memoria con ceros.
+La función en cuestión es</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">calloc</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+</code></pre></div>
+<p>Podemos ver que, a diferencia de <code>malloc</code>, <code>calloc</code> recibe 2 argumentos, indicando la cantidad de elementos pedidos y el
+tamaño de cada elemento.
+Esto nos sirve para borrar cualquier tipo de información que pudiera haber en el bloque de memoria asignado, y para
+inicializar variables que tengan sentido que comiencen en cero (arreglos de números que deben inicializarse a cero,
+arreglos de punteros inicializados a <code class="highlight"><span class="nb">NULL</span></code>, estructuras, etc.).</p>
+<h3 id="ejemplos">Ejemplos<a class="headerlink" href="#ejemplos" title="Permanent link">#</a></h3>
+<p>El primer ejemplo que veremos es la creación de un vector de N enteros, y lo haremos de 2 maneras, devolviendo el
+puntero por el nombre de la función, y por la interfaz.</p>
+<h4 id="devolución-por-el-nombre">Devolución por el nombre<a class="headerlink" href="#devolución-por-el-nombre" title="Permanent link">#</a></h4>
+<p>En el primer caso, la función no es más que un llamado a <code>malloc</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="nf">iarray_create</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">iarray</span><span class="p">;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="n">iarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">iarray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iarray</span><span class="p">;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Esta versión de la función es un poco verbosa, y una primera reducción que podríamos hacer es unificar la llamada a
+<code>malloc</code> y el <code>if</code>, del siguiente modo:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span>
+<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="nf">iarray_create</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">iarray</span><span class="p">;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">iarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iarray</span><span class="p">;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Nuevamente, podemos reducir este código un poco más utilizando el operador ternario:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="nf">iarray_create</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">iarray</span><span class="p">;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">iarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))))</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">iarray</span><span class="p">;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Y tal alguien ya se haya dado cuenta que eso que hemos hecho es retornar, en ambos casos, el resultado de la invocación
+a <code>malloc</code>.
+Si el resultado fue satisfactorio, retornamos <code>iarray</code>, de lo contrario, retornamos <code class="highlight"><span class="nb">NULL</span></code>.
+No obstante, <code>iarray</code> en ese último caso almacena <code class="highlight"><span class="nb">NULL</span></code>, por lo que también estamos retornando <code>iarray</code>.
+Por lo tanto podemos implementar la función del siguiente modo:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="nf">iarray_create</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="p">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>En todos los casos, la función se invoca del siguiente modo:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">iarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="p">...</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="n">iarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iarray_create</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="devolución-por-la-interfaz">Devolución por la interfaz<a class="headerlink" href="#devolución-por-la-interfaz" title="Permanent link">#</a></h4>
+<p>En este caso, necesitamos de un parámetro auxiliar para retornar el arreglo utilizando dicho parámetro.
+Veamos primero el prototipo:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">iarray_create</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">**</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="p">);</span>
+</code></pre></div>
+<p>En este caso, <code>status_t</code> es un tipo definido por nosotros para indicar el resultado de la operación, mientras que el
+primer argumento es un puntero al puntero a entero que queremos modificar, es decir, la función se invoca del siguiente
+modo:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">iarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="n">status_t</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_FAIL</span><span class="p">;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="p">...</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iarray_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">iarray</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>y su implementación es la siguiente:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">iarray_create</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">**</span><span class="n">piarray</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="p">{</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">piarray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">piarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))))</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">ST_ERR_NO_MEM</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="asignación-y-modificación-de-la-memoria">Asignación y modificación de la memoria<a class="headerlink" href="#asignación-y-modificación-de-la-memoria" title="Permanent link">#</a></h4>
+<p>El siguiente ejemplo es la copia en memoria dinámica de una cadena de caracteres, función que suele llamarse <code>strdup</code> (e
+incluso es parte de estándar POSIX).
+La forma más inmediata de implementar dicha función es:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">8</a></span>
+<span class="normal"><a href="#__codelineno-14-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">strdup</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="p">{</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">copy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">copy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">strcpy</span><span class="p">(</span><span class="n">copy</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="devolución-de-la-memoria-pedida">Devolución de la memoria pedida<a class="headerlink" href="#devolución-de-la-memoria-pedida" title="Permanent link">#</a></h2>
+<p>Una vez que terminamos de utilizar el bloque de memoria pedido, es necesario devolverlo al sistema operativo.
+A este proceso también lo llamamos <em>liberar</em> la memoria pedida.
+Para realizar dicha tarea tenemos a la función <code>free()</code>, cuyo prototipo es</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">free</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">ptr</span><span class="p">);</span>
+</code></pre></div>
+<p>Esta función recibe un puntero que nos haya devuelto <code>malloc()</code>, <code>realloc()</code> o <code>calloc()</code> y le indica al sistema
+operativo que ya no lo utilizaremos.
+De este modo, el sistema operativo sabe que puede reutilizar esa región de memoria.
+Si las aplicaciones no liberasen la memoria que piden cuando terminan de utilizarla, el sistema operativo en seguida se
+quedaría sin memoria para otorgarle al resto de las aplicaciones.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo: arreglo de mediciones</p>
+<p>Volvamos sobre el ejemplo anterior, donde le solicitamos al sistema operativo una región de memoria de <code>nmemb</code> <code class="highlight"><span class="kt">double</span></code>s para almacenar las mediciones de un sensor laser.
+Una vez que terminamos de hacer y procesar la medición, puede que ese arreglo no lo necesitemos más, en cuyo caso
+debemos liberarlo (esto es, no vamos a reutilizarlo).
+Retomando el código del ejemplo, haríamos lo siguiente</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span>
+<span class="normal"><a href="#__codelineno-16-20">20</a></span>
+<span class="normal"><a href="#__codelineno-16-21">21</a></span>
+<span class="normal"><a href="#__codelineno-16-22">22</a></span>
+<span class="normal"><a href="#__codelineno-16-23">23</a></span>
+<span class="normal"><a href="#__codelineno-16-24">24</a></span>
+<span class="normal"><a href="#__codelineno-16-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="n">samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">nmemb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">samples</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19"></a><span class="w">    </span><span class="cm">/* error */</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20"></a><span class="p">}</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21"></a>
+<a id="__codelineno-16-22" name="__codelineno-16-22"></a><span class="p">...</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23"></a>
+<a id="__codelineno-16-24" name="__codelineno-16-24"></a><span class="hll"><span class="n">free</span><span class="p">(</span><span class="n">samples</span><span class="p">);</span>
+</span><a id="__codelineno-16-25" name="__codelineno-16-25"></a><span class="n">samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<p>Es importante notar que el puntero debe ser uno que haya devuelto una de las funciones antes mencionadas, sino lo más
+probable es que se intente liberar memoria estática, en cuyo caso se verá un error como el siguiente (por ejemplo, al
+liberar el arreglo <code>input</code> del ejemplo anterior):</p>
+<div class="highlight"><span class="filename">Error al liberar memoria estática</span><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="gp">$ </span>./invalid_free
+<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="go">free(): invalid size</span>
+<a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="go">Aborted (core dumped)</span>
+<a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="gp">$ </span>./invalid_free
+<a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="go">munmap_chunk(): invalid pointer</span>
+<a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="go">Aborted (core dumped)</span>
+<a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="gp">$ </span>./invalid_free
+<a href="#__codelineno-17-8" id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="go">Segmentation fault (core dumped)</span>
+</code></pre></div>
+<p>Y, por otro lado, la memoria pedida sólo puede ser devuelta una vez, sino veremos errores como el siguiente:</p>
+<div class="highlight"><span class="filename">Double free</span><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="gp">$ </span>./double_free
+<a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="go">free(): double free detected in tcache 2</span>
+<a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="go">Aborted (core dumped)</span>
+</code></pre></div>
+<p>Aunque pueden volverse más extensas las descripciones.
+Es por ello que es una buena práctica asignar <code class="highlight"><span class="nb">NULL</span></code> a un puntero una vez que se libera la memoria a la que apunta.</p>
+<h3 id="fugas-de-memoria">Fugas de memoria<a class="headerlink" href="#fugas-de-memoria" title="Permanent link">#</a></h3>
+<p>Siempre que solicitamos regiones de memoria utilizando las funciones aquí vistas, debemos devolverla al sistema
+operativo.
+Esto es porque todos los programas están en constante uso de memoria y para distintas operaciones necesitan memoria
+dinámica (por ejemplo, la apertura de un archivo para su lectura o escritura requiere memoria dinámica).</p>
+<p>Lamentablemente, no son poco frecuentes las fugas de memoria (o <em>memory leaks</em>) en los programas.
+Esto es el uso de punteros a regiones de memoria dinámica que nunca son devueltos al sistema.
+Puede haber múltiples motivos para ello, por ejemplo, que el desarrollador espera al final del programa para liberar la
+memoria solicitada (lo que es un error salvo que dicha memoria se encuentre en uso hasta ese momento), o también porque
+se pierde la referencia a dichas regiones.
+El siguiente ejemplo, muestra en forma grosera una fuga de memoria</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span>
+<span class="normal"><a href="#__codelineno-19-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">dv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="cm">/* print al revés */</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="w">    </span><span class="n">dv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">];</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="p">}</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="n">printf</span><span class="p">(</span><span class="s">"{ %g, %g, %g }</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">dv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">dv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">dv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9"></a>
+<a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="cm">/* print al derecho */</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="hll"><span class="n">dv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+</span><a id="__codelineno-19-12" name="__codelineno-19-12"></a><span class="n">printf</span><span class="p">(</span><span class="s">"{ %g, %g, %g }</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">dv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">dv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">dv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</code></pre></div></td></tr></table></div>
+<p>Es grosero ya que en la linea 11 (resaltada), estamos asignado <code>v</code> a <code>dv</code>, reemplazando el valor que tenía antes, la
+dirección a la región de memoria dada por <code>malloc</code>.
+Una vez hecho eso, ya no sabemos a qué dirección apuntaba, y no podemos ejecutar <code>free(dv)</code>.</p>
+<p>Pero también tenemos ejemplos más sutiles, como el siguiente:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span>
+<span class="normal"><a href="#__codelineno-20-13">13</a></span>
+<span class="normal"><a href="#__codelineno-20-14">14</a></span>
+<span class="normal"><a href="#__codelineno-20-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="w">    </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">256</span><span class="p">);</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">"Ingrese 'salir' para salir"</span><span class="p">);</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fgets</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Ingresaste '%s'</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13"></a><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="s">"salir"</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">));</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14"></a>
+<a id="__codelineno-20-15" name="__codelineno-20-15"></a><span class="n">free</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>Aquí, en la línea 4 (resaltada) estamos asignando a <code>input</code> una nueva región de memoria sin haber liberado la anterior,
+y al hacerlo perdemos la referencia a la memoria que teníamos asignada.</p>
+<h2 id="cuando-los-tamaños-son-desconocidos">Cuando los tamaños son desconocidos<a class="headerlink" href="#cuando-los-tamaños-son-desconocidos" title="Permanent link">#</a></h2>
+<p>Supongamos que queremos leer, de <code class="highlight"><span class="n">stdin</span></code> <strong>todo</strong> lo que ingrese el usuario hasta el <code>'\n'</code>.
+No hay arreglo que nos alcance para asegurarnos que podremos hacerlo, por lo que debemos recurrir a la memoria dinámica.
+La función clave, en este caso, es</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">realloc</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+</code></pre></div>
+<p>La función recibe un puntero que debe haber sido devuelto por <code>malloc</code>, <code>calloc</code> o <code>realloc</code> y un tamaño.
+Que el puntero haya sido devuelto por una de las funciones anteriores implica que apunta a una dirección válida en el
+<em>heap</em>, por lo que puede ser liberada (y el SO sabe cuánto espacio tenemos reservado en esa dirección).</p>
+<p>Supongamos entonces que hemos pedido memoria con <code>malloc</code> del siguiente modo</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+</code></pre></div></td></tr></table></div>
+<p>y ahora nos encontramos en la situación en que ya hemos utilizado los 3 doubles de ese arreglo pero queremos agregar
+más.
+Para ello, debemos solicitarle al sistema operativo que nos de más memoria, pero como queremos utilizar un arreglo, esa
+memoria debe ser contigua con los otros datos.
+<code>realloc</code> se encarga de esa tarea.</p>
+<p>Por ejemplo, si para los 3 doubles que pedimos antes nos fue asignado un bloque de memoria con el tamaño justo (24
+bytes) y ahora necesitamos agregar un double más, éste, claramente, no puede ser ubicado a continuación del bloque
+previamente asignado (porque no hay espacio).
+Si este último tuviera a continuación memoria no asignada a otro proceso, sí podríamos recibir de <code>realloc</code> la misma
+memoria con ese bloque extendido, pero ello no es ninguna garantía de que suceda, por lo que no es algo que se deba
+suponer <strong>nunca</strong>.</p>
+<p>Como antes ya le habíamos pedido 24 bytes al sistema operativo y ahora necesitamos 1 double más, debemos solicitarle al
+sistema 32 bytes, no hay una función para pedir un espacio extra, sino que se debe solicitar el total.
+Al recibir el tamaño <code>size</code>, <code>realloc</code> busca una sección de memoria que tenga dicho tamaño (que puede iniciar en la
+misma posición que el puntero dado o puede ser distinta).
+Entonces, si antes habíamos iniciado <code>data</code> utilizando <code class="highlight"><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span></code>, ahora ejecutaremos</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-32" name="__codelineno-23-32"></a><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">realloc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+</code></pre></div></td></tr></table></div>
+<p>Es importante recordar que cada pedido de memoria que hacemos al sistema operativo puede fallar, y todas las funciones
+vistas retornan <code class="highlight"><span class="nb">NULL</span></code> en ese caso.
+En el caso de <code>realloc</code>, si el pedido de memoria es exitoso, la función solicita el espacio de memoria que necesitamos,
+copia los datos que había en la memoria original a la nueva posición y nos devuelve un puntero válido a una dirección de
+memoria del tamaño solicitado.
+En caso de fallar, retorna <code class="highlight"><span class="nb">NULL</span></code> y no hace nada con la memoria que hemos pasado, es decir, <strong>no</strong> la libera.
+Es por esto que en la línea de código anterior estamos utilizando una variable auxiliar para verificar el retorno de
+<code>realloc</code>.
+Si este nos devuelve un puntero válido, distinto de <code class="highlight"><span class="nb">NULL</span></code>, entonces podemos reasignarlo a <code>data</code>.
+Si hubiésemos utilizado <code>data</code> tanto en la llamada como a la izquierda del igual, <code>data</code> almacenaría <code class="highlight"><span class="nb">NULL</span></code> y la
+memoria que teníamos asignada no tendríamos forma de recuperarla.</p>
+<p>En código, esta validación posllamada a <code>realloc</code> se ve de la siguiente manera:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-32">32</a></span>
+<span class="normal"><a href="#__codelineno-24-33">33</a></span>
+<span class="normal"><a href="#__codelineno-24-34">34</a></span>
+<span class="normal"><a href="#__codelineno-24-35">35</a></span>
+<span class="normal"><a href="#__codelineno-24-36">36</a></span>
+<span class="normal"><a href="#__codelineno-24-37">37</a></span>
+<span class="normal"><a href="#__codelineno-24-38">38</a></span>
+<span class="normal"><a href="#__codelineno-24-39">39</a></span>
+<span class="normal"><a href="#__codelineno-24-40">40</a></span>
+<span class="normal"><a href="#__codelineno-24-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-32" name="__codelineno-24-32"></a><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">realloc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<a id="__codelineno-24-33" name="__codelineno-24-33"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">aux</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-34" name="__codelineno-24-34"></a><span class="w">    </span><span class="cm">/* falló el pedido de memoria */</span>
+<a id="__codelineno-24-35" name="__codelineno-24-35"></a><span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<a id="__codelineno-24-36" name="__codelineno-24-36"></a><span class="w">    </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Falló realloc</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<a id="__codelineno-24-37" name="__codelineno-24-37"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-24-38" name="__codelineno-24-38"></a><span class="p">}</span>
+<a id="__codelineno-24-39" name="__codelineno-24-39"></a><span class="cm">/* no falló el pedido de memoria */</span>
+<a id="__codelineno-24-40" name="__codelineno-24-40"></a><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aux</span><span class="p">;</span>
+<a id="__codelineno-24-41" name="__codelineno-24-41"></a><span class="p">...</span>
+</code></pre></div></td></tr></table></div>
+<details class="example">
+<summary>Versión completa del código descripto</summary>
+<p>A continuación pueden ver una versión completa del código desarrollado en esta sección:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span>
+<span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span>
+<span class="normal"><a href="#__codelineno-25-13">13</a></span>
+<span class="normal"><a href="#__codelineno-25-14">14</a></span>
+<span class="normal"><a href="#__codelineno-25-15">15</a></span>
+<span class="normal"><a href="#__codelineno-25-16">16</a></span>
+<span class="normal"><a href="#__codelineno-25-17">17</a></span>
+<span class="normal"><a href="#__codelineno-25-18">18</a></span>
+<span class="normal"><a href="#__codelineno-25-19">19</a></span>
+<span class="normal"><a href="#__codelineno-25-20">20</a></span>
+<span class="normal"><a href="#__codelineno-25-21">21</a></span>
+<span class="normal"><a href="#__codelineno-25-22">22</a></span>
+<span class="normal"><a href="#__codelineno-25-23">23</a></span>
+<span class="normal"><a href="#__codelineno-25-24">24</a></span>
+<span class="normal"><a href="#__codelineno-25-25">25</a></span>
+<span class="normal"><a href="#__codelineno-25-26">26</a></span>
+<span class="normal"><a href="#__codelineno-25-27">27</a></span>
+<span class="normal"><a href="#__codelineno-25-28">28</a></span>
+<span class="normal"><a href="#__codelineno-25-29">29</a></span>
+<span class="normal"><a href="#__codelineno-25-30">30</a></span>
+<span class="normal"><a href="#__codelineno-25-31">31</a></span>
+<span class="normal"><a href="#__codelineno-25-32">32</a></span>
+<span class="normal"><a href="#__codelineno-25-33">33</a></span>
+<span class="normal"><a href="#__codelineno-25-34">34</a></span>
+<span class="normal"><a href="#__codelineno-25-35">35</a></span>
+<span class="normal"><a href="#__codelineno-25-36">36</a></span>
+<span class="normal"><a href="#__codelineno-25-37">37</a></span>
+<span class="normal"><a href="#__codelineno-25-38">38</a></span>
+<span class="normal"><a href="#__codelineno-25-39">39</a></span>
+<span class="normal"><a href="#__codelineno-25-40">40</a></span>
+<span class="normal"><a href="#__codelineno-25-41">41</a></span>
+<span class="normal"><a href="#__codelineno-25-42">42</a></span>
+<span class="normal"><a href="#__codelineno-25-43">43</a></span>
+<span class="normal"><a href="#__codelineno-25-44">44</a></span>
+<span class="normal"><a href="#__codelineno-25-45">45</a></span>
+<span class="normal"><a href="#__codelineno-25-46">46</a></span>
+<span class="normal"><a href="#__codelineno-25-47">47</a></span>
+<span class="normal"><a href="#__codelineno-25-48">48</a></span>
+<span class="normal"><a href="#__codelineno-25-49">49</a></span>
+<span class="normal"><a href="#__codelineno-25-50">50</a></span>
+<span class="normal"><a href="#__codelineno-25-51">51</a></span>
+<span class="normal"><a href="#__codelineno-25-52">52</a></span>
+<span class="normal"><a href="#__codelineno-25-53">53</a></span>
+<span class="normal"><a href="#__codelineno-25-54">54</a></span>
+<span class="normal"><a href="#__codelineno-25-55">55</a></span>
+<span class="normal"><a href="#__codelineno-25-56">56</a></span>
+<span class="normal"><a href="#__codelineno-25-57">57</a></span>
+<span class="normal"><a href="#__codelineno-25-58">58</a></span>
+<span class="normal"><a href="#__codelineno-25-59">59</a></span>
+<span class="normal"><a href="#__codelineno-25-60">60</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="p">{</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Not enough memory</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16"></a>
+<a id="__codelineno-25-17" name="__codelineno-25-17"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Ingrese un número: "</span><span class="p">);</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fgets</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20"></a><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Failed to read from stdin</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<a id="__codelineno-25-21" name="__codelineno-25-21"></a><span class="w">            </span><span class="n">free</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<a id="__codelineno-25-22" name="__codelineno-25-22"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-25-23" name="__codelineno-25-23"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-25-24" name="__codelineno-25-24"></a><span class="w">        </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-25-25" name="__codelineno-25-25"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="sc">'\n'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-26" name="__codelineno-25-26"></a><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Character %li ('%c') could not be converted as part of a double</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">pend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-25-27" name="__codelineno-25-27"></a><span class="w">            </span><span class="n">free</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<a id="__codelineno-25-28" name="__codelineno-25-28"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-25-29" name="__codelineno-25-29"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-25-30" name="__codelineno-25-30"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-31" name="__codelineno-25-31"></a>
+<a id="__codelineno-25-32" name="__codelineno-25-32"></a><span class="w">    </span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realloc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<a id="__codelineno-25-33" name="__codelineno-25-33"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">aux</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-34" name="__codelineno-25-34"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<a id="__codelineno-25-35" name="__codelineno-25-35"></a><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Falló realloc</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<a id="__codelineno-25-36" name="__codelineno-25-36"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-25-37" name="__codelineno-25-37"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-38" name="__codelineno-25-38"></a><span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aux</span><span class="p">;</span>
+<a id="__codelineno-25-39" name="__codelineno-25-39"></a>
+<a id="__codelineno-25-40" name="__codelineno-25-40"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Ingrese un número: "</span><span class="p">);</span>
+<a id="__codelineno-25-41" name="__codelineno-25-41"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fgets</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-42" name="__codelineno-25-42"></a><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Failed to read from stdin</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<a id="__codelineno-25-43" name="__codelineno-25-43"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<a id="__codelineno-25-44" name="__codelineno-25-44"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-25-45" name="__codelineno-25-45"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-46" name="__codelineno-25-46"></a><span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-25-47" name="__codelineno-25-47"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="sc">'\n'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-48" name="__codelineno-25-48"></a><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Character %li ('%c') could not be converted as part of a double</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">pend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-25-49" name="__codelineno-25-49"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<a id="__codelineno-25-50" name="__codelineno-25-50"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-25-51" name="__codelineno-25-51"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-52" name="__codelineno-25-52"></a>
+<a id="__codelineno-25-53" name="__codelineno-25-53"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"{%g"</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<a id="__codelineno-25-54" name="__codelineno-25-54"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-55" name="__codelineno-25-55"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">", %g"</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<a id="__codelineno-25-56" name="__codelineno-25-56"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-57" name="__codelineno-25-57"></a><span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">"}"</span><span class="p">);</span>
+<a id="__codelineno-25-58" name="__codelineno-25-58"></a>
+<a id="__codelineno-25-59" name="__codelineno-25-59"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a id="__codelineno-25-60" name="__codelineno-25-60"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<h2 id="arreglo-dinámicos-de-arreglos-dinámicos">Arreglo dinámicos de arreglos dinámicos<a class="headerlink" href="#arreglo-dinámicos-de-arreglos-dinámicos" title="Permanent link">#</a></h2>
+<p>Si queremos crear un arreglo dinámico de arreglos dinámicos, es decir, un puntero doble, debemos seguir las mismas
+reglas antes vistas:</p>
+<ul>
+<li>Siempre validar <code>malloc</code>, <code>calloc</code> o <code>realloc</code>.</li>
+<li>Siempre que llamemos a <code>realloc</code>, usar un puntero distinto para la llamada y para la asignación.</li>
+<li>Verificar que si a la izquierda de la asignación tenemos un nivel N de punteros, el casteo a la derecha es del mismo
+    nivel N y en la llamada seguramente utilizemos un <code>sizeof(T)</code> donde <code>T</code> es un nivel de punteros menos, es decir,
+    N-1.</li>
+</ul>
+<h3 id="matriz-dinámica">Matriz dinámica<a class="headerlink" href="#matriz-dinámica" title="Permanent link">#</a></h3>
+<p>El primer ejemplo que podemos considerar es la creación de una matriz dinámica.
+Para ello, debemos crear un vector dinámico de arreglos de doubles (un vector dinámico de punteros a double), como se
+muestra en la siguiente figura:</p>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="matriz.svg"><img alt="" src="matriz.svg"/></a>
+<caption><strong>Fig. 1:</strong> Matriz formada como puntero doble.</caption></p>
+</figure>
+<p>Un vector de punteros es un doble puntero, por lo que esa parte se lleva a cabo mediante</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-26-1" id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="n">matriz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a href="#__codelineno-26-2" id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="p">...</span>
+<a href="#__codelineno-26-3" id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="n">matriz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+</code></pre></div>
+<p>Con esas lineas creamos la cajita de la matriz y las cajitas de los punteros (el arreglo que figura en vertical).
+Nos falta crear cada una de las <code>n</code> filas, pero esto ya lo haremos pensando en una función:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">dmatrix_create: función que crea una matriz de doubles dinámicamente.. casi</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span>
+<span class="normal"><a href="#__codelineno-27-12">12</a></span>
+<span class="normal"><a href="#__codelineno-27-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="nf">dmatrix_create</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">colums</span><span class="p">)</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="p">{</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="w">    </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9"></a>
+<a id="__codelineno-27-10" name="__codelineno-27-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rows</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11"></a><span class="w">        </span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">columns</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-13" name="__codelineno-27-13"></a><span class="w">            </span><span class="o">?????</span>
+</code></pre></div></td></tr></table></div>
+<p>¿Qué hacemos si falla la creación de la i-ésima fila?
+Tenemos que liberar todo el espacio pedido hasta el momento (las <code>i</code> filas y el vector) y devolver <code class="highlight"><span class="nb">NULL</span></code>.
+Para ello nos valdremos de una función auxiliar: <code>dmatrix_free</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">dmatrix_free: función que libera la memoria pedida para una matriz de doubles</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-28-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-28-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-28-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-28-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-28-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-28-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-28-10">10</a></span>
+<span class="normal"><a href="#__codelineno-28-11">11</a></span>
+<span class="normal"><a href="#__codelineno-28-12">12</a></span>
+<span class="normal"><a href="#__codelineno-28-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">dmatrix_free</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">***</span><span class="n">matrix</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">colums</span><span class="p">)</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="p">{</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rows</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a><span class="w">                </span><span class="n">free</span><span class="p">((</span><span class="o">*</span><span class="n">matrix</span><span class="p">)[</span><span class="n">i</span><span class="p">]);</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="w">                </span><span class="p">(</span><span class="o">*</span><span class="n">matrix</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10"></a><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="o">*</span><span class="n">matrix</span><span class="p">);</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11"></a><span class="w">        </span><span class="o">*</span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Con esta función, podemos continuar con la implementación de la función anterior:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">dmatrix_create: función que crea una matriz de doubles dinámicamente</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-29-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-29-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-29-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-29-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-29-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-29-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-29-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-29-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-29-10">10</a></span>
+<span class="normal"><a href="#__codelineno-29-11">11</a></span>
+<span class="normal"><a href="#__codelineno-29-12">12</a></span>
+<span class="normal"><a href="#__codelineno-29-13">13</a></span>
+<span class="normal"><a href="#__codelineno-29-14">14</a></span>
+<span class="normal"><a href="#__codelineno-29-15">15</a></span>
+<span class="normal"><a href="#__codelineno-29-16">16</a></span>
+<span class="normal"><a href="#__codelineno-29-17">17</a></span>
+<span class="normal"><a href="#__codelineno-29-18">18</a></span>
+<span class="normal"><a href="#__codelineno-29-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="nf">dmatrix_create</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">colums</span><span class="p">)</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="p">{</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a>
+<a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="w">    </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9"></a>
+<a id="__codelineno-29-10" name="__codelineno-29-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rows</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11"></a><span class="w">        </span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">columns</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13"></a><span class="w">            </span><span class="n">dmatrix_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">matrix</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="p">);</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-29-16" name="__codelineno-29-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-29-17" name="__codelineno-29-17"></a>
+<a id="__codelineno-29-18" name="__codelineno-29-18"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">matrix</span><span class="p">;</span>
+<a id="__codelineno-29-19" name="__codelineno-29-19"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="arreglo-dinámico-de-cadenas-dinámicas">Arreglo dinámico de cadenas dinámicas<a class="headerlink" href="#arreglo-dinámico-de-cadenas-dinámicas" title="Permanent link">#</a></h3>
+<p>Este ejemplo es similar al anterior, pero considerando que los elementos del vector ahora son cadenas, es decir, <code class="highlight"><span class="kt">char</span><span class="w"> </span><span class="o">*</span></code> en lugar de <code class="highlight"><span class="kt">double</span><span class="w"> </span><span class="o">*</span></code>.
+Pero además, cada fila de la “matriz” tiene una cantidad de columnas distinta, ya que está dada por el largo de la
+cadena.</p>
+<p>Pensemos no que vamos a crear un arreglo de cadenas desde cero, sino que clonaremos un arreglo de cadenas en memoria
+dinámica (el arreglo origen puede ser dinámico, o no).
+Para ello, comenzaremos con la función <code>strdup</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">strdup</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="p">{</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">copy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">copy</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">strcpy</span><span class="p">(</span><span class="n">copy</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Ahora sí, implementemos la función que clona los arreglos:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">sarray_clone: función para clonar arreglos de cadenas</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-31-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-31-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-31-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-31-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-31-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-31-10">10</a></span>
+<span class="normal"><a href="#__codelineno-31-11">11</a></span>
+<span class="normal"><a href="#__codelineno-31-12">12</a></span>
+<span class="normal"><a href="#__codelineno-31-13">13</a></span>
+<span class="normal"><a href="#__codelineno-31-14">14</a></span>
+<span class="normal"><a href="#__codelineno-31-15">15</a></span>
+<span class="normal"><a href="#__codelineno-31-16">16</a></span>
+<span class="normal"><a href="#__codelineno-31-17">17</a></span>
+<span class="normal"><a href="#__codelineno-31-18">18</a></span>
+<span class="normal"><a href="#__codelineno-31-19">19</a></span>
+<span class="normal"><a href="#__codelineno-31-20">20</a></span>
+<span class="normal"><a href="#__codelineno-31-21">21</a></span>
+<span class="normal"><a href="#__codelineno-31-22">22</a></span>
+<span class="normal"><a href="#__codelineno-31-23">23</a></span>
+<span class="normal"><a href="#__codelineno-31-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">sarray_clone</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">***</span><span class="n">sarray</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">origin</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="p">{</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a>
+<a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sarray</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">origin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8"></a>
+<a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="w">    </span><span class="n">clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">clone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NO_MEM</span><span class="p">;</span>
+<a id="__codelineno-31-12" name="__codelineno-31-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-31-13" name="__codelineno-31-13"></a>
+<a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-15" name="__codelineno-31-15"></a><span class="w">        </span><span class="n">clone</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">origin</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<a id="__codelineno-31-16" name="__codelineno-31-16"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">clone</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-17" name="__codelineno-31-17"></a><span class="w">            </span><span class="n">sarray_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clone</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-31-18" name="__codelineno-31-18"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NO_MEM</span><span class="p">;</span>
+<a id="__codelineno-31-19" name="__codelineno-31-19"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-31-20" name="__codelineno-31-20"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-31-21" name="__codelineno-31-21"></a>
+<a id="__codelineno-31-22" name="__codelineno-31-22"></a><span class="w">    </span><span class="o">*</span><span class="n">sarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clone</span><span class="p">;</span>
+<a id="__codelineno-31-23" name="__codelineno-31-23"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-31-24" name="__codelineno-31-24"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition attention">
+<p class="admonition-title">Ejercicio</p>
+<p>La implementación de la función <code>sarray_free</code> queda como tarea para el lector.</p>
+</div>
+<h4 id="clonando-argv">Clonando <code>argv</code><a class="headerlink" href="#clonando-argv" title="Permanent link">#</a></h4>
+<p>Como vimos en la sección de <a href="../cla/">argumentos en línea de comandos</a>, <code>argv</code> es un arreglo de cadenas, con la
+particularidad de que su último elemento es <code class="highlight"><span class="nb">NULL</span></code>.
+Si quisiéramos aprovechar esa propiedad, deberíamos modificar <code>sarray_clone</code> para que no utilice un <code>n</code> sino ese puntero
+a <code class="highlight"><span class="nb">NULL</span></code> como fin del arreglo.
+No obstante, ello nos obliga a utilizar <code>realloc</code>, ya que <em>a priori</em> no sabemos cuánto espacio reservar.
+Veamos cómo se hace:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">argv_clone: función para clonar arreglos de cadenas terminados en NULL</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-32-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-32-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-32-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-32-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-32-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-32-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-32-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-32-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-32-10">10</a></span>
+<span class="normal"><a href="#__codelineno-32-11">11</a></span>
+<span class="normal"><a href="#__codelineno-32-12">12</a></span>
+<span class="normal"><a href="#__codelineno-32-13">13</a></span>
+<span class="normal"><a href="#__codelineno-32-14">14</a></span>
+<span class="normal"><a href="#__codelineno-32-15">15</a></span>
+<span class="normal"><a href="#__codelineno-32-16">16</a></span>
+<span class="normal"><a href="#__codelineno-32-17">17</a></span>
+<span class="normal"><a href="#__codelineno-32-18">18</a></span>
+<span class="normal"><a href="#__codelineno-32-19">19</a></span>
+<span class="normal"><a href="#__codelineno-32-20">20</a></span>
+<span class="normal"><a href="#__codelineno-32-21">21</a></span>
+<span class="normal"><a href="#__codelineno-32-22">22</a></span>
+<span class="normal"><a href="#__codelineno-32-23">23</a></span>
+<span class="normal"><a href="#__codelineno-32-24">24</a></span>
+<span class="normal"><a href="#__codelineno-32-25">25</a></span>
+<span class="normal"><a href="#__codelineno-32-26">26</a></span>
+<span class="normal"><a href="#__codelineno-32-27">27</a></span>
+<span class="normal"><a href="#__codelineno-32-28">28</a></span>
+<span class="normal"><a href="#__codelineno-32-29">29</a></span>
+<span class="normal"><a href="#__codelineno-32-30">30</a></span>
+<span class="normal"><a href="#__codelineno-32-31">31</a></span>
+<span class="normal"><a href="#__codelineno-32-32">32</a></span>
+<span class="normal"><a href="#__codelineno-32-33">33</a></span>
+<span class="normal"><a href="#__codelineno-32-34">34</a></span>
+<span class="normal"><a href="#__codelineno-32-35">35</a></span>
+<span class="normal"><a href="#__codelineno-32-36">36</a></span>
+<span class="normal"><a href="#__codelineno-32-37">37</a></span>
+<span class="normal"><a href="#__codelineno-32-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">argv_clone</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">***</span><span class="n">sarray</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="p">{</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">used_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">alloc_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7"></a>
+<a id="__codelineno-32-8" name="__codelineno-32-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sarray</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">origin</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11"></a>
+<a id="__codelineno-32-12" name="__codelineno-32-12"></a><span class="w">    </span><span class="n">clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+<a id="__codelineno-32-13" name="__codelineno-32-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">clone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-14" name="__codelineno-32-14"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NO_MEM</span><span class="p">;</span>
+<a id="__codelineno-32-15" name="__codelineno-32-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-32-16" name="__codelineno-32-16"></a><span class="w">    </span><span class="n">alloc_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+<a id="__codelineno-32-17" name="__codelineno-32-17"></a>
+<a id="__codelineno-32-18" name="__codelineno-32-18"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">used_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="n">used_size</span><span class="p">];</span><span class="w"> </span><span class="o">++</span><span class="n">used_size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-19" name="__codelineno-32-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">used_size</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">alloc_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-20" name="__codelineno-32-20"></a><span class="w">            </span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realloc</span><span class="p">(</span><span class="n">clone</span><span class="p">,</span><span class="w"> </span><span class="n">alloc_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">));</span>
+<a id="__codelineno-32-21" name="__codelineno-32-21"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">aux</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-22" name="__codelineno-32-22"></a><span class="w">                </span><span class="n">sarray_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clone</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-32-23" name="__codelineno-32-23"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NO_MEM</span><span class="p">;</span>
+<a id="__codelineno-32-24" name="__codelineno-32-24"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-32-25" name="__codelineno-32-25"></a><span class="w">            </span><span class="n">clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aux</span><span class="p">;</span>
+<a id="__codelineno-32-26" name="__codelineno-32-26"></a><span class="w">            </span><span class="n">alloc_size</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<a id="__codelineno-32-27" name="__codelineno-32-27"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-32-28" name="__codelineno-32-28"></a><span class="w">        </span><span class="n">clone</span><span class="p">[</span><span class="n">used_size</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">used_size</span><span class="p">])</span>
+<a id="__codelineno-32-29" name="__codelineno-32-29"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">clone</span><span class="p">[</span><span class="n">used_size</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-30" name="__codelineno-32-30"></a><span class="w">            </span><span class="n">sarray_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clone</span><span class="p">,</span><span class="w"> </span><span class="n">used_size</span><span class="p">);</span>
+<a id="__codelineno-32-31" name="__codelineno-32-31"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NO_MEM</span><span class="p">;</span>
+<a id="__codelineno-32-32" name="__codelineno-32-32"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-32-33" name="__codelineno-32-33"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-32-34" name="__codelineno-32-34"></a><span class="w">    </span><span class="n">clone</span><span class="p">[</span><span class="n">used_size</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-32-35" name="__codelineno-32-35"></a>
+<a id="__codelineno-32-36" name="__codelineno-32-36"></a><span class="w">    </span><span class="o">*</span><span class="n">sarray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clone</span><span class="p">;</span>
+<a id="__codelineno-32-37" name="__codelineno-32-37"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-32-38" name="__codelineno-32-38"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="nota-final">Nota final<a class="headerlink" href="#nota-final" title="Permanent link">#</a></h2>
+<p>El uso de memoria dinámica es el uso de una herramienta, es el uso de una API estándar para comunicarse con el sistema
+operativo.
+Es importante recordar que hay 4 funciones básicas en cuanto al uso de memoria dinámica, todas ellas en <code>stdlib.h</code>:</p>
+<ul>
+<li><code class="highlight"><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">malloc</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span></code>,</li>
+<li><code class="highlight"><span class="kt">void</span><span class="w"> </span><span class="nf">free</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">ptr</span><span class="p">);</span></code>,</li>
+<li><code class="highlight"><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">calloc</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span></code>, y</li>
+<li><code class="highlight"><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">realloc</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span></code>.</li>
+</ul>
+<p>Además:</p>
+<ul>
+<li>siempre se debe validar el valor devuelto por <code>malloc</code>, <code>calloc</code> o <code>realloc</code>,</li>
+<li>siempre se debe liberar la memoria <strong>en cuanto deja de utilizarse</strong>,</li>
+<li>nunca debe asignarse el resultado de <code>realloc</code> en la misma variable que se le pasa como puntero.</li>
+</ul>
+<h2 id="biblioteca-estándar-para-manejo-de-argumentos">Biblioteca estándar para manejo de argumentos<a class="headerlink" href="#biblioteca-estándar-para-manejo-de-argumentos" title="Permanent link">#</a></h2>
+<p>Las funciones <code>malloc</code>, <code>free</code>, <code>calloc</code> y <code>realloc</code> se encuentran en la biblioteca <code>stdlib.h</code>.</p>
+<h2 id="guías-de-ejercicios">Guías de ejercicios<a class="headerlink" href="#guías-de-ejercicios" title="Permanent link">#</a></h2>
+<p>La guía de ejercicios de memoria dinámica se encuentra <a href="../../guias/c/memoria/">aquí</a>.</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Última actualización:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 15, 2023</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Volver al principio
+          </button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Licencia: CC-BY-SA 4.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+<script src="../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="../../javascripts/fontawesome/all.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

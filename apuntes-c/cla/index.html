@@ -1,0 +1,1222 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Apuntes
+" name="description"/>
+<link href="https://pamoreno.github.io/apuntes/apuntes-c/cla/" rel="canonical"/>
+<link href="../punteros/" rel="prev"/>
+<link href="../memdin/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.3" name="generator"/>
+<title>Argumentos en línea de comandos - Apuntes</title>
+<link href="../../assets/stylesheets/main.c4a75a56.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+<link href="../../css/bootstrap-card.css" rel="stylesheet"/>
+<link href="../../css/cards.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<link href="../../css/fontawesome/all.min.css" rel="stylesheet"/>
+<link href="../../css/quotes.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#argumentos-en-línea-de-comandos">
+          Saltar a contenido
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Cabecera" class="md-header__inner md-grid">
+<a aria-label="Apuntes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Apuntes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Argumentos en línea de comandos
+            
+          </span>
+</div>
+</div>
+</div>
+</nav>
+<nav aria-label="Pestañas" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../compilando/">
+        Programación en C
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navegación" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Apuntes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Apuntes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Apuntes
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Programación en C
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          Programación en C
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../compilando/">
+        Compilando con el GCC
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../arreglos/">
+        Arreglos
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cadenas/">
+        Cadenas
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../punteros/">
+        Punteros
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Argumentos en línea de comandos
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Argumentos en línea de comandos
+      </a>
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tipos-de-argumentos">
+    Tipos de argumentos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-en-línea-de-comandos_1">
+    Argumentos en línea de comandos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#procesamiento-de-los-argumentos">
+    Procesamiento de los argumentos
+  </a>
+<nav aria-label="Procesamiento de los argumentos" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-posicionales">
+    Argumentos posicionales
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-no-posicionales">
+    Argumentos no posicionales
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-no-posicionales-bis">
+    Argumentos no posicionales (bis)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nota-final">
+    Nota final
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-argumentos">
+    Biblioteca estándar para manejo de argumentos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../memdin/">
+        Memoria Dinámica
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../estructuras/">
+        Estructuras
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Tabla de contenidos" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tipos-de-argumentos">
+    Tipos de argumentos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-en-línea-de-comandos_1">
+    Argumentos en línea de comandos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#procesamiento-de-los-argumentos">
+    Procesamiento de los argumentos
+  </a>
+<nav aria-label="Procesamiento de los argumentos" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-posicionales">
+    Argumentos posicionales
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-no-posicionales">
+    Argumentos no posicionales
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#argumentos-no-posicionales-bis">
+    Argumentos no posicionales (bis)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nota-final">
+    Nota final
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biblioteca-estándar-para-manejo-de-argumentos">
+    Biblioteca estándar para manejo de argumentos
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guías-de-ejercicios">
+    Guías de ejercicios
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="argumentos-en-línea-de-comandos">Argumentos en línea de comandos<a class="headerlink" href="#argumentos-en-línea-de-comandos" title="Permanent link">#</a></h1>
+<p>Cuando ejecutamos un programa, generalmente podemos modificar su comportamiento en tiempo de ejecución mediante
+argumentos que se le pasan en la línea de comandos (CLA).
+Por ejemplo, al ejecutar el <code>gcc</code> podemos indicarle que queremos ver una ayuda en vez de compilar un código fuente.
+Para ello, en lugar de ejecutar el programa como hacemos siempre (<code>gcc -Wall -std=c17 ...</code>) ejecutamos el comando
+pasándole un <em>flag</em>, o bandera, de ayuda: <code>--help</code></p>
+<div class="highlight"><span class="filename">Invocación al gcc con --help</span><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>--help
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="go">Usage: gcc [options] file...</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="go">Options:</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="go">  -pass-exit-codes         Exit with highest error code from a phase.</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="go">  --help                   Display this information.</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="go">  --target-help            Display target specific command line options (including assembler and linker options).</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="go">  --help={common|optimizers|params|target|warnings|[^]{joined|separate|undocumented}}[,...].</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="go">                           Display specific types of command line options.</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="go">...</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="go">  -E                       Preprocess only; do not compile, assemble or link.</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="go">  -S                       Compile only; do not assemble or link.</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="go">  -c                       Compile and assemble, but do not link.</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="go">  -o &lt;file&gt;                Place the output into &lt;file&gt;.</span>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="go">  -pie                     Create a dynamically linked position independent</span>
+<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="go">                           executable.</span>
+<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="go">  -shared                  Create a shared library.</span>
+<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="go">  -x &lt;language&gt;            Specify the language of the following input files.</span>
+<a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="go">                           Permissible languages include: c c++ assembler none</span>
+<a href="#__codelineno-0-19" id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="go">                           'none' means revert to the default behavior of</span>
+<a href="#__codelineno-0-20" id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="go">                           guessing the language based on the file's extension.</span>
+<a href="#__codelineno-0-21" id="__codelineno-0-21" name="__codelineno-0-21"></a>
+<a href="#__codelineno-0-22" id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="go">Options starting with -g, -f, -m, -O, -W, or --param are automatically</span>
+<a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="go"> passed on to the various sub-processes invoked by gcc.  In order to pass</span>
+<a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="go"> other options on to these processes the -W&lt;letter&gt; options must be used.</span>
+<a href="#__codelineno-0-25" id="__codelineno-0-25" name="__codelineno-0-25"></a>
+<a href="#__codelineno-0-26" id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="go">For bug reporting instructions, please see:</span>
+<a href="#__codelineno-0-27" id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="go">&lt;https://bugs.archlinux.org/&gt;.</span>
+</code></pre></div>
+<p>mientras que si quisiéramos ver únicamente la versión del compilador, lo invocaríamos con <code>--version</code>:</p>
+<div class="highlight"><span class="filename">Invocación al gcc con --version</span><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>--version
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="go">gcc (GCC) 12.2.0</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="go">Copyright (C) 2022 Free Software Foundation, Inc.</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="go">This is free software; see the source for copying conditions.  There is NO</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="go">warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+</code></pre></div>
+<p>Por otro lado, hemos estado invocando al <code>gcc</code> utilizando los parámetros <code>-Wall</code>, <code>-std=c17</code>, <code>-g</code>, <code>-Og</code>, etc.
+Todos estos parámetros modifican el comportamiento del programa, sin necesidad de recompilarlo, y además no requieren de
+intervención posterior del usuario.</p>
+<h2 id="tipos-de-argumentos">Tipos de argumentos<a class="headerlink" href="#tipos-de-argumentos" title="Permanent link">#</a></h2>
+<p>En el <code>gcc</code>, todos los argumentos que mostramos se pueden intercambiar, pueden estar en cualquier orden, sin embargo,
+hay programas que requieren que los argumentos, o algunos de ellos, aparezcan en posiciones específicas.
+Estos argumentos se denominan <em>posicionales</em>, porque su interpretación depende de la posición en la que aparecen.
+Por ejemplo, podríamos tener un programa para dividir 2 números que se ejecuta del siguiente modo:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="gp">$ </span>./dividir<span class="w"> </span><span class="m">9203</span>.23<span class="w"> </span><span class="m">912</span>.17
+</code></pre></div>
+<p>Para saber si la operación es <span class="arithmatex">\(9203.23 / 912.17\)</span> o <span class="arithmatex">\(912.17 / 9203.23\)</span> necesitamos leer la documentación del programa.
+Sin embargo, otro programa que realiza la misma operación podría ser invocado del siguiente modo:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="gp">$ </span>./dividir<span class="w"> </span>--numerador<span class="w"> </span><span class="m">9203</span>.23<span class="w"> </span>--denominador<span class="w"> </span><span class="m">912</span>.17
+</code></pre></div>
+<p>donde, a priori, resulta claro que la operación es <span class="arithmatex">\(9203.23 / 912.17\)</span>.
+Estos argumentos son <strong>no</strong> posicionales, ya que los programas que aceptan la invocación anterior suelen aceptar también
+la siguiente invocación:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="gp">$ </span>./dividir<span class="w"> </span>--denominador<span class="w"> </span><span class="m">912</span>.17<span class="w"> </span>--numerador<span class="w"> </span><span class="m">9203</span>.23
+</code></pre></div>
+<p>donde hemos intercambiado el orden de los argumentos, pero la operación se entiende que es la misma.</p>
+<p>Cómo se hace para que el programa interprete estos argumentos depende del desarrollador.
+Lo que todos los sistemas operativos nos brindan es una forma de acceder a esos argumentos.</p>
+<p>En resumen, hay 2 tipos de argumentos:</p>
+<ul>
+<li>posicionales</li>
+<li>no posicionales</li>
+</ul>
+<p>Normalmente se prefieren los argumentos no posicionales para dar flexibilidad al usuario y que éste no deba recordar en
+qué orden van, sino cuáles deben ir.</p>
+<p>Además, los argumentos pueden tener un identificador, como es el caso de <code>--numerador</code>, que indica que el siguiente
+argumento es el numerador, o pueden ser identificados por su posición y nada más.
+Son extraños los programas que admiten identificadores como <code>--numerador</code> y <code>--denominador</code>, pero no permiten invertir
+su orden, ya que al estar fijas sus posiciones, uno debe recordarlas y podría poner directamente el valor, sin el
+identificador.</p>
+<h2 id="argumentos-en-línea-de-comandos_1">Argumentos en línea de comandos<a class="headerlink" href="#argumentos-en-línea-de-comandos_1" title="Permanent link">#</a></h2>
+<p>En C, estos argumentos se pasan a la función <code>main</code>, como cualquier otro argumento a una función.
+Para ello, debemos cambiar el prototipo de la función, del siguiente modo:</p>
+<div class="highlight"><span class="filename">Función main que recibe argumentos</span><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</code></pre></div>
+<p>Podemos ver que ahora <code>main</code> recibe 2 argumentos: un entero y un arreglo de cadenas.
+El sistema operativo carga en <code>argc</code> la cantidad de argumentos recibidos, y en <code>argv</code> carga los argumentos (utilizando
+el espacio para separar cada argumento).
+De este modo, si invocamos al <code>gcc</code> del siguiente modo</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>-std<span class="o">=</span>c17<span class="w"> </span>-Wall<span class="w"> </span>-pedantic<span class="w"> </span>-o<span class="w"> </span>mi_programa<span class="w"> </span>app.c<span class="w"> </span>-lm
+</code></pre></div>
+<p><code>argv</code> y <code>argc</code> se cargan como si las variables hubiesen sido definidas de la siguiente forma</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"gcc"</span><span class="p">,</span><span class="w"> </span><span class="s">"-std=c17"</span><span class="p">,</span><span class="w"> </span><span class="s">"-Wall"</span><span class="p">,</span><span class="w"> </span><span class="s">"-pedantic"</span><span class="p">,</span><span class="w"> </span><span class="s">"-o"</span><span class="p">,</span><span class="w"> </span><span class="s">"mi_programa"</span><span class="p">,</span><span class="w"> </span><span class="s">"app.c"</span><span class="p">,</span><span class="w"> </span><span class="s">"-lm"</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+</code></pre></div>
+<p>Acá podemos ver algunas propiedades:</p>
+<ol>
+<li>El primer argumento que se cargó en el arreglo es el nombre del programa (<code>gcc</code>).
+    Más adelante veremos que no es el nombre del programa, sino la forma en la que fui invocado.</li>
+<li>Todos los argumentos fueron copiados tal y como se los escribió: el carácter <code>'-'</code> no es un modificador especial
+    para el programa en sí, sino que es el desarrollador quien le da un comportamiento especial.</li>
+<li>Los argumentos son cargados en el orden en el que fueron ingresados.</li>
+<li>El último elemento de arreglo <code>argv</code> es <code class="highlight"><span class="nb">NULL</span></code>.</li>
+<li><strong>Siempre</strong> se cumple que <code>argv[argc]</code> es <code class="highlight"><span class="nb">NULL</span></code>.</li>
+</ol>
+<p>Para verificar esto, veamos el siguiente ejemplo.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo: un programa que imprime sus argumentos</p>
+<p>El siguiente programa recibirá una cantidad indefinida de argumentos en línea de comandos e imprimirá todos ellos
+por <code class="highlight"><span class="n">stdout</span></code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="p">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">argc</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"argv[%i] -&gt; </span><span class="se">\"</span><span class="s">%s</span><span class="se">\"\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Y al ejecutarlo podemos ver lo siguiente:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>-Wall<span class="w"> </span>-pedantic<span class="w"> </span>-std<span class="o">=</span>c17<span class="w"> </span>-o<span class="w"> </span>cla<span class="w"> </span>primero.c
+<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="gp">$ </span>./cla
+<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="go">argv[0] -&gt; "./cla"</span>
+<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="gp">$ </span>./cla<span class="w"> </span>primero<span class="w"> </span>segundo<span class="w"> </span>tercero<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">123</span>.23<span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span>-23.12<span class="w"> </span>fhg
+<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="go">argv[0] -&gt; "./cla"</span>
+<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="go">argv[1] -&gt; "primero"</span>
+<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="go">argv[2] -&gt; "segundo"</span>
+<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="go">argv[3] -&gt; "tercero"</span>
+<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="go">argv[4] -&gt; "5"</span>
+<a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="go">argv[5] -&gt; "123.23"</span>
+<a href="#__codelineno-9-11" id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="go">argv[6] -&gt; "true"</span>
+<a href="#__codelineno-9-12" id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="go">argv[7] -&gt; "false"</span>
+<a href="#__codelineno-9-13" id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="go">argv[8] -&gt; "-23.12"</span>
+<a href="#__codelineno-9-14" id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="go">argv[9] -&gt; "fhg"</span>
+<a href="#__codelineno-9-15" id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="gp">$ </span>./cla<span class="w"> </span><span class="s2">"uno y sólo uno"</span>
+<a href="#__codelineno-9-16" id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="go">argv[0] -&gt; "./cla"</span>
+<a href="#__codelineno-9-17" id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="go">argv[1] -&gt; "uno y sólo uno"</span>
+<a href="#__codelineno-9-18" id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="gp">$  </span>../ejemplos/../ejemplos/../ejemplos/cla<span class="w"> </span><span class="s2">"mirá argv[0]"</span>
+<a href="#__codelineno-9-19" id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="go">argv[0] -&gt; "../ejemplos/../ejemplos/../ejemplos/cla"</span>
+<a href="#__codelineno-9-20" id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="go">argv[1] -&gt; "mirá argv[0]"</span>
+</code></pre></div>
+</div>
+<h2 id="procesamiento-de-los-argumentos">Procesamiento de los argumentos<a class="headerlink" href="#procesamiento-de-los-argumentos" title="Permanent link">#</a></h2>
+<p>Si bien, al programa se busca eficiencia y rendimiento, suele haber una parte de los programas donde esas
+características pasan a un segundo plano.
+Esta sección es la del procesamiento de los argumentos.
+Esto se debe a que es una tarea que debe realizarse una única vez, por lo que no suele ser necesario que este
+procesamiento sea el más eficiente (claro está que si el procesamiento realiza tareas complejas, estas deberán ser
+optimizadas).</p>
+<p>Para avanzar en el procesamiento de los argumentos, implementaremos el programa que divide 2 números, de diferentes
+maneras.
+Sin embargo, podemos partir del siguiente código:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Código principal</label><label for="__tabbed_1_2">Auxiliares</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Divisor: código base</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"status.h"</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"arg_parser.h"</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="p">{</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">    </span><span class="n">status_t</span><span class="w"> </span><span class="n">st</span><span class="p">;</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">num</span><span class="p">;</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">den</span><span class="p">;</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="w">    </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parse_arguments</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">den</span><span class="p">);</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ST_OK</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">st</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Failed to parse arguments (%s)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">err_to_str</span><span class="p">(</span><span class="n">st</span><span class="p">));</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a>
+<a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%g</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">den</span><span class="p">);</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20"></a>
+<a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"/><div class="tabbed-labels"><label for="__tabbed_2_1"><code>arg_parser.h</code></label><label for="__tabbed_2_2"><code>status.h</code></label><label for="__tabbed_2_3"><code>status.c</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="cp">#pragma once</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"status.h"</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">parse_arguments</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">num</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">den</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="cp">#pragma once</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">    </span><span class="n">ST_OK</span><span class="p">,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">    </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span><span class="n">ST_ERR_INSUFFICIENT_ARGUMENTS</span><span class="p">,</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">    </span><span class="n">ST_ERR_TOO_MANY_ARGUMENTS</span><span class="p">,</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">    </span><span class="n">ST_ERR_INVALID_NUMERATOR</span><span class="p">,</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">    </span><span class="n">ST_ERR_INVALID_DENOMINATOR</span><span class="p">,</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">    </span><span class="n">ST_ERR_UNKNOWN_ARGUMENT</span><span class="p">,</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="w">    </span><span class="n">ST_ERR_LZERO_ARRAY</span><span class="p">,</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="w">    </span><span class="n">ST_ERR_INVALID_ARG</span><span class="p">,</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="w">    </span><span class="n">ST_ERR_UNKNOWN</span><span class="p">,</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="p">}</span><span class="w"> </span><span class="n">status_t</span><span class="p">;</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">err_to_str</span><span class="p">(</span><span class="n">status_t</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span>
+<span class="normal"><a href="#__codelineno-13-21">21</a></span>
+<span class="normal"><a href="#__codelineno-13-22">22</a></span>
+<span class="normal"><a href="#__codelineno-13-23">23</a></span>
+<span class="normal"><a href="#__codelineno-13-24">24</a></span>
+<span class="normal"><a href="#__codelineno-13-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"status.h"</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">err</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_OK</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_OK"</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_NULL_PTR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_NULL_PTR"</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_INSUFFICIENT_ARGUMENTS</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_INSUFFICIENT_ARGUMENTS"</span><span class="p">,</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_TOO_MANY_ARGUMENTS</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_TOO_MANY_ARGUMENTS"</span><span class="p">,</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_INVALID_NUMERATOR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_INVALID_NUMERATOR"</span><span class="p">,</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_INVALID_DENOMINATOR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_INVALID_DENOMINATOR"</span><span class="p">,</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_UNKNOWN_ARGUMENT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_UNKNOWN_ARGUMENT"</span><span class="p">,</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_LZERO_ARRAY</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_LZERO_ARRAY"</span><span class="p">,</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_INVALID_ARG</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_INVALID_ARG"</span><span class="p">,</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a><span class="w">    </span><span class="p">[</span><span class="n">ST_ERR_UNKNOWN</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ST_ERR_UNKNOWN"</span><span class="p">,</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="p">};</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a>
+<a id="__codelineno-13-17" name="__codelineno-13-17"></a>
+<a id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">err_to_str</span><span class="p">(</span><span class="n">status_t</span><span class="w"> </span><span class="n">st</span><span class="p">)</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19"></a><span class="p">{</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">st</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">st</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">ST_ERR_UNKNOWN</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">err</span><span class="p">[</span><span class="n">st</span><span class="p">];</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23"></a>
+<a id="__codelineno-13-24" name="__codelineno-13-24"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"unknown"</span><span class="p">;</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</input></input></div>
+</div>
+</div>
+</input></input></div>
+<h3 id="argumentos-posicionales">Argumentos posicionales<a class="headerlink" href="#argumentos-posicionales" title="Permanent link">#</a></h3>
+<p>Comenzamos con el modo más simple de procesamiento de los argumentos.
+Aquí indicaremos que el primer argumento del programa es el numerador y el siguiente el denominador.
+Para ello, tenemos que implementar la función <code>parse_arguments</code> que no está entre los archivos anteriores.</p>
+<p>Como <code>argv[0]</code> siempre es el programa, nuestros argumentos estarán en <code>argv[1]</code> y <code>argv[2]</code>.
+Para ello, tenemos que asegurarnos que la cantidad de argumentos es la necesaria, y esto lo hacemos mirando el valor de
+<code>argc</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Procesamiento posicional</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span>
+<span class="normal"><a href="#__codelineno-14-26">26</a></span>
+<span class="normal"><a href="#__codelineno-14-27">27</a></span>
+<span class="normal"><a href="#__codelineno-14-28">28</a></span>
+<span class="normal"><a href="#__codelineno-14-29">29</a></span>
+<span class="normal"><a href="#__codelineno-14-30">30</a></span>
+<span class="normal"><a href="#__codelineno-14-31">31</a></span>
+<span class="normal"><a href="#__codelineno-14-32">32</a></span>
+<span class="normal"><a href="#__codelineno-14-33">33</a></span>
+<span class="normal"><a href="#__codelineno-14-34">34</a></span>
+<span class="normal"><a href="#__codelineno-14-35">35</a></span>
+<span class="normal"><a href="#__codelineno-14-36">36</a></span>
+<span class="normal"><a href="#__codelineno-14-37">37</a></span>
+<span class="normal"><a href="#__codelineno-14-38">38</a></span>
+<span class="normal"><a href="#__codelineno-14-39">39</a></span>
+<span class="normal"><a href="#__codelineno-14-40">40</a></span>
+<span class="normal"><a href="#__codelineno-14-41">41</a></span>
+<span class="normal"><a href="#__codelineno-14-42">42</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"status.h"</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"arg_parser.h"</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="cp">#define ARG_POS_NUMERATOR   1</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="cp">#define ARG_POS_DENOMINATOR 2</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">parse_arguments</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">num</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">den</span><span class="p">)</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="p">{</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">_num</span><span class="p">;</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">_den</span><span class="p">;</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a>
+<a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INSUFFICIENT_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19"></a>
+<a id="__codelineno-14-20" name="__codelineno-14-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_TOO_MANY_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23"></a>
+<a id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">den</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27"></a>
+<a id="__codelineno-14-28" name="__codelineno-14-28"></a><span class="w">    </span><span class="n">_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">ARG_POS_NUMERATOR</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INVALID_NUMERATOR</span><span class="p">;</span>
+<a id="__codelineno-14-31" name="__codelineno-14-31"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-14-32" name="__codelineno-14-32"></a>
+<a id="__codelineno-14-33" name="__codelineno-14-33"></a><span class="w">    </span><span class="n">_den</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">ARG_POS_DENOMINATOR</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-14-34" name="__codelineno-14-34"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-35" name="__codelineno-14-35"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INVALID_DENOMINATOR</span><span class="p">;</span>
+<a id="__codelineno-14-36" name="__codelineno-14-36"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-14-37" name="__codelineno-14-37"></a>
+<a id="__codelineno-14-38" name="__codelineno-14-38"></a><span class="w">    </span><span class="o">*</span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_num</span><span class="p">;</span>
+<a id="__codelineno-14-39" name="__codelineno-14-39"></a><span class="w">    </span><span class="o">*</span><span class="n">den</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_den</span><span class="p">;</span>
+<a id="__codelineno-14-40" name="__codelineno-14-40"></a>
+<a id="__codelineno-14-41" name="__codelineno-14-41"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-14-42" name="__codelineno-14-42"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>La función implementada chequea que los argumentos recibidos sean válidos y luego intenta convertir los argumentos
+recibidos.
+Si las conversiones funcionan correctamente, se almacenan en los argumentos recibidos, modificando las variables de
+<code>main</code> recibidas por puntero.</p>
+<p>El programa podemos compilarlo y ejecutarlo del siguiente modo:</p>
+<div class="highlight"><span class="filename">Compilación y ejecución</span><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>-Wall<span class="w"> </span>-pedantic<span class="w"> </span>-std<span class="o">=</span>c17<span class="w"> </span>-O3<span class="w"> </span>-o<span class="w"> </span>divisor<span class="w"> </span>divisor.c<span class="w"> </span>arg_posicional.c<span class="w"> </span>status.c
+<a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="gp">$ </span>./divisor
+<a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="go">Failed to parse arguments (ST_ERR_INSUFFICIENT_ARGUMENTS)</span>
+<a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">0</span>
+<a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="go">Failed to parse arguments (ST_ERR_INSUFFICIENT_ARGUMENTS)</span>
+<a href="#__codelineno-15-6" id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+<a href="#__codelineno-15-7" id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="go">0</span>
+<a href="#__codelineno-15-8" id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="gp">$ </span>./divisor<span class="w"> </span>99l.<span class="w"> </span><span class="m">5</span>
+<a href="#__codelineno-15-9" id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="go">Failed to parse arguments (ST_ERR_INVALID_NUMERATOR)</span>
+<a href="#__codelineno-15-10" id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">99</span>.<span class="w"> </span>5s
+<a href="#__codelineno-15-11" id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="go">Failed to parse arguments (ST_ERR_INVALID_DENOMINATOR)</span>
+<a href="#__codelineno-15-12" id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">2</span>
+<a href="#__codelineno-15-13" id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="go">50</span>
+<a href="#__codelineno-15-14" id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">100</span>.1<span class="w"> </span><span class="m">2</span>
+<a href="#__codelineno-15-15" id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="go">50.05</span>
+<a href="#__codelineno-15-16" id="__codelineno-15-16" name="__codelineno-15-16"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">100</span>.1<span class="w"> </span><span class="m">33</span>
+<a href="#__codelineno-15-17" id="__codelineno-15-17" name="__codelineno-15-17"></a><span class="go">3.03333</span>
+<a href="#__codelineno-15-18" id="__codelineno-15-18" name="__codelineno-15-18"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">33</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span>
+<a href="#__codelineno-15-19" id="__codelineno-15-19" name="__codelineno-15-19"></a><span class="go">Failed to parse arguments (ST_ERR_TOO_MANY_ARGUMENTS)</span>
+</code></pre></div>
+<h3 id="argumentos-no-posicionales">Argumentos no posicionales<a class="headerlink" href="#argumentos-no-posicionales" title="Permanent link">#</a></h3>
+<p>Si quisiéramos permitir al usuario ingresar los argumentos en cualquier orden, por ejemplo, indicando los valores
+mediante los argumentos <code>--numerador</code> y <code>--denominador</code>, debemos modificar la función <code>parse_arguments</code>.</p>
+<p>Para ello, podríamos implementar la función del siguiente modo:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Procesamiento no posicional</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span>
+<span class="normal"><a href="#__codelineno-16-20">20</a></span>
+<span class="normal"><a href="#__codelineno-16-21">21</a></span>
+<span class="normal"><a href="#__codelineno-16-22">22</a></span>
+<span class="normal"><a href="#__codelineno-16-23">23</a></span>
+<span class="normal"><a href="#__codelineno-16-24">24</a></span>
+<span class="normal"><a href="#__codelineno-16-25">25</a></span>
+<span class="normal"><a href="#__codelineno-16-26">26</a></span>
+<span class="normal"><a href="#__codelineno-16-27">27</a></span>
+<span class="normal"><a href="#__codelineno-16-28">28</a></span>
+<span class="normal"><a href="#__codelineno-16-29">29</a></span>
+<span class="normal"><a href="#__codelineno-16-30">30</a></span>
+<span class="normal"><a href="#__codelineno-16-31">31</a></span>
+<span class="normal"><a href="#__codelineno-16-32">32</a></span>
+<span class="normal"><a href="#__codelineno-16-33">33</a></span>
+<span class="normal"><a href="#__codelineno-16-34">34</a></span>
+<span class="normal"><a href="#__codelineno-16-35">35</a></span>
+<span class="normal"><a href="#__codelineno-16-36">36</a></span>
+<span class="normal"><a href="#__codelineno-16-37">37</a></span>
+<span class="normal"><a href="#__codelineno-16-38">38</a></span>
+<span class="normal"><a href="#__codelineno-16-39">39</a></span>
+<span class="normal"><a href="#__codelineno-16-40">40</a></span>
+<span class="normal"><a href="#__codelineno-16-41">41</a></span>
+<span class="normal"><a href="#__codelineno-16-42">42</a></span>
+<span class="normal"><a href="#__codelineno-16-43">43</a></span>
+<span class="normal"><a href="#__codelineno-16-44">44</a></span>
+<span class="normal"><a href="#__codelineno-16-45">45</a></span>
+<span class="normal"><a href="#__codelineno-16-46">46</a></span>
+<span class="normal"><a href="#__codelineno-16-47">47</a></span>
+<span class="normal"><a href="#__codelineno-16-48">48</a></span>
+<span class="normal"><a href="#__codelineno-16-49">49</a></span>
+<span class="normal"><a href="#__codelineno-16-50">50</a></span>
+<span class="normal"><a href="#__codelineno-16-51">51</a></span>
+<span class="normal"><a href="#__codelineno-16-52">52</a></span>
+<span class="normal"><a href="#__codelineno-16-53">53</a></span>
+<span class="normal"><a href="#__codelineno-16-54">54</a></span>
+<span class="normal"><a href="#__codelineno-16-55">55</a></span>
+<span class="normal"><a href="#__codelineno-16-56">56</a></span>
+<span class="normal"><a href="#__codelineno-16-57">57</a></span>
+<span class="normal"><a href="#__codelineno-16-58">58</a></span>
+<span class="normal"><a href="#__codelineno-16-59">59</a></span>
+<span class="normal"><a href="#__codelineno-16-60">60</a></span>
+<span class="normal"><a href="#__codelineno-16-61">61</a></span>
+<span class="normal"><a href="#__codelineno-16-62">62</a></span>
+<span class="normal"><a href="#__codelineno-16-63">63</a></span>
+<span class="normal"><a href="#__codelineno-16-64">64</a></span>
+<span class="normal"><a href="#__codelineno-16-65">65</a></span>
+<span class="normal"><a href="#__codelineno-16-66">66</a></span>
+<span class="normal"><a href="#__codelineno-16-67">67</a></span>
+<span class="normal"><a href="#__codelineno-16-68">68</a></span>
+<span class="normal"><a href="#__codelineno-16-69">69</a></span>
+<span class="normal"><a href="#__codelineno-16-70">70</a></span>
+<span class="normal"><a href="#__codelineno-16-71">71</a></span>
+<span class="normal"><a href="#__codelineno-16-72">72</a></span>
+<span class="normal"><a href="#__codelineno-16-73">73</a></span>
+<span class="normal"><a href="#__codelineno-16-74">74</a></span>
+<span class="normal"><a href="#__codelineno-16-75">75</a></span>
+<span class="normal"><a href="#__codelineno-16-76">76</a></span>
+<span class="normal"><a href="#__codelineno-16-77">77</a></span>
+<span class="normal"><a href="#__codelineno-16-78">78</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"status.h"</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"arg_parser.h"</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="w">    </span><span class="n">ARG_NUMERATOR</span><span class="p">,</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="w">    </span><span class="n">ARG_DENOMINATOR</span><span class="p">,</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="p">}</span><span class="w"> </span><span class="n">arg_t</span><span class="p">;</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12"></a>
+<a id="__codelineno-16-13" name="__codelineno-16-13"></a>
+<a id="__codelineno-16-14" name="__codelineno-16-14"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">valid_args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15"></a><span class="w">    </span><span class="p">[</span><span class="n">ARG_NUMERATOR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"--numerador"</span><span class="p">,</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="w">    </span><span class="p">[</span><span class="n">ARG_DENOMINATOR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"--denominador"</span><span class="p">,</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="p">};</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18"></a>
+<a id="__codelineno-16-19" name="__codelineno-16-19"></a>
+<a id="__codelineno-16-20" name="__codelineno-16-20"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">parse_arguments</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">num</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">den</span><span class="p">)</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21"></a><span class="p">{</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">_num</span><span class="p">;</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">_den</span><span class="p">;</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">arg</span><span class="p">;</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">num_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-16-27" name="__codelineno-16-27"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">den_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28"></a>
+<a id="__codelineno-16-29" name="__codelineno-16-29"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-30" name="__codelineno-16-30"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INSUFFICIENT_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-16-31" name="__codelineno-16-31"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-32" name="__codelineno-16-32"></a>
+<a id="__codelineno-16-33" name="__codelineno-16-33"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-34" name="__codelineno-16-34"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_TOO_MANY_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-16-35" name="__codelineno-16-35"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-36" name="__codelineno-16-36"></a>
+<a id="__codelineno-16-37" name="__codelineno-16-37"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">den</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-38" name="__codelineno-16-38"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-16-39" name="__codelineno-16-39"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-40" name="__codelineno-16-40"></a>
+<a id="__codelineno-16-41" name="__codelineno-16-41"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-42" name="__codelineno-16-42"></a><span class="w">        </span><span class="cm">/* search argument index comparing input argument with valid arguments */</span>
+<a id="__codelineno-16-43" name="__codelineno-16-43"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">arg</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">valid_args</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">valid_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"> </span><span class="o">++</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-44" name="__codelineno-16-44"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">valid_args</span><span class="p">[</span><span class="n">arg</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-45" name="__codelineno-16-45"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-16-46" name="__codelineno-16-46"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-16-47" name="__codelineno-16-47"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-16-48" name="__codelineno-16-48"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-49" name="__codelineno-16-49"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">ARG_NUMERATOR</span><span class="p">:</span>
+<a id="__codelineno-16-50" name="__codelineno-16-50"></a><span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<a id="__codelineno-16-51" name="__codelineno-16-51"></a><span class="w">                </span><span class="n">_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-16-52" name="__codelineno-16-52"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-53" name="__codelineno-16-53"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INVALID_NUMERATOR</span><span class="p">;</span>
+<a id="__codelineno-16-54" name="__codelineno-16-54"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-16-55" name="__codelineno-16-55"></a><span class="w">                </span><span class="n">num_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-16-56" name="__codelineno-16-56"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-16-57" name="__codelineno-16-57"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">ARG_DENOMINATOR</span><span class="p">:</span>
+<a id="__codelineno-16-58" name="__codelineno-16-58"></a><span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<a id="__codelineno-16-59" name="__codelineno-16-59"></a><span class="w">                </span><span class="n">_den</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-16-60" name="__codelineno-16-60"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-61" name="__codelineno-16-61"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INVALID_DENOMINATOR</span><span class="p">;</span>
+<a id="__codelineno-16-62" name="__codelineno-16-62"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-16-63" name="__codelineno-16-63"></a><span class="w">                </span><span class="n">den_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-16-64" name="__codelineno-16-64"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-16-65" name="__codelineno-16-65"></a><span class="w">            </span><span class="k">default</span><span class="o">:</span>
+<a id="__codelineno-16-66" name="__codelineno-16-66"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_UNKNOWN_ARGUMENT</span><span class="p">;</span>
+<a id="__codelineno-16-67" name="__codelineno-16-67"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-16-68" name="__codelineno-16-68"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-69" name="__codelineno-16-69"></a>
+<a id="__codelineno-16-70" name="__codelineno-16-70"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">num_processed</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">den_processed</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-71" name="__codelineno-16-71"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INSUFFICIENT_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-16-72" name="__codelineno-16-72"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-73" name="__codelineno-16-73"></a>
+<a id="__codelineno-16-74" name="__codelineno-16-74"></a><span class="w">    </span><span class="o">*</span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_num</span><span class="p">;</span>
+<a id="__codelineno-16-75" name="__codelineno-16-75"></a><span class="w">    </span><span class="o">*</span><span class="n">den</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_den</span><span class="p">;</span>
+<a id="__codelineno-16-76" name="__codelineno-16-76"></a>
+<a id="__codelineno-16-77" name="__codelineno-16-77"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-16-78" name="__codelineno-16-78"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>En este caso, el primer <code>for</code> itera por los argumentos que ingresa el usuario mientras que el segundo <code>for</code> itera por
+los argumentos válidos, buscando si el ingresado por el usuario es válido y cuál es.
+El programa podemos compilarlo y ejecutarlo del siguiente modo:</p>
+<div class="highlight"><span class="filename">Compilación y ejecución</span><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>-Wall<span class="w"> </span>-pedantic<span class="w"> </span>-std<span class="o">=</span>c17<span class="w"> </span>-O3<span class="w"> </span>-o<span class="w"> </span>divisor<span class="w"> </span>divisor.c<span class="w"> </span>arg_no_posicional_1.c<span class="w"> </span>status.c
+<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">33</span>
+<a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="go">Failed to parse arguments (ST_ERR_INSUFFICIENT_ARGUMENTS)</span>
+<a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="go">12.5</span>
+<a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span><span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span>
+<a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="go">12.5</span>
+<a href="#__codelineno-17-8" id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span><span class="w"> </span>--numerador
+<a href="#__codelineno-17-9" id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="go">Failed to parse arguments (ST_ERR_INSUFFICIENT_ARGUMENTS)</span>
+<a href="#__codelineno-17-10" id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span><span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>extra
+<a href="#__codelineno-17-11" id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="go">Failed to parse arguments (ST_ERR_TOO_MANY_ARGUMENTS)</span>
+<a href="#__codelineno-17-12" id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span><span class="w"> </span>--numerador<span class="w"> </span>100xxxxxx
+<a href="#__codelineno-17-13" id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="go">Failed to parse arguments (ST_ERR_INVALID_NUMERATOR)</span>
+<a href="#__codelineno-17-14" id="__codelineno-17-14" name="__codelineno-17-14"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>--denominador<span class="w"> </span>8xxx
+<a href="#__codelineno-17-15" id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="go">Failed to parse arguments (ST_ERR_INVALID_DENOMINATOR)</span>
+<a href="#__codelineno-17-16" id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerator<span class="w"> </span><span class="m">100</span><span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-17-17" id="__codelineno-17-17" name="__codelineno-17-17"></a><span class="go">Failed to parse arguments (ST_ERR_UNKNOWN_ARGUMENT)</span>
+<a href="#__codelineno-17-18" id="__codelineno-17-18" name="__codelineno-17-18"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>--denominator<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-17-19" id="__codelineno-17-19" name="__codelineno-17-19"></a><span class="go">Failed to parse arguments (ST_ERR_UNKNOWN_ARGUMENT)</span>
+</code></pre></div>
+<h3 id="argumentos-no-posicionales-bis">Argumentos no posicionales (bis)<a class="headerlink" href="#argumentos-no-posicionales-bis" title="Permanent link">#</a></h3>
+<p>El ejemplo anterior ya nos sirve para implementar argumentos no posicionales pero ¿qué ocurre si veo que <code>--numerador</code>
+es demasiado largo y quisiera aceptar <code>-n</code>?
+La primera opción es modificar el arreglo donde dice <code>--numerador</code> por <code>-n</code> y <em>voilà</em>.
+Sin embargo, si es una aplicación “grande”, podríamos actualizarla y hacer que dejen de funcionar sistemas que antes
+funcionaban (no es retrocompatible).
+Para ello, necesitamos aceptar ambos argumentos.</p>
+<p>El siguiente código aplica mínimos cambios al anterior para lograr dicho cometido.
+Sin embargo, no implica que se la mejor forma de hacerlo (de hecho, hay muchas maneras diferentes de implementarlo).
+Una forma típica es utilizando estructuras, tema aún no cubierto <img alt="🙂" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f642.svg" title=":slight_smile:"/>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Procesamiento no posicional</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span>
+<span class="normal"><a href="#__codelineno-18-13">13</a></span>
+<span class="normal"><a href="#__codelineno-18-14">14</a></span>
+<span class="normal"><a href="#__codelineno-18-15">15</a></span>
+<span class="normal"><a href="#__codelineno-18-16">16</a></span>
+<span class="normal"><a href="#__codelineno-18-17">17</a></span>
+<span class="normal"><a href="#__codelineno-18-18">18</a></span>
+<span class="normal"><a href="#__codelineno-18-19">19</a></span>
+<span class="normal"><a href="#__codelineno-18-20">20</a></span>
+<span class="normal"><a href="#__codelineno-18-21">21</a></span>
+<span class="normal"><a href="#__codelineno-18-22">22</a></span>
+<span class="normal"><a href="#__codelineno-18-23">23</a></span>
+<span class="normal"><a href="#__codelineno-18-24">24</a></span>
+<span class="normal"><a href="#__codelineno-18-25">25</a></span>
+<span class="normal"><a href="#__codelineno-18-26">26</a></span>
+<span class="normal"><a href="#__codelineno-18-27">27</a></span>
+<span class="normal"><a href="#__codelineno-18-28">28</a></span>
+<span class="normal"><a href="#__codelineno-18-29">29</a></span>
+<span class="normal"><a href="#__codelineno-18-30">30</a></span>
+<span class="normal"><a href="#__codelineno-18-31">31</a></span>
+<span class="normal"><a href="#__codelineno-18-32">32</a></span>
+<span class="normal"><a href="#__codelineno-18-33">33</a></span>
+<span class="normal"><a href="#__codelineno-18-34">34</a></span>
+<span class="normal"><a href="#__codelineno-18-35">35</a></span>
+<span class="normal"><a href="#__codelineno-18-36">36</a></span>
+<span class="normal"><a href="#__codelineno-18-37">37</a></span>
+<span class="normal"><a href="#__codelineno-18-38">38</a></span>
+<span class="normal"><a href="#__codelineno-18-39">39</a></span>
+<span class="normal"><a href="#__codelineno-18-40">40</a></span>
+<span class="normal"><a href="#__codelineno-18-41">41</a></span>
+<span class="normal"><a href="#__codelineno-18-42">42</a></span>
+<span class="normal"><a href="#__codelineno-18-43">43</a></span>
+<span class="normal"><a href="#__codelineno-18-44">44</a></span>
+<span class="normal"><a href="#__codelineno-18-45">45</a></span>
+<span class="normal"><a href="#__codelineno-18-46">46</a></span>
+<span class="normal"><a href="#__codelineno-18-47">47</a></span>
+<span class="normal"><a href="#__codelineno-18-48">48</a></span>
+<span class="normal"><a href="#__codelineno-18-49">49</a></span>
+<span class="normal"><a href="#__codelineno-18-50">50</a></span>
+<span class="normal"><a href="#__codelineno-18-51">51</a></span>
+<span class="normal"><a href="#__codelineno-18-52">52</a></span>
+<span class="normal"><a href="#__codelineno-18-53">53</a></span>
+<span class="normal"><a href="#__codelineno-18-54">54</a></span>
+<span class="normal"><a href="#__codelineno-18-55">55</a></span>
+<span class="normal"><a href="#__codelineno-18-56">56</a></span>
+<span class="normal"><a href="#__codelineno-18-57">57</a></span>
+<span class="normal"><a href="#__codelineno-18-58">58</a></span>
+<span class="normal"><a href="#__codelineno-18-59">59</a></span>
+<span class="normal"><a href="#__codelineno-18-60">60</a></span>
+<span class="normal"><a href="#__codelineno-18-61">61</a></span>
+<span class="normal"><a href="#__codelineno-18-62">62</a></span>
+<span class="normal"><a href="#__codelineno-18-63">63</a></span>
+<span class="normal"><a href="#__codelineno-18-64">64</a></span>
+<span class="normal"><a href="#__codelineno-18-65">65</a></span>
+<span class="normal"><a href="#__codelineno-18-66">66</a></span>
+<span class="normal"><a href="#__codelineno-18-67">67</a></span>
+<span class="normal"><a href="#__codelineno-18-68">68</a></span>
+<span class="normal"><a href="#__codelineno-18-69">69</a></span>
+<span class="normal"><a href="#__codelineno-18-70">70</a></span>
+<span class="normal"><a href="#__codelineno-18-71">71</a></span>
+<span class="normal"><a href="#__codelineno-18-72">72</a></span>
+<span class="normal"><a href="#__codelineno-18-73">73</a></span>
+<span class="normal"><a href="#__codelineno-18-74">74</a></span>
+<span class="normal"><a href="#__codelineno-18-75">75</a></span>
+<span class="normal"><a href="#__codelineno-18-76">76</a></span>
+<span class="normal"><a href="#__codelineno-18-77">77</a></span>
+<span class="normal"><a href="#__codelineno-18-78">78</a></span>
+<span class="normal"><a href="#__codelineno-18-79">79</a></span>
+<span class="normal"><a href="#__codelineno-18-80">80</a></span>
+<span class="normal"><a href="#__codelineno-18-81">81</a></span>
+<span class="normal"><a href="#__codelineno-18-82">82</a></span>
+<span class="normal"><a href="#__codelineno-18-83">83</a></span>
+<span class="normal"><a href="#__codelineno-18-84">84</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"status.h"</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"arg_parser.h"</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a>
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="w">    </span><span class="n">ARG_NUMERATOR_SHORT</span><span class="p">,</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="w">    </span><span class="n">ARG_NUMERATOR_LONG</span><span class="p">,</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">    </span><span class="n">ARG_DENOMINATOR_SHORT</span><span class="p">,</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="w">    </span><span class="n">ARG_DENOMINATOR_LONG</span><span class="p">,</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="p">}</span><span class="w"> </span><span class="n">arg_t</span><span class="p">;</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14"></a>
+<a id="__codelineno-18-15" name="__codelineno-18-15"></a>
+<a id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">valid_args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="w">    </span><span class="p">[</span><span class="n">ARG_NUMERATOR_SHORT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"-n"</span><span class="p">,</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18"></a><span class="w">    </span><span class="p">[</span><span class="n">ARG_NUMERATOR_LONG</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"--numerador"</span><span class="p">,</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19"></a><span class="w">    </span><span class="p">[</span><span class="n">ARG_DENOMINATOR_SHORT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"-d"</span><span class="p">,</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20"></a><span class="w">    </span><span class="p">[</span><span class="n">ARG_DENOMINATOR_LONG</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"--denominador"</span><span class="p">,</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21"></a><span class="p">};</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22"></a>
+<a id="__codelineno-18-23" name="__codelineno-18-23"></a>
+<a id="__codelineno-18-24" name="__codelineno-18-24"></a><span class="n">status_t</span><span class="w"> </span><span class="nf">parse_arguments</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">num</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">den</span><span class="p">)</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25"></a><span class="p">{</span>
+<a id="__codelineno-18-26" name="__codelineno-18-26"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-18-27" name="__codelineno-18-27"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">_num</span><span class="p">;</span>
+<a id="__codelineno-18-28" name="__codelineno-18-28"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">_den</span><span class="p">;</span>
+<a id="__codelineno-18-29" name="__codelineno-18-29"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">arg</span><span class="p">;</span>
+<a id="__codelineno-18-30" name="__codelineno-18-30"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">num_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-18-31" name="__codelineno-18-31"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">den_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-18-32" name="__codelineno-18-32"></a>
+<a id="__codelineno-18-33" name="__codelineno-18-33"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-34" name="__codelineno-18-34"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INSUFFICIENT_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-18-35" name="__codelineno-18-35"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-18-36" name="__codelineno-18-36"></a>
+<a id="__codelineno-18-37" name="__codelineno-18-37"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-38" name="__codelineno-18-38"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_TOO_MANY_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-18-39" name="__codelineno-18-39"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-18-40" name="__codelineno-18-40"></a>
+<a id="__codelineno-18-41" name="__codelineno-18-41"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="nb">NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">den</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-42" name="__codelineno-18-42"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_NULL_PTR</span><span class="p">;</span>
+<a id="__codelineno-18-43" name="__codelineno-18-43"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-18-44" name="__codelineno-18-44"></a>
+<a id="__codelineno-18-45" name="__codelineno-18-45"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-46" name="__codelineno-18-46"></a><span class="w">        </span><span class="cm">/* search argument index comparing input argument with valid arguments */</span>
+<a id="__codelineno-18-47" name="__codelineno-18-47"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">arg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">arg</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">valid_args</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">valid_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"> </span><span class="o">++</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-48" name="__codelineno-18-48"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">valid_args</span><span class="p">[</span><span class="n">arg</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-49" name="__codelineno-18-49"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-18-50" name="__codelineno-18-50"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-18-51" name="__codelineno-18-51"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-18-52" name="__codelineno-18-52"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-53" name="__codelineno-18-53"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">ARG_NUMERATOR_SHORT</span><span class="p">:</span>
+<a id="__codelineno-18-54" name="__codelineno-18-54"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">ARG_NUMERATOR_LONG</span><span class="p">:</span>
+<a id="__codelineno-18-55" name="__codelineno-18-55"></a><span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<a id="__codelineno-18-56" name="__codelineno-18-56"></a><span class="w">                </span><span class="n">_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-18-57" name="__codelineno-18-57"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-58" name="__codelineno-18-58"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INVALID_NUMERATOR</span><span class="p">;</span>
+<a id="__codelineno-18-59" name="__codelineno-18-59"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-18-60" name="__codelineno-18-60"></a><span class="w">                </span><span class="n">num_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-18-61" name="__codelineno-18-61"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-18-62" name="__codelineno-18-62"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">ARG_DENOMINATOR_SHORT</span><span class="p">:</span>
+<a id="__codelineno-18-63" name="__codelineno-18-63"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="no">ARG_DENOMINATOR_LONG</span><span class="p">:</span>
+<a id="__codelineno-18-64" name="__codelineno-18-64"></a><span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<a id="__codelineno-18-65" name="__codelineno-18-65"></a><span class="w">                </span><span class="n">_den</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pend</span><span class="p">);</span>
+<a id="__codelineno-18-66" name="__codelineno-18-66"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="sc">'\0'</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">*</span><span class="n">pend</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-67" name="__codelineno-18-67"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INVALID_DENOMINATOR</span><span class="p">;</span>
+<a id="__codelineno-18-68" name="__codelineno-18-68"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-18-69" name="__codelineno-18-69"></a><span class="w">                </span><span class="n">den_processed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-18-70" name="__codelineno-18-70"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-18-71" name="__codelineno-18-71"></a><span class="w">            </span><span class="k">default</span><span class="o">:</span>
+<a id="__codelineno-18-72" name="__codelineno-18-72"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_UNKNOWN_ARGUMENT</span><span class="p">;</span>
+<a id="__codelineno-18-73" name="__codelineno-18-73"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-18-74" name="__codelineno-18-74"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-18-75" name="__codelineno-18-75"></a>
+<a id="__codelineno-18-76" name="__codelineno-18-76"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">num_processed</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">den_processed</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-77" name="__codelineno-18-77"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ST_ERR_INSUFFICIENT_ARGUMENTS</span><span class="p">;</span>
+<a id="__codelineno-18-78" name="__codelineno-18-78"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-18-79" name="__codelineno-18-79"></a>
+<a id="__codelineno-18-80" name="__codelineno-18-80"></a><span class="w">    </span><span class="o">*</span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_num</span><span class="p">;</span>
+<a id="__codelineno-18-81" name="__codelineno-18-81"></a><span class="w">    </span><span class="o">*</span><span class="n">den</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_den</span><span class="p">;</span>
+<a id="__codelineno-18-82" name="__codelineno-18-82"></a>
+<a id="__codelineno-18-83" name="__codelineno-18-83"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ST_OK</span><span class="p">;</span>
+<a id="__codelineno-18-84" name="__codelineno-18-84"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>La resolución propuesta agrega los argumentos necesarios como un par de argumentos adicionales, que no guardan relación
+con los anteriores más que porque procesan los mismos datos.
+El programa podemos compilarlo y ejecutarlo del siguiente modo:</p>
+<div class="highlight"><span class="filename">Compilación y ejecución</span><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="gp">$ </span>gcc<span class="w"> </span>-Wall<span class="w"> </span>-pedantic<span class="w"> </span>-std<span class="o">=</span>c17<span class="w"> </span>-O3<span class="w"> </span>-o<span class="w"> </span>divisor<span class="w"> </span>divisor.c<span class="w"> </span>arg_no_posicional_2.c<span class="w"> </span>status.c
+<a href="#__codelineno-19-2" id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">33</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span>
+<a href="#__codelineno-19-3" id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="go">Failed to parse arguments (ST_ERR_TOO_MANY_ARGUMENTS)</span>
+<a href="#__codelineno-19-4" id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="gp">$ </span>./divisor<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">33</span>
+<a href="#__codelineno-19-5" id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="go">Failed to parse arguments (ST_ERR_INSUFFICIENT_ARGUMENTS)</span>
+<a href="#__codelineno-19-6" id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-19-7" id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="go">12.5</span>
+<a href="#__codelineno-19-8" id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>-d<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-19-9" id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="go">12.5</span>
+<a href="#__codelineno-19-10" id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="gp">$ </span>./divisor<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-19-11" id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="go">12.5</span>
+<a href="#__codelineno-19-12" id="__codelineno-19-12" name="__codelineno-19-12"></a><span class="gp">$ </span>./divisor<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w"> </span>-d<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-19-13" id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="go">12.5</span>
+<a href="#__codelineno-19-14" id="__codelineno-19-14" name="__codelineno-19-14"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span><span class="w"> </span>--numerador
+<a href="#__codelineno-19-15" id="__codelineno-19-15" name="__codelineno-19-15"></a><span class="go">Failed to parse arguments (ST_ERR_INSUFFICIENT_ARGUMENTS)</span>
+<a href="#__codelineno-19-16" id="__codelineno-19-16" name="__codelineno-19-16"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span><span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>extra
+<a href="#__codelineno-19-17" id="__codelineno-19-17" name="__codelineno-19-17"></a><span class="go">Failed to parse arguments (ST_ERR_TOO_MANY_ARGUMENTS)</span>
+<a href="#__codelineno-19-18" id="__codelineno-19-18" name="__codelineno-19-18"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--denominador<span class="w"> </span><span class="m">8</span><span class="w"> </span>--numerador<span class="w"> </span>100xxxxxx
+<a href="#__codelineno-19-19" id="__codelineno-19-19" name="__codelineno-19-19"></a><span class="go">Failed to parse arguments (ST_ERR_INVALID_NUMERATOR)</span>
+<a href="#__codelineno-19-20" id="__codelineno-19-20" name="__codelineno-19-20"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>-d<span class="w"> </span>8xxx
+<a href="#__codelineno-19-21" id="__codelineno-19-21" name="__codelineno-19-21"></a><span class="go">Failed to parse arguments (ST_ERR_INVALID_DENOMINATOR)</span>
+<a href="#__codelineno-19-22" id="__codelineno-19-22" name="__codelineno-19-22"></a><span class="gp">$ </span>./divisor<span class="w"> </span>--numerador<span class="w"> </span><span class="m">100</span><span class="w"> </span>-D<span class="w"> </span><span class="m">8</span>
+<a href="#__codelineno-19-23" id="__codelineno-19-23" name="__codelineno-19-23"></a><span class="go">Failed to parse arguments (ST_ERR_UNKNOWN_ARGUMENT)</span>
+</code></pre></div>
+<p>Podemos ver las diferencias entre ambos archivos no posicionales como lo muestra git, en formato diff.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="gh">diff --git a/arg_no_posicional_1.c b/arg_no_posicional_2.c</span>
+<a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="gh">index fd33ccf..b17bd94 100644</span>
+<a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="gd">--- a/arg_no_posicional_1.c</span>
+<a href="#__codelineno-20-4" id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="gi">+++ b/arg_no_posicional_2.c</span>
+<a href="#__codelineno-20-5" id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="gu">@@ -6,14 +6,18 @@</span>
+<a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="w"> </span>#include &lt;string.h&gt;
+<a href="#__codelineno-20-7" id="__codelineno-20-7" name="__codelineno-20-7"></a>
+<a href="#__codelineno-20-8" id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="w"> </span>typedef enum {
+<a href="#__codelineno-20-9" id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="gd">-    ARG_NUMERATOR,</span>
+<a href="#__codelineno-20-10" id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="gd">-    ARG_DENOMINATOR,</span>
+<a href="#__codelineno-20-11" id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="gi">+    ARG_NUMERATOR_SHORT,</span>
+<a href="#__codelineno-20-12" id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="gi">+    ARG_NUMERATOR_LONG,</span>
+<a href="#__codelineno-20-13" id="__codelineno-20-13" name="__codelineno-20-13"></a><span class="gi">+    ARG_DENOMINATOR_SHORT,</span>
+<a href="#__codelineno-20-14" id="__codelineno-20-14" name="__codelineno-20-14"></a><span class="gi">+    ARG_DENOMINATOR_LONG,</span>
+<a href="#__codelineno-20-15" id="__codelineno-20-15" name="__codelineno-20-15"></a><span class="w"> </span>} arg_t;
+<a href="#__codelineno-20-16" id="__codelineno-20-16" name="__codelineno-20-16"></a>
+<a href="#__codelineno-20-17" id="__codelineno-20-17" name="__codelineno-20-17"></a>
+<a href="#__codelineno-20-18" id="__codelineno-20-18" name="__codelineno-20-18"></a><span class="w"> </span>static const char *valid_args[] = {
+<a href="#__codelineno-20-19" id="__codelineno-20-19" name="__codelineno-20-19"></a><span class="gd">-    [ARG_NUMERATOR] = "--numerador",</span>
+<a href="#__codelineno-20-20" id="__codelineno-20-20" name="__codelineno-20-20"></a><span class="gd">-    [ARG_DENOMINATOR] = "--denominador",</span>
+<a href="#__codelineno-20-21" id="__codelineno-20-21" name="__codelineno-20-21"></a><span class="gi">+    [ARG_NUMERATOR_SHORT] = "-n",</span>
+<a href="#__codelineno-20-22" id="__codelineno-20-22" name="__codelineno-20-22"></a><span class="gi">+    [ARG_NUMERATOR_LONG] = "--numerador",</span>
+<a href="#__codelineno-20-23" id="__codelineno-20-23" name="__codelineno-20-23"></a><span class="gi">+    [ARG_DENOMINATOR_SHORT] = "-d",</span>
+<a href="#__codelineno-20-24" id="__codelineno-20-24" name="__codelineno-20-24"></a><span class="gi">+    [ARG_DENOMINATOR_LONG] = "--denominador",</span>
+<a href="#__codelineno-20-25" id="__codelineno-20-25" name="__codelineno-20-25"></a><span class="w"> </span>};
+<a href="#__codelineno-20-26" id="__codelineno-20-26" name="__codelineno-20-26"></a>
+<a href="#__codelineno-20-27" id="__codelineno-20-27" name="__codelineno-20-27"></a>
+<a href="#__codelineno-20-28" id="__codelineno-20-28" name="__codelineno-20-28"></a><span class="gu">@@ -46,7 +50,8 @@ status_t parse_arguments(int argc, char *argv[], double *num, double *den)</span>
+<a href="#__codelineno-20-29" id="__codelineno-20-29" name="__codelineno-20-29"></a><span class="w"> </span>            }
+<a href="#__codelineno-20-30" id="__codelineno-20-30" name="__codelineno-20-30"></a><span class="w"> </span>        }
+<a href="#__codelineno-20-31" id="__codelineno-20-31" name="__codelineno-20-31"></a><span class="w"> </span>        switch (arg) {
+<a href="#__codelineno-20-32" id="__codelineno-20-32" name="__codelineno-20-32"></a><span class="gd">-            case ARG_NUMERATOR:</span>
+<a href="#__codelineno-20-33" id="__codelineno-20-33" name="__codelineno-20-33"></a><span class="gi">+            case ARG_NUMERATOR_SHORT:</span>
+<a href="#__codelineno-20-34" id="__codelineno-20-34" name="__codelineno-20-34"></a><span class="gi">+            case ARG_NUMERATOR_LONG:</span>
+<a href="#__codelineno-20-35" id="__codelineno-20-35" name="__codelineno-20-35"></a><span class="w"> </span>                i++;
+<a href="#__codelineno-20-36" id="__codelineno-20-36" name="__codelineno-20-36"></a><span class="w"> </span>                _num = strtod(argv[i], &amp;pend);
+<a href="#__codelineno-20-37" id="__codelineno-20-37" name="__codelineno-20-37"></a><span class="w"> </span>                if ('\0' != *pend) {
+<a href="#__codelineno-20-38" id="__codelineno-20-38" name="__codelineno-20-38"></a><span class="gu">@@ -54,7 +59,8 @@ status_t parse_arguments(int argc, char *argv[], double *num, double *den)</span>
+<a href="#__codelineno-20-39" id="__codelineno-20-39" name="__codelineno-20-39"></a><span class="w"> </span>                }
+<a href="#__codelineno-20-40" id="__codelineno-20-40" name="__codelineno-20-40"></a><span class="w"> </span>                num_processed = true;
+<a href="#__codelineno-20-41" id="__codelineno-20-41" name="__codelineno-20-41"></a><span class="w"> </span>                break;
+<a href="#__codelineno-20-42" id="__codelineno-20-42" name="__codelineno-20-42"></a><span class="gd">-            case ARG_DENOMINATOR:</span>
+<a href="#__codelineno-20-43" id="__codelineno-20-43" name="__codelineno-20-43"></a><span class="gi">+            case ARG_DENOMINATOR_SHORT:</span>
+<a href="#__codelineno-20-44" id="__codelineno-20-44" name="__codelineno-20-44"></a><span class="gi">+            case ARG_DENOMINATOR_LONG:</span>
+<a href="#__codelineno-20-45" id="__codelineno-20-45" name="__codelineno-20-45"></a><span class="w"> </span>                i++;
+<a href="#__codelineno-20-46" id="__codelineno-20-46" name="__codelineno-20-46"></a><span class="w"> </span>                _den = strtod(argv[i], &amp;pend);
+<a href="#__codelineno-20-47" id="__codelineno-20-47" name="__codelineno-20-47"></a><span class="w"> </span>                if ('\0' != *pend) {
+</code></pre></div>
+<h2 id="nota-final">Nota final<a class="headerlink" href="#nota-final" title="Permanent link">#</a></h2>
+<p>Claramente, al procesar argumentos hacemos lo mismo que al procesar cadenas de texto.
+A estas cadenas les podemos dar el formato que queramos, es decir, podemos requerir de quien invoca que ingrese el
+argumento de la forma que nosotros pedimos.
+Las formas clásicas son las vistas en estos ejemplo, en opción corta y opción larga, y agregando a cualquiera de ellas
+la posibilidad de separar el argumento de su opción por el carácter <code>=</code> en lugar de espacios.
+En los ejemplos anteriores, esto implica que el numerador, por ejemplo, podría ser ingresado como <code>-n=1023</code>,
+<code>--numerador=182</code>, <code>--numerador 2993</code> o <code>-n 1.21</code> (y lo mismo para el denominador).
+Además, podríamos considerar que el programa reciba un argumento <code>--digits N</code>, que utilizamos para imprimir el resultado
+de la división N dígitos decimales.
+También podríamos aceptar argumentos por omisión, es decir, donde se le asigna un número en la inicialización y si no es
+modificado no es un error, sino que se utiliza aquel por omisión.</p>
+<p>Otros argumentos podrían utilizar más de un argumento siguiente, por ejemplo, si quisiéramos implementar un programa que
+dada una serie de números nos da su valor medio, y si lo solicitamos, otros momentos, como la varianza.
+Distintas formas de invocar dicho programa podrían ser:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="gp">$ </span>./statistics<span class="w"> </span>-n<span class="w"> </span><span class="m">92</span>.1<span class="w"> </span><span class="m">2</span>.3<span class="w"> </span><span class="m">6</span>.4<span class="w"> </span><span class="m">9</span>.2<span class="w"> </span><span class="m">492</span>.1<span class="w"> </span><span class="m">5</span>.09<span class="w"> </span><span class="m">6</span>.12<span class="w"> </span>--max<span class="w"> </span>--min<span class="w"> </span>--mean<span class="w"> </span>--std
+<a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="gp">$ </span>./statistics<span class="w"> </span>--max<span class="w"> </span>--min<span class="w"> </span>-n<span class="w"> </span><span class="m">92</span>.1<span class="w"> </span><span class="m">2</span>.3<span class="w"> </span><span class="m">6</span>.4<span class="w"> </span><span class="m">9</span>.2<span class="w"> </span><span class="m">492</span>.1<span class="w"> </span><span class="m">5</span>.09<span class="w"> </span><span class="m">6</span>.12<span class="w"> </span>--mean<span class="w"> </span>--std
+<a href="#__codelineno-21-3" id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="gp">$ </span>./statistics<span class="w"> </span>--max<span class="w"> </span>--min<span class="w"> </span>--mean<span class="w"> </span>--std<span class="w"> </span><span class="m">92</span>.1<span class="w"> </span><span class="m">2</span>.3<span class="w"> </span><span class="m">6</span>.4<span class="w"> </span><span class="m">9</span>.2<span class="w"> </span><span class="m">492</span>.1<span class="w"> </span><span class="m">5</span>.09<span class="w"> </span><span class="m">6</span>.12
+</code></pre></div>
+<p>En este último ejemplo, <code>--max</code>, <code>--min</code>, <code>--mean</code> y <code>--std</code> no toman ningún otro argumento, son banderas que indican si
+se solicita un dato o no (y por omisión, no se lo pide), y <code>-n</code> toma todos los demás argumentos hasta el siguiente
+argumento válido, o hasta el final.</p>
+<h2 id="biblioteca-estándar-para-manejo-de-argumentos">Biblioteca estándar para manejo de argumentos<a class="headerlink" href="#biblioteca-estándar-para-manejo-de-argumentos" title="Permanent link">#</a></h2>
+<p>No hay ninguna biblioteca estándar para la manipulación de argumentos.</p>
+<h2 id="guías-de-ejercicios">Guías de ejercicios<a class="headerlink" href="#guías-de-ejercicios" title="Permanent link">#</a></h2>
+<p>La guía de ejercicios de argumentos en línea de comandos se encuentra <a href="../../guias/c/cla/">aquí</a>.</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Última actualización:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 15, 2023</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Volver al principio
+          </button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Licencia: CC-BY-SA 4.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+<script src="../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="../../javascripts/fontawesome/all.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
